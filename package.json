@@ -1,0 +1,24 @@
+{
+  "name": "frontend-notes",
+  "version": "1.0.0",
+  "description": "主要是记录自己平时整理的一些前端笔记，用VuePress搭建的",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daiwanxing/frontend-notes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daiwanxing/frontend-notes/issues"
+  },
+  "homepage": "https://github.com/daiwanxing/frontend-notes#readme",
+  "devDependencies": {
+    "vuepress": "^1.8.2"
+  }
+}
