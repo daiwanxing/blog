@@ -1,21 +1,14 @@
-language: node_js
-os: linux
-node_js: "14"
-install:
-  - npm install
+language: node_js # node环境
+node_js:
+  - lts/*
 script:
-  - npm run docs:build
-after_script:
-  - cd ./docs/.vuepress/dist
-  - git init
-  - git config user.name "${USER_NAME}"
-  - git config user.email "${USER_MAIL}"
-  - git add .
-  - git commit -m ":construction_worker:- Deploy FRONTEND-NOTES Project by Travis CI ROBOT"
-  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" main:gh-pages
-# E: Build LifeCycle
-
-# 只有指定的分支提交时才会运行脚本
-branches:
-  only:
-    - main
+  - npm run docs:build # 执行命令
+deploy:
+  provider: pages
+  skip-cleanup: true
+  local_dir: docs/.vuepress/dist # 部署的文件夹文件
+  github-token: ${GH_TOKEN} # travis服务上的token变量
+  target-branch: gh-pages # 集成发布到gh-pages上
+  keep-history: true
+  on:
+    branch: main
