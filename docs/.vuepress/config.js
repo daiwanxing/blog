@@ -1,6 +1,7 @@
 module.exports = {
     title: '前端笔记小站',
     base: "/frontend-notes/",
+    port: 8088,
     description: '用来记录自己平日的学习笔记',
     themeConfig: {
         logo: "/logo.png",
