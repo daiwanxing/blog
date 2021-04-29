@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>介绍 | 前端笔记小站</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="用来记录自己平日的学习笔记">
+    
+    <link rel="preload" href="/assets/css/0.styles.e4d8b86b.css" as="style"><link rel="preload" href="/assets/js/app.52887621.js" as="script"><link rel="preload" href="/assets/js/2.e79caae7.js" as="script"><link rel="preload" href="/assets/js/10.040441e9.js" as="script"><link rel="prefetch" href="/assets/js/11.dc11cb9f.js"><link rel="prefetch" href="/assets/js/3.2c99a915.js"><link rel="prefetch" href="/assets/js/4.e05c873c.js"><link rel="prefetch" href="/assets/js/5.33233bc0.js"><link rel="prefetch" href="/assets/js/6.498ab014.js"><link rel="prefetch" href="/assets/js/7.f8a055c4.js"><link rel="prefetch" href="/assets/js/8.37e40bc0.js"><link rel="prefetch" href="/assets/js/9.002efa7e.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e4d8b86b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/logo.png" alt="前端笔记小站" class="logo"> <span class="site-name can-hide">前端笔记小站</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/render-html/" class="sidebar-link">网页渲染</a></li><li><a href="/vue-router/" aria-current="page" class="active sidebar-link">vue-router4 特性</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue-router/#介绍" class="sidebar-link">介绍</a></li><li class="sidebar-sub-header"><a href="/vue-router/#正文" class="sidebar-link">正文</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vue-router/#如何在compositionapi-中使用vue-router" class="sidebar-link">如何在compositionAPI 中使用vue-router</a></li></ul></li></ul></li><li><a href="/js/" class="sidebar-link">js语法疏漏</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="介绍"><a href="#介绍" class="header-anchor">#</a> 介绍</h2> <p>vue-router4是随着vue3配套的诞生的官方路由库,
+下面总结VueRouter4和VueRouter3的配置区别</p> <h2 id="正文"><a href="#正文" class="header-anchor">#</a> 正文</h2> <ol><li><p>所有的函数式导航，例如<code>$router.push()/replace()/forward()</code>，调用之后会返回一个期约状态已经变更的promise对象。</p></li> <li><p><code>$router.push</code>导航时如果提供了path，则params参数完全被忽略。</p></li></ol> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>path<span class="token operator">:</span> <span class="token string">'/user'</span><span class="token punctuation">,</span> params<span class="token operator">:</span> <span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token string">'xxx'</span> <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// will be ignored, works bad</span>
+
+<span class="token comment">// works good</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span>path<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/user/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><ol start="3"><li><code>router.replace()</code>和<code>router.push()</code>唯一的区别是不会创建一个新的历史记录到栈中，只会替换当前路由栈最顶层的历史记录。</li></ol> <div class="language-js extra-class"><pre class="language-js"><code><span class="token operator">&lt;</span>router<span class="token operator">-</span>link <span class="token operator">:</span>to<span class="token operator">=</span><span class="token string">&quot;{name: 'xxx'}&quot;</span> replace<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>router<span class="token operator">-</span>link<span class="token operator">&gt;</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> replace<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$router<span class="token punctuation">.</span>replace
+</code></pre></div><h3 id="如何在compositionapi-中使用vue-router"><a href="#如何在compositionapi-中使用vue-router" class="header-anchor">#</a> 如何在compositionAPI 中使用vue-router</h3></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/render-html/" class="prev">
+        网页渲染
+      </a></span> <span class="next"><a href="/js/">
+        js语法疏漏
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.52887621.js" defer></script><script src="/assets/js/2.e79caae7.js" defer></script><script src="/assets/js/10.040441e9.js" defer></script>
+  </body>
+</html>
