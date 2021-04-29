@@ -6,12 +6,8 @@ install:
 script:
   - npm run docs:build
 after_script:
-  - git clone ${GH_REP} .temp
-  - cd .temp
-  - cd ../
-  - mv .temp/.git docs
-  - cd docs/.vuepress/dist
-  - git checkout gh-pages
+  - cd ./docs/.vuepress/dist
+  - git init
   - git config user.name "${USER_NAME}"
   - git config user.email "${USER_MAIL}"
   - git add .
