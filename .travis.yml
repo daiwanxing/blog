@@ -7,11 +7,13 @@ script:
   - npm run docs:build
 after_script:
   - git clone ${GH_REP} .temp
-  - cd .temp/docs/.vuepress/dist
-  - git checkout gh-pages
+  - cd .temp
+  - cd ../
+  - mv .temp/.git docs
+  - cd docs/.vuepress/dist
   - git config user.name "${USER_NAME}"
   - git config user.email "${USER_MAIL}"
-  - git init
+  - git checkout gh-pages
   - git add .
   - git commit -m ":construction_worker:- Deploy FRONTEND-NOTES Project by Travis CI ROBOT"
   - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" gh-pages:gh-pages
