@@ -8,11 +8,12 @@ script:
 after_script:
   - cd ./docs/.vuepress/dist
   - git init
+  - git branch
   - git config user.name "${USER_NAME}"
   - git config user.email "${USER_MAIL}"
   - git add .
   - git commit -m ":construction_worker:- Deploy FRONTEND-NOTES Project by Travis CI ROBOT"
-  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" main:gh-pages
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" gh-pages:gh-pages
 # E: Build LifeCycle
 
 # 只有指定的分支提交时才会运行脚本
