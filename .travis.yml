@@ -6,7 +6,7 @@ script:
 deploy:
   commit_message: :construction_worker:Deploy %{project_name} with Travis CI ROBOT
   provider: pages
-  cleanup: true
+  skip_cleanup: true
   local_dir: docs/.vuepress/dist # 部署的文件夹文件
   token: ${GH_TOKEN} # travis服务上的token变量
   target_branch: gh-pages # 集成发布到gh-pages上
