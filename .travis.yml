@@ -1,6 +1,5 @@
 language: node_js # node环境
 os: linux
-dist: xenial
 node_js:
   - lts/*
 script:
