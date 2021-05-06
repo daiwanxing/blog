@@ -8,8 +8,10 @@
 /*  
     告诉浏览器去预请求这个资源，因为要提前被UA用到，所以html文档下载完毕之后会立即去下
     载这个资源,这是一个异步的操作，不会阻塞HTML的渲染，另外preload属性值可以使得css文件并行下载
+    只有rel="preload"时才能使用as属性，另外importance属性规定了资源的优先级，只有当rel="preload"
+    或者prefetch才能使用该属性
 */
-<link rel="preload" href="xxx.cdn.style.css">
+<link rel="preload" href="xxx.cdn.style.css" as="style">
 ```
 ``` css
 /*
@@ -18,12 +20,13 @@
 */
 <link rel="prefetch" href="xxx.cdn.style.css">
 ```
+具体的资料我们可以参考MDN上关于[rel属性](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/link#attr-rel)的知识
 
 ## 什么是预请求和简单请求
 
 当UA去请求一个资源的时候（一般是跨域的资源），会通过一个OPTIONS方法发送一个预请求（preflight request）
 这个请求的目的：
-1. 告诉serverUA实际要请求的Methods
+1. 告诉server，UA实际要请求的Methods
 2. 实际请求的header字段
 
 server收到该请求会返回一个response，该repsonse不带body，会告诉浏览器sever能够接受的请求方式以及header字段， UA再去匹配header字段和请求方式是否匹配，来决定是否发送真正的请求。
