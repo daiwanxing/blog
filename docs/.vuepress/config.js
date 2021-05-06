@@ -15,7 +15,7 @@ module.exports = {
         sidebarDepth: 2,
         sidebar: [
             {
-                title: "网页渲染",
+                title: "浏览器相关",
                 path: "/render-html/"
             },
             {
@@ -24,7 +24,7 @@ module.exports = {
                 sidebarDepth: 2
             },
             {
-                title: "js相关",
+                title: "javascript相关知识",
                 path: "/js/",
                 sidebarDepth: 2
             }

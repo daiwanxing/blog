@@ -45,3 +45,23 @@ web-worker可以在后台执行计算任务同时又不妨碍到主线程的执�
 4. web-worker一旦创建就会一直运行下去，除非手动释放
 5. web-worker和主线程不在一个context，通过post-message进行通信
 :::
+
+
+## async - await
+
+async是Generator 函数的语法糖
+
+```js
+    // 声明一个生成器函数
+    function* foo (x) {
+        yield x + 1;
+        yield x + 2;
+        yield x + 3;
+        return x + 4;
+    }
+
+    let bar = foo(100); // 返回的是一个生成器函数的实例
+    bar.next();
+    // { value: 101, done: false } 每次调用实例的next方法就会返回一个对象，包含了yield的值和是否可继续调用next
+    // 执行到return语句的时候，剩下的yield不再执行
+```
