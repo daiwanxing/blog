@@ -21,12 +21,12 @@
 
 ## 什么是预请求和简单请求
 
-当UA去请求一个资源的时候（），会通过一个OPTIONS方法发送一个预请求（preflight request）
+当UA去请求一个资源的时候（一般是跨域的资源），会通过一个OPTIONS方法发送一个预请求（preflight request）
 这个请求的目的：
-1. 告诉server实际请求的Methods
-2. 实际请求的字段
+1. 告诉serverUA实际要请求的Methods
+2. 实际请求的header字段
 
 server收到该请求会返回一个response，该repsonse不带body，会告诉浏览器sever能够接受的请求方式以及header字段， UA再去匹配header字段和请求方式是否匹配，来决定是否发送真正的请求。
 <br />
 
-简单请求一般是指methods为`GET`或者`POST`且没有任何自定义的header字段，其他的均为预请求。预检测请求的目的是什么， 获知服务器是否允许跨域请求
+简单请求一般是指methods为`GET`或者`POST`且没有任何自定义的header字段，其他的均为预请求。预检测请求的目的是什么， 是为了获知服务器是否允许跨域请求
