@@ -98,9 +98,12 @@ ES6 带来了ES Module的特性，模块的功能可以让我们更好的解耦�
     // 重新导出命名导出，从module脚本文件导出moduleA再导出给其他模块
     export { moduleA } from "./module.js";
 
-    // 重新导出默认导出
-    export { default as otherName } from "./module.js";
+    // 重新导出默认导出,
+    export { default } from "./module.js";
+
+    // 重新将默认导出命名为命名导出
+    export { default as module } from "./module.js";
 
     // 重新导出所有的命名导出
-    export { * } from "./module.js";
+    export * from "./module.js";
 ```
