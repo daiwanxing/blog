@@ -65,3 +65,42 @@ async是Generator 函数的语法糖
     // { value: 101, done: false } 每次调用实例的next方法就会返回一个对象，包含了yield的值和是否可继续调用next
     // 执行到return语句的时候，剩下的yield不再执行
 ```
+
+## 导入导出
+
+ES6 带来了ES Module的特性，模块的功能可以让我们更好的解耦代码功能逻辑，共用且不会与其他模块变量命名冲突
+
+1. 导入的几种方式
+
+```js
+    // 导入的是module的默认导出
+    import moduleList from "./module.js";
+
+    // 导入的是module脚本中的命名变量：moduleA
+    import { moduleA } from "./module.js"; 
+
+     // 导入的是module的默认导出与命名导出moduleA
+    import moduleList, { moduleA } from "./module.js";
+
+    // 导入的module脚本所有导出（包括默认导出）到 allModule变量中
+    import * as allModule from "./module.js"; 
+```
+
+2. 导出的几种方式
+
+```js
+    // 导出的是一个默认导出foo变量 
+    export default const foo = 1; 
+
+    // 导出的是一个命名导出bar变量
+    export const bar = 2;
+
+    // 重新导出命名导出，从module脚本文件导出moduleA再导出给其他模块
+    export { moduleA } from "./module.js";
+
+    // 重新导出默认导出
+    export { default as otherName } from "./module.js";
+
+    // 重新导出所有的命名导出
+    export { * } from "./module.js";
+```
