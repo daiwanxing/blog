@@ -1,1 +1,1 @@
-[点我开始](/vue-router/two.md)
+[点我开始](/broswer-doc/)

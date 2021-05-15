@@ -33,3 +33,5 @@ server收到该请求会返回一个response，该repsonse不带body，会告诉
 <br />
 
 简单请求一般是指methods为`GET`或者`POST`且没有任何自定义的header字段，其他的均为预请求。预检测请求的目的是什么， 是为了获知服务器是否允许跨域请求
+
+## 浏览器network面板-知识

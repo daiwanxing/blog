@@ -15,17 +15,22 @@ module.exports = {
         sidebarDepth: 2,
         sidebar: [
             {
-                title: "浏览器相关",
-                path: "/render-html/"
+                title: "浏览器笔记",
+                path: "/broswer-doc/"
             },
             {
-                title: "vue-router4 特性",
-                path: "/vue-router/",
+                title: "vue-router4 笔记",
+                path: "/vue-router4-doc/",
                 sidebarDepth: 2
             },
             {
-                title: "javascript相关知识",
-                path: "/js/",
+                title: "javascript 笔记",
+                path: "/js-doc/",
+                sidebarDepth: 2
+            },
+            {
+                title: "css 笔记",
+                path: "/css-doc/",
                 sidebarDepth: 2
             }
         ]
