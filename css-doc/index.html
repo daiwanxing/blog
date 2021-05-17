@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>用svg实现一个loading | 前端学习小站</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="用来记录自己平日的学习笔记">
+    
+    <link rel="preload" href="/frontend-notes/assets/css/0.styles.2ab3db1f.css" as="style"><link rel="preload" href="/frontend-notes/assets/js/app.971e1f9a.js" as="script"><link rel="preload" href="/frontend-notes/assets/js/2.e79caae7.js" as="script"><link rel="preload" href="/frontend-notes/assets/js/9.07c6de97.js" as="script"><link rel="prefetch" href="/frontend-notes/assets/js/10.2128eda6.js"><link rel="prefetch" href="/frontend-notes/assets/js/11.7cd75672.js"><link rel="prefetch" href="/frontend-notes/assets/js/12.da472964.js"><link rel="prefetch" href="/frontend-notes/assets/js/3.e90d7c08.js"><link rel="prefetch" href="/frontend-notes/assets/js/4.e05c873c.js"><link rel="prefetch" href="/frontend-notes/assets/js/5.33233bc0.js"><link rel="prefetch" href="/frontend-notes/assets/js/6.498ab014.js"><link rel="prefetch" href="/frontend-notes/assets/js/7.0f1416dc.js"><link rel="prefetch" href="/frontend-notes/assets/js/8.08c1495b.js">
+    <link rel="stylesheet" href="/frontend-notes/assets/css/0.styles.2ab3db1f.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/frontend-notes/" class="home-link router-link-active"><img src="/frontend-notes/logo.png" alt="前端学习小站" class="logo"> <span class="site-name can-hide">前端学习小站</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/frontend-notes/broswer-doc/" class="sidebar-link">浏览器笔记</a></li><li><a href="/frontend-notes/vue-router4-doc/" class="sidebar-link">vue-router4 笔记</a></li><li><a href="/frontend-notes/js-doc/" class="sidebar-link">javascript 笔记</a></li><li><a href="/frontend-notes/css-doc/" aria-current="page" class="active sidebar-link">css 笔记</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/frontend-notes/css-doc/#用svg实现一个loading" class="sidebar-link">用svg实现一个loading</a></li></ul></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="用svg实现一个loading"><a href="#用svg实现一个loading" class="header-anchor">#</a> 用svg实现一个loading</h2> <ol><li>background-size 设定两个值和设定一个值的区别</li></ol> <div class="language-css extra-class"><pre class="language-css"><code>       <span class="token property">background-size</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span> <span class="token comment">/* x轴的背景拉伸到容器的宽度，y轴auto */</span>
+       <span class="token property">background-size</span><span class="token punctuation">:</span> 100% 100%<span class="token punctuation">;</span> <span class="token comment">/* x轴和y轴的宽高拉伸到容器的宽高 */</span>
+</code></pre></div><ol start="2"><li>background-size: cover 和 contain 的区别</li></ol> <p>都是等比例缩放图片的宽高，区别在于contain总是会显示图片的全部的内容，不会发生裁剪，所以如果图片原始尺寸大于容器尺寸，会造成容器的一侧有一部分空白区域，而cover是将背景完全的覆盖到容器的区域，会发生裁剪，不会失真图片。</p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新时间:</span> <span class="time">2021/5/17上午2:21:24</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/frontend-notes/js-doc/" class="prev">
+        javascript 笔记
+      </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/frontend-notes/assets/js/app.971e1f9a.js" defer></script><script src="/frontend-notes/assets/js/2.e79caae7.js" defer></script><script src="/frontend-notes/assets/js/9.07c6de97.js" defer></script>
+  </body>
+</html>

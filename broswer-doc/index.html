@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>link标签中的prefetch 与 preload 的差异 | 前端学习小站</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="用来记录自己平日的学习笔记">
+    
+    <link rel="preload" href="/frontend-notes/assets/css/0.styles.2ab3db1f.css" as="style"><link rel="preload" href="/frontend-notes/assets/js/app.971e1f9a.js" as="script"><link rel="preload" href="/frontend-notes/assets/js/2.e79caae7.js" as="script"><link rel="preload" href="/frontend-notes/assets/js/8.08c1495b.js" as="script"><link rel="prefetch" href="/frontend-notes/assets/js/10.2128eda6.js"><link rel="prefetch" href="/frontend-notes/assets/js/11.7cd75672.js"><link rel="prefetch" href="/frontend-notes/assets/js/12.da472964.js"><link rel="prefetch" href="/frontend-notes/assets/js/3.e90d7c08.js"><link rel="prefetch" href="/frontend-notes/assets/js/4.e05c873c.js"><link rel="prefetch" href="/frontend-notes/assets/js/5.33233bc0.js"><link rel="prefetch" href="/frontend-notes/assets/js/6.498ab014.js"><link rel="prefetch" href="/frontend-notes/assets/js/7.0f1416dc.js"><link rel="prefetch" href="/frontend-notes/assets/js/9.07c6de97.js">
+    <link rel="stylesheet" href="/frontend-notes/assets/css/0.styles.2ab3db1f.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/frontend-notes/" class="home-link router-link-active"><img src="/frontend-notes/logo.png" alt="前端学习小站" class="logo"> <span class="site-name can-hide">前端学习小站</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/frontend-notes/broswer-doc/" aria-current="page" class="active sidebar-link">浏览器笔记</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/frontend-notes/broswer-doc/#link标签中的prefetch-与-preload-的差异" class="sidebar-link">link标签中的prefetch 与 preload 的差异</a></li><li class="sidebar-sub-header"><a href="/frontend-notes/broswer-doc/#什么是预请求和简单请求" class="sidebar-link">什么是预请求和简单请求</a></li><li class="sidebar-sub-header"><a href="/frontend-notes/broswer-doc/#chrome-network" class="sidebar-link">Chrome-network</a></li></ul></li><li><a href="/frontend-notes/vue-router4-doc/" class="sidebar-link">vue-router4 笔记</a></li><li><a href="/frontend-notes/js-doc/" class="sidebar-link">javascript 笔记</a></li><li><a href="/frontend-notes/css-doc/" class="sidebar-link">css 笔记</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="link标签中的prefetch-与-preload-的差异"><a href="#link标签中的prefetch-与-preload-的差异" class="header-anchor">#</a> link标签中的prefetch 与 preload 的差异</h2> <p>我们都知道行内样式的优点在于提高首屏渲染速度（不需要额外的请求一个css文件，浏览器下载好的html文件里就包含了css样式）。
+但是它也不可避免的造成了代码的维护困难，那么有没有一种办法可以使得既然提高html文档的渲染，又能容易维护css代码呢。
+我们可以通过link标签的rel属性中的prefetch 或者 preload属性来实现。</p> <div class="language-css extra-class"><pre class="language-css"><code><span class="token comment">/*  
+    告诉浏览器去预请求这个资源，因为要提前被UA用到，所以html文档下载完毕之后会立即去下
+    载这个资源,这是一个异步的操作，不会阻塞HTML的渲染，另外preload属性值可以使得css文件并行下载
+    只有rel=&quot;preload&quot;时才能使用as属性，另外importance属性规定了资源的优先级，只有当rel=&quot;preload&quot;
+    或者prefetch才能使用该属性
+*/</span>
+&lt;link rel=<span class="token string">&quot;preload&quot;</span> href=<span class="token string">&quot;xxx.cdn.style.css&quot;</span> as=<span class="token string">&quot;style&quot;</span>&gt;
+</code></pre></div><div class="language-css extra-class"><pre class="language-css"><code><span class="token comment">/*
+    告诉浏览器，这是一个将来（下一个导航）可能将要使用的资源，资源的优先级程度没有preload高
+    UA会在网络状态空闲的时候去下载好这个资源，同样也是异步操作不会阻塞渲染
+*/</span>
+&lt;link rel=<span class="token string">&quot;prefetch&quot;</span> href=<span class="token string">&quot;xxx.cdn.style.css&quot;</span>&gt;
+</code></pre></div><p>具体的资料我们可以参考MDN上关于<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/link#attr-rel" target="_blank" rel="noopener noreferrer">rel属性<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>的知识</p> <h2 id="什么是预请求和简单请求"><a href="#什么是预请求和简单请求" class="header-anchor">#</a> 什么是预请求和简单请求</h2> <p>当UA去请求一个资源的时候（一般是跨域的资源），会通过一个OPTIONS方法发送一个预请求（preflight request）
+这个请求的目的：</p> <ol><li>告诉server，UA实际要请求的Methods</li> <li>实际请求的header字段</li></ol> <p>server收到该请求会返回一个response，该repsonse不带body，会告诉浏览器sever能够接受的请求方式以及header字段， UA再去匹配header字段和请求方式是否匹配，来决定是否发送真正的请求。
+<br></p> <p>简单请求一般是指methods为<code>GET</code>或者<code>POST</code>且没有任何自定义的header字段，其他的均为预请求。预检测请求的目的是什么， 是为了获知服务器是否允许跨域请求</p> <h2 id="chrome-network"><a href="#chrome-network" class="header-anchor">#</a> Chrome-network</h2> <p>如果我们请求一个接口过于缓慢的问题，我们可以通过chrome控制台的network面板找到对应的接口列表，鼠标移到<code>waterfall</code>列表项，会浮出一张图，类似下面这样</p> <img src="/frontend-notes/network-waterfall.png" alt="network-waterfalll兼容性"> <p>这张图上告诉了开发者关于某个接口从发起请求，DNS查询耗时，服务器响应耗时等等信息，我们一一记录每个字段代表的内容含义。</p> <ul><li><p>Queued at 750.73ms 表示的是该接口进入队列的是发生在750.73ms这个时间, 进入队列耗总耗时752.97ms。</p></li> <li><p>浏览器请求资源的时候，html文件和css文件优先级是非常高的，这些资源是最先被进入队列，其次就是js脚本，资源文件。</p></li> <li><p>stalled 表示停滞的意思，表示的是该连接被推迟了多久（在队列中等待了多久）</p></li> <li><p>DNS-Lookup 表示的是DNS解析域名耗时</p></li> <li><p>initial connection 表示的是和server建立连接TCP连接的耗时</p></li> <li><p>SSL 表示的是SSL握手时间耗时（SSL安全套接字协议， 如果是https请求，需要SSL耗时，非https则不需要）</p></li> <li><p>request sent 表示客户机发送请求的耗时</p></li> <li><p>Wating (TTFB) 表示的浏览器等待第一个响应的字节的时间。</p></li> <li><p>Content DonwLoad 表示的是客户机收到服务机响应的内容耗时</p></li></ul></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新时间:</span> <span class="time">2021/5/17上午2:21:24</span></div></footer> <div class="page-nav"><p class="inner"><!----> <span class="next"><a href="/frontend-notes/vue-router4-doc/">
+        vue-router4 笔记
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/frontend-notes/assets/js/app.971e1f9a.js" defer></script><script src="/frontend-notes/assets/js/2.e79caae7.js" defer></script><script src="/frontend-notes/assets/js/8.08c1495b.js" defer></script>
+  </body>
+</html>
