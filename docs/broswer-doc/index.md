@@ -34,4 +34,28 @@ server收到该请求会返回一个response，该repsonse不带body，会告诉
 
 简单请求一般是指methods为`GET`或者`POST`且没有任何自定义的header字段，其他的均为预请求。预检测请求的目的是什么， 是为了获知服务器是否允许跨域请求
 
-## 浏览器network面板-知识
+## Chrome-network
+
+如果我们请求一个接口过于缓慢的问题，我们可以通过chrome控制台的network面板找到对应的接口列表，鼠标移到`waterfall`列表项，会浮出一张图，类似下面这样
+
+<img :src="$withBase('/network-waterfall.png')" alt="network-waterfalll兼容性">
+
+这张图上告诉了开发者关于某个接口从发起请求，DNS查询耗时，服务器响应耗时等等信息，我们一一记录每个字段代表的内容含义。
+
+* Queued at 750.73ms 表示的是该接口进入队列的是发生在750.73ms这个时间, 进入队列耗总耗时752.97ms。
+
+* 浏览器请求资源的时候，html文件和css文件优先级是非常高的，这些资源是最先被进入队列，其次就是js脚本，资源文件。
+
+* stalled 表示停滞的意思，表示的是该连接被推迟了多久（在队列中等待了多久）
+
+* DNS-Lookup 表示的是DNS解析域名耗时
+
+* initial connection 表示的是和server建立连接TCP连接的耗时
+
+* SSL 表示的是SSL握手时间耗时（SSL安全套接字协议， 如果是https请求，需要SSL耗时，非https则不需要）
+
+* request sent 表示客户机发送请求的耗时
+
+* Wating (TTFB) 表示的浏览器等待第一个响应的字节的时间。
+
+* Content DonwLoad 表示的是客户机收到服务机响应的内容耗时
