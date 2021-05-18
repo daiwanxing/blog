@@ -174,3 +174,53 @@ defer 和 async 的加载都是异步的，不会阻塞DOM的解析，唯一的�
 * 如果某些脚本需要依赖上一个脚本执行，推荐使用defer
 * 如果某些脚本想在下载完毕之后立即去执行，同时也不需要操作DOM也不依赖其他脚本， 推荐使用async
 * 如果脚本代码很小，推荐直接使用内联脚本放在body最后面
+
+
+## weak-map 弱引用
+
+Weakmap对象只能接受对象作为键名，值可以是任意类型，弱引用的意思比较抽象，我的理解是`键名`所引用的`对象`的弱引用，弱引用在计算机中中的概念是:<br/>
+``在计算机程序设计中，弱引用与强引用相对，是指不能确保其引用的对象不会被垃圾回收器回收的引用。 一个对象若只被弱引用所引用，则被认为是不可访问（或弱可访问）的，并因此可能在任何时刻被回收``。
+在js中手动创建一个对象一般都是强引用
+
+```js
+let obj = {}; // 这是一个强引用，手动设置obj = null， 才有可能释放obj这个对象的内存
+```
+那么弱引用呢？
+
+```js
+let obj = {};
+let weakMap = new WeakMap();
+weakMap.set(obj, 123);
+obj = null; // 注意此时weakmap对象的“obj”这个键名所引用的对象自动被释放了！！
+
+// 如果是强引用，是不可能会被自动释放的
+let obj = {};
+let obj2 = {
+    obj
+}
+obj = null; // 注意此时 obj2.obj所引用的仍旧是 {}
+```
+从下面的代码可以看出WeakMap,在键名所引用的对象的其他引用释放了内存后，WeakMap也能“聪明”的将该键名所引用的对象的内存给释放掉，键名也会随之自动消失。
+这就称之为弱引用，WeakMap为什么不可遍历，是因为不知道GC何时会执行，每次GC可能会造成weakmap里的成员个数变动。
+
+```js
+// 在node环境下查看内存占用情况
+node --expose-gc
+
+global.gc(); // 手动执行一次gc
+// 获取内存的单位 - MB
+function getMb () {
+    global.gc();
+    const size = process.memoryUsage().heapUsed;
+    console.log(size / 1024 / 1024);
+}
+
+let obj = new Array(1024 * 1024);
+
+let map = new WeakMap();
+map.set(obj, "hi");
+getMb(); // 9.76MB
+
+obj = null;
+getMb(); // 1.96MB
+```
