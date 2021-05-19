@@ -10,28 +10,31 @@ module.exports = {
         }  
     },
     themeConfig: {
+        search: true,
         lastUpdated: '上次更新时间',
         logo: "/logo.png",
         sidebarDepth: 2,
         sidebar: [
             {
                 title: "浏览器笔记",
-                path: "/broswer-doc/"
+                path: "/broswer-doc/",
+                collapsable: false,
             },
             {
                 title: "vue-router4 笔记",
                 path: "/vue-router4-doc/",
-                sidebarDepth: 2
             },
             {
-                title: "javascript 笔记",
+                title: "javascript笔记",
                 path: "/js-doc/",
-                sidebarDepth: 2
             },
             {
                 title: "css 笔记",
                 path: "/css-doc/",
-                sidebarDepth: 2
+            },
+            {
+                title: "Vue3响应式系统简单实现",
+                path: "/js-doc/reactive"
             }
         ]
     }
