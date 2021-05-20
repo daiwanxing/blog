@@ -59,3 +59,29 @@ server收到该请求会返回一个response，该repsonse不带body，会告诉
 * Wating (TTFB) 表示的浏览器等待第一个响应的字节的时间。
 
 * Content DonwLoad 表示的是客户机收到服务机响应的内容耗时
+
+## 浏览器缓存
+
+浏览器缓存分为强缓存和协商缓存，其中强缓存：Expires （http/1.0）, Cache-control(http/1.1)，协商缓存：Etag, Last-Modified。
+强缓存的优先级是要高于协商缓存的，如果浏览器请求一个资源，先判断是否能命中强缓存，如果无法命中，再继续判断能否命中协商缓存。
+
+协商缓存中Etag的优先级要大于Last-Modified, 协商缓存必定会请求一次服务器信息，判断资源的etag和Last-Modified，未过期则返回一个几kb的响应头。
+强缓存不会发送请求，直接走本地200（from memory cache, from disk cache）
+
+
+<img :src="$withBase('/clipboard.png')" alt="浏览器缓存命中流程图">
+
+::: warning 注意
+Expires和Cache-Control同时存在，则Cache-control会覆盖Expires, 目前只支持http1.0的浏览器的市场份额几乎没有，所有现代浏览器都是用的Cache-Control。
+:::
+
+强缓存： cache-control 有很多的值可以相互配合，比如 cache-control: Max-age=300,public
+
+|指令|作用|
+|---|:--:|
+|public|资源能被代理服务器和客户端同时缓存|
+|private|资源只能被客户端缓存|
+|no-cache|只是不走200，但是可以走304|
+|no-store|不缓存任何响应|
+|max-stale=30|30秒内即便缓存过期，也使用该缓存|
+|min-fresh=30|希望在30内获取最新的响应|

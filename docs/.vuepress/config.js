@@ -18,7 +18,6 @@ module.exports = {
             {
                 title: "浏览器笔记",
                 path: "/broswer-doc/",
-                collapsable: false,
             },
             {
                 title: "vue-router4 笔记",
