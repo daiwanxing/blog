@@ -34,6 +34,10 @@ module.exports = {
             {
                 title: "Vue3响应式系统简单实现",
                 path: "/js-doc/reactive"
+            },
+            {
+                title: "自用封装的简单工具类",
+                path: "/tool-kit/"
             }
         ]
     }
