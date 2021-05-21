@@ -1,10 +1,24 @@
 ## 用svg实现一个loading
 
+```css
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="load">
+       <circle cx="150" cy="80" r="50" class="other" />
+       <circle cx="150" cy="80" r="50" class="loading" />
+</svg>
+````
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="load">
+       <circle cx="150" cy="80" r="50" class="other" />
+       <circle cx="150" cy="80" r="50" class="loading" />
+</svg>
+
+## background-size 属性值的含义
+
 1. background-size 设定两个值和设定一个值的区别
 
  ```css
-        background-size: 100%; /* x轴的背景拉伸到容器的宽度，y轴auto */
-        background-size: 100% 100%; /* x轴和y轴的宽高拉伸到容器的宽高 */
+       background-size: 100%; /* x轴的背景拉伸到容器的宽度，y轴auto */
+       background-size: 100% 100%; /* x轴和y轴的宽高拉伸到容器的宽高 */
  ```
 
 2. background-size: cover 和 contain 的区别

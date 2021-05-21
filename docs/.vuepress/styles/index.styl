@@ -1,0 +1,35 @@
+@keyframes loading {
+    0% {
+        stroke-dasharray: 2, 314;
+        stroke-dashoffset: 0;
+    }
+
+    50% {
+        stroke-dasharray: 175, 314;
+        stroke-dashoffset: -90px;
+    }
+
+    100% {
+        stroke-dasharray: 2, 314;
+        stroke-dashoffset: -314px;
+    }
+}
+
+    .other {
+        fill: transparent;
+        stroke: rgba(0,0,0, .1);
+        stroke-width: 8;
+    }
+
+    .loading {
+        fill: transparent;
+        stroke-width: 6;
+        stroke-dashoffset: 0;
+        stroke-dasharray: 2, 314;
+        stroke: #2970ff;
+        animation: loading 1.5s infinite linear;
+        cursor: pointer;
+        stroke-linecap: round;
+        /* transition: 10s all cubic-bezier(0.075, 0.82, 0.165, 1); */
+        /* stroke-linecap 描述两端的形状，这里是使用round，圆角边 */
+    }

@@ -1,14 +1,17 @@
 module.exports = {
-    title: '前端笔记小站',
+    title: '前端笔记小册',
     base: "/frontend-notes/",
     port: 8088,
     description: '用来记录自己平日的学习笔记',
     locales: {
         "/": {
             lang: "zh-CN",
-            title: "前端学习小站"
+            title: "前端笔记小册"
         }  
     },
+    head: [
+        ['link', { rel: 'icon', href: '/fav.ico'}]
+    ],
     themeConfig: {
         search: true,
         lastUpdated: '上次更新时间',
