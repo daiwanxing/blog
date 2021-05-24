@@ -6,6 +6,13 @@
 
 2. 一个宏任务队列里包含着若干个微任务，也就是说每个宏任务执行之后，就先执行当前这个宏任务包含的微任务队列。微任务队列执行完毕之后，会触发一个render。紧接着再接着执行其他宏任务。宏任务是一个个的执行的，微任务是一队列一队列的执行的。我的理解，微任务是发生在其他宏任务（渲染DOM，事件，ajax）之前会被执行 <br />
 
+有一个地方可能没有讲明白，关于UI的渲染时机：<strong>UI render的时机是发生在本次loop中task（宏任务）执行完毕后，紧接着执行jobs queue(微任务队列)中的所有job后，在下一个宏任务开始之前，本次微任务队列中的所有job结束之后开始render。</strong>
+
+`宏任务 --> 微任务队列 --> render ui --> 宏任务...`
+
+UI渲染时机图:<br/>
+<img src="https://zh.javascript.info/article/event-loop/eventLoop-full.svg" alt="render-ui时机">
+
 先来看一个例子
 
 ``` js
@@ -21,9 +28,13 @@ alert("code");
 ```
 它们是如何执行的，或者说它们的执行顺序是什么？
 
-首先，加载script，这是一个宏任务，紧接着执行宏任务中的同步代码`alert("code")`,接着执行then函数里的callback，这是一个微任务。
+首先，整个script作为一个宏任务执行，紧接着执行宏任务中的同步代码`alert("code")`（执行任务都是放在主线程中）,接着执行then函数里的callback，这是一个微任务。
 前面我们提到过，微任务一定是在其他宏任务开始之前被执行，因为要确保microTask-queue中的每个micro-job的execute-enviroment是一致的。
 执行完所有的微任务队列并出队之后，紧接着执行下一个宏任务，这里就是`setTimeout(() => (alert('timeOut'))`。
+
+参考资料：<br/>
+    [JavaScript-info之事件循环](https://zh.javascript.info/article/event-loop/eventLoop-full.svg)<br/>
+    [一次搞懂JS运行机制](https://juejin.cn/post/6844904050543034376#heading-19)
 
 ::: tip 提示
 如果宏任务队列为空，则js引擎会进入“休眠”状态。直到出现了宏任务，又开始了新一轮的事件循环。
