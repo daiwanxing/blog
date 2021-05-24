@@ -69,5 +69,27 @@ is(ul, ol) li:first-child {
        font-size: 42px;
 }
 ```
-       
+
 表示: <span style="color: red">“选中ul 或者ol后面的第一个li元素的字体设置为42像素”</span>
+
+## border-radius 八个属性值探讨
+
+border-radius是我们用的很频繁的一个属性，它是一个圆角属性，从边框开始向内裁剪。我们一般都是设置一个值：`border-radius: 50%`或者`border-radius: 一个具体的数值`；其实border-radius不光能设置一个值，可以设置2个，4个甚至8个以便对不同方向的边框进行更细微的裁剪，下面一起探讨不同数量的值的含义。
+
+```css
+
+div {
+       border-radius: 50%; /* 盒子的宽高比： width / height， 如果宽高一致，则可以得到一个正圆 */
+       border-radius: 50% 50px; /* 盒子的左上、右下 值为50%， 右上，左下的值为50px */
+       border-radius: 10px 20px 40px; /* 盒子左上角椭圆： 10px, 左下，右上 20px, 右下30px*/
+       border-radius: 10px 20px 30px 40px; /* 盒子左上角椭圆： 10px, 右上 20px, 右下30px, 左下 40px*/
+       border-radius: 10px 20px 30px 40px / 10px 20px 30px 40px; /* 顺序和上面一样 */
+       /* 斜杠左边的代表的是水平方向，斜杠右边代表的是垂直方向 */
+}
+```
+
+## box-shadow 多阴影
+
+可以利用box-shadow 设置多个阴影来实现一个简单的loading效果
+
+<div class='shadow-loading'></div>
