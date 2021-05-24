@@ -69,5 +69,5 @@ is(ul, ol) li:first-child {
        font-size: 42px;
 }
 ```
-
+       
 表示: <span style="color: red">“选中ul 或者ol后面的第一个li元素的字体设置为42像素”</span>

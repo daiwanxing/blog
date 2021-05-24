@@ -10,7 +10,8 @@ module.exports = {
         }  
     },
     head: [
-        ['link', { rel: 'icon', href: '/fav.ico'}]
+        ['link', { rel: 'icon', href: '/fav.ico'}],
+        ['meta', { name: "viewport", content: "width=device-width, initial-scale=1.0"}]
     ],
     themeConfig: {
         search: true,
