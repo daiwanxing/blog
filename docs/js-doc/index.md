@@ -10,6 +10,9 @@
 
 `宏任务 --> 微任务队列 --> render ui --> 宏任务...`
 
+render ui的时机不总是在微任务队列结束之后，下一次宏任务开始之前。如果当前微任务队列需要获取最新的DOM信息，那么就会将之前队列里的操作（引起重绘重排的操作4）任务全部执行，并立即发生一次渲染，比如调用`$(li).offsetTop()`来保证用户得到最新的布局信息。
+
+
 UI渲染时机图:<br/>
 <img src="https://zh.javascript.info/article/event-loop/eventLoop-full.svg" alt="render-ui时机">
 
@@ -33,7 +36,7 @@ alert("code");
 执行完所有的微任务队列并出队之后，紧接着执行下一个宏任务，这里就是`setTimeout(() => (alert('timeOut'))`。
 
 参考资料：<br/>
-    [JavaScript-info之事件循环](https://zh.javascript.info/article/event-loop/eventLoop-full.svg)<br/>
+    [JavaScript.info之事件循环](https://zh.javascript.info/article/event-loop/eventLoop-full.svg)<br/>
     [一次搞懂JS运行机制](https://juejin.cn/post/6844904050543034376#heading-19)
 
 ::: tip 提示
@@ -243,3 +246,63 @@ ES5中的Object对象有一个defineProperty属性，为JS语言提供了’元�
 ::: warning 警告
 Reflect和Proxy 都是由Object原型构造的，两者都不能派生（new）新的实例，它们都是一个全局的对象；
 :::
+
+## 发布订阅模式实现
+
+```js
+class EventMitter {
+    constructor() {
+        this.events = new Map();
+    }
+    on(name, handler) {
+        let targetSet;
+        if (!this.events.has(name)) {
+            this.events.set(name, new Set());
+        }
+        targetSet = this.events.get(name);
+        targetSet.add(handler);
+    }
+    emit(...args) {
+        let name = args[0];
+        let targetSet = this.events.get(name);
+        if (targetSet) {
+            targetSet.forEach(handler => handler.apply(this, args.splice(1)));
+        }
+    }
+    off(events, handler) {
+        // 没有任何参数，取消该实例的所有的监听
+        let eventMap = this.events;
+        if (!arguments.length) {
+            eventMap.forEach(setList => setList.clear());
+            eventMap.clear();
+            return;
+        }
+        if (Array.isArray(events)) {
+            for (let index = 0; index < events.length; index++) {
+                this.off(events[index], handler);
+                eventMap.delete(events[index]);  
+            }
+            return;
+        }
+        let eventSet = eventMap.get(events);
+        if (handler) {
+            eventSet.delete(handler);
+        } else {
+            eventSet.clear();
+        }
+    }
+}
+```
+
+## cookie 操作
+
+cookie是由服务端响应给浏览器的，一般只有同源的情况下，浏览器才会自动保存cookie信息，如果需要跨域也能保存响应头的cookie信息。则服务器需要设置：
+
+`Access-Control-Allow-Origin:  前端项目的域名`,`Access-Control-Allow-Credentials: true`,浏览器在请求的时候设置`withCredentials: true`,
+对于附带身份凭证的请求，服务器不得设置 Access-Control-Allow-Origin 的值为“*”。否则该请求将会失败。
+
+通过调用`document.cookie`方法我们可以一串包含所有cookie信息的字符串，也可以通过该属性对某个cookie属性进行设置，<strong>每次调用document.cookie只能对一个cookie进行设置或更新，同时对多个cookie属性进行设置则会导致静默失败。</strong>
+
+如果要删除一个cookie，直接将max-age设置为0或者-1即可删除，如果对expires进行设置过去的时间，则会在当前页关闭后清除，保留在本次会话中。如果设置cookie的时候没有定义expires/max-age，则cookie会在对话结束之后过期。
+
+[更多资料请点击MDN-cookie](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/cookie)

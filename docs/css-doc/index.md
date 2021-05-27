@@ -93,3 +93,33 @@ div {
 可以利用box-shadow 设置多个阴影来实现一个简单的loading效果
 
 <div class='shadow-loading'></div>
+
+## grid布局
+
+给一个容器声明`display: grid`，该容器生成二维布局，grid容器的直接子元素为grid-item，grid-item拥有一些属于自己的属性，grid也拥有一些属于自己的属性，grid-item的宽度没有被指定时占满整个容器宽。
+
+```css
+.grid-box {
+       display: grid;
+       grid-template-columns: repeat(3, 100px);
+       grid-template-columns: repeat(3, 100px);
+       grid-template-rows: repeat(3, 100px);
+       gap: 20px;
+}
+```
+gap属性是row-gap和column-gap属性的合并简写， column-gap：列与列之间的间距，row-gap: 行与行之间的间距。grid-auto-flow指明了grid-item的放置顺序（是先行后列row，还是先列后行column）配合dense值，能够使得item紧密填满，尽量不出现空白。`grid-auto-flow: row dense`。
+
+项目属性： grid-column-start, grid-column-end, grid-row-start, grid-row-end，这四个属性指定了item的四个边框分别定位在哪根网格线
+
+```css
+ .grid-box div:nth-child(1) {
+       grid-column-end: 4; /* 定位在了第四根网格线，也就是占满了3个格子，也可以写成 span 3*/
+       grid-column: span 3;
+ }
+```
+
+<div class='grid-box'>
+   <div>grid-1</div>
+   <div>grid-2</div>
+   <div>grid-3</div>
+</div>
