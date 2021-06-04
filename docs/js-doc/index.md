@@ -10,7 +10,29 @@
 
 `宏任务 --> 微任务队列 --> render ui --> 宏任务...`
 
-render ui的时机不总是在微任务队列结束之后，下一次宏任务开始之前。如果当前微任务队列需要获取最新的DOM信息，那么就会将之前队列里的操作（引起重绘重排的操作4）任务全部执行，并立即发生一次渲染，比如调用`$(li).offsetTop()`来保证用户得到最新的布局信息。
+render ui的时机不总是在微任务队列结束之后，下一次宏任务开始之前。如果当前微任务队列需要获取最新的DOM信息，那么就会将之前队列里的操作（引起重绘重排的操作）任务全部执行，并立即发生一次渲染，比如调用`$(li).offsetTop()`来保证用户得到最新的布局信息。
+
+看一段代码
+```js
+// 加载script，这个操作本身是一个marcotask(宏任务)
+
+
+console.log('hello-world'); // 将宏任务中的同步任务优先放到主线程执行，打印：hello-world
+
+// 执行Promise.resolve()，这是一个同步任务，then函数是一个异步任务，放入微任务队列
+Promise.resolve().then(function () {
+    console.log('resolve done!'); // 打印该语句微任务队列所有任务结束完毕，将会在下一个定时器任务执行之前开始render页面
+    // 如果有这么一段代码
+    $(li).offsetTop(); // 此时会将之前对DOM的所有重排重绘操作全部应用到DOM上，并且立即执行一次渲染，保证用户拿到是最新的布局信息
+    // 也就是说不一定渲染的时机在微任务队列全部执行完后开始。
+});
+
+// setTimeout是一个定时器任务，交给定时器线程处理，当指定的时间到达后，转给事件处理线程将回调放入宏任务队列，下一次事件循环轮询的时候会取出该任务并执行
+setTimeout(function () {
+    console.log("setTimeout done");
+}, 3000);
+
+```
 
 
 UI渲染时机图:<br/>
@@ -174,14 +196,14 @@ defer 和 async 的加载都是异步的，不会阻塞DOM的解析，唯一的�
     // 正常解析HTML，遇到script标签会异步下载
     // 等到HTML解析完毕之后，DOMContentLoaded事件触发之前执行脚本 
 ```
-![script normal](https://www.growingwiththeweb.com/images/2014/02/26/script-defer.svg);
+![script defer](https://www.growingwiththeweb.com/images/2014/02/26/script-defer.svg);
 
 ```js {3}
     <script src="xxx.js" async></script>
     // 正常解析HTML，遇到script标签会异步下载
     // 异步下载完毕之后会立即执行该脚本，执行脚本期间会阻塞HTML的解析
 ```
-![script normal](https://www.growingwiththeweb.com/images/2014/02/26/script-async.svg);
+![script async](https://www.growingwiththeweb.com/images/2014/02/26/script-async.svg);
 
 我们应该根据不同的场景去使用对应的属性：
 
