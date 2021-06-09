@@ -85,3 +85,18 @@ Expires和Cache-Control同时存在，则Cache-control会覆盖Expires, 目前�
 |no-store|不缓存任何响应|
 |max-stale=30|30秒内即便缓存过期，也使用该缓存|
 |min-fresh=30|希望在30内获取最新的响应|
+
+
+## git 提交代码的commit前缀术语
+
+1. feat 新功能特性
+
+2. test 增加测试
+
+3. chore 构建工具、辅助文件的变动，比如.gitignore、jsconfig.js
+
+4. fix 某一块功能的bug修复
+
+5. docs 文档添加
+
+6. refactor 对原有的功能进行重构
