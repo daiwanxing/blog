@@ -42,6 +42,10 @@ module.exports = {
             {
                 title: "自用封装的简单工具类",
                 path: "/tool-kit/"
+            },
+            {
+                title: "常用浏览器内核版本",
+                path: "/tool-kit/core.md"
             }
         ]
     }
