@@ -1,14 +1,16 @@
 language: node_js # node环境
 node_js:
   - lts/*
+install:
+  - npm install # npm ci
 script:
   - npm run docs:build # 执行命令
 deploy:
   commit_message: :construction_worker:Deploy %{project_name} with Travis CI ROBOT
   provider: pages
-  skip_cleanup: true
+  cleanup: true
   local_dir: docs/.vuepress/dist # 部署的文件夹文件
-  token: ${GH_TOKEN} # travis服务上的token变量
+  token: $GITHUB_TOKEN  # travis服务上的token变量
   target_branch: gh-pages # 集成发布到gh-pages上
   keep_history: true
   on:

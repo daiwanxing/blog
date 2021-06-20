@@ -148,3 +148,14 @@ grid-auto-flow指明了grid-item的放置顺序（是先行后列row，还是先
    ```css
        grid-template-area: 'a a a'
    ```
+
+## css层的定位问题--父元素设置overflow，绝对定位的子元素会被隐藏或一起滚动
+
+如果一个元素设置了overflow： auto，产生了滚动条，则脱离文档流的子元素将会被隐藏或者被一起滚动，这种情况下解决的办法，让滚动的内容由一个新的容器去包裹，这个新的容器隶属于父元素的最近子级元素怒
+
+```html
+<div>
+  <div class="can scroll">滚动的内容</div>
+  <div class="fixed-menu"></div>
+</div>
+```
