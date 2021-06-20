@@ -1,8 +1,6 @@
 language: node_js # node环境
 node_js:
   - lts/*
-install:
-  - npm install # npm ci
 script:
   - npm run docs:build # 执行命令
 deploy:
