@@ -347,3 +347,5 @@ $(element).wheel(function () {}); //  注意mousewheel在firefox的类似事件�
 // 最好的移动端办法是，借助touchmove, touchstart 和 touchend
 // touchStart获取第一次记录的触摸位置信息，判断是否往上走（负值）且滚动的位置已经到了底部，就执行默认事件，禁止父级和子级滚动
 ```
+
+## JavaScript 原型链

@@ -46,6 +46,14 @@ module.exports = {
             {
                 title: "常用浏览器内核版本",
                 path: "/tool-kit/core.md"
+            },
+            {
+                title: "Vue笔记",
+                path: "/vue-doc/"
+            },
+            {
+                title: "业务笔记",
+                path: "/business-doc/"
             }
         ]
     }
