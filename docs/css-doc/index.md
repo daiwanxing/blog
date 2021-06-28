@@ -160,8 +160,9 @@ grid-auto-flow指明了grid-item的放置顺序（是先行后列row，还是先
 </div>
 ```
 
-
-### 视口（View Port）
-
+## 视口（View Port）
 移动端未设定`<meta name="viewport" content="width=device-width, initial-scale=1.0">`, 默认宽度是980， 指定视口后，页面的宽度就是屏幕的宽度。
 
+## 重绘（repaint）与回流(reflow)
+
+重绘一般发生在元素的样式属性发生变化，而回流一般是元素的几何属性发生变化。重绘会跳过绘制layout-tree 与 layer tree，直接进入绘制阶段。而回流（重排）会重新开始执行整个渲染流水线
