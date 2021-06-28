@@ -9,7 +9,7 @@
     <meta name="description" content="用来记录自己平日的学习笔记">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="preload" href="/frontend-notes/assets/css/0.styles.9756756f.css" as="style"><link rel="preload" href="/frontend-notes/assets/js/app.0ea4d798.js" as="script"><link rel="preload" href="/frontend-notes/assets/js/2.e79caae7.js" as="script"><link rel="preload" href="/frontend-notes/assets/js/9.4e56d95b.js" as="script"><link rel="prefetch" href="/frontend-notes/assets/js/10.2ffed508.js"><link rel="prefetch" href="/frontend-notes/assets/js/11.f88c84d4.js"><link rel="prefetch" href="/frontend-notes/assets/js/12.6df00b9d.js"><link rel="prefetch" href="/frontend-notes/assets/js/13.679eb9f0.js"><link rel="prefetch" href="/frontend-notes/assets/js/14.93cb7290.js"><link rel="prefetch" href="/frontend-notes/assets/js/15.ede177fb.js"><link rel="prefetch" href="/frontend-notes/assets/js/16.0ad1bd01.js"><link rel="prefetch" href="/frontend-notes/assets/js/17.0279d6ca.js"><link rel="prefetch" href="/frontend-notes/assets/js/18.41d3be34.js"><link rel="prefetch" href="/frontend-notes/assets/js/3.9c229156.js"><link rel="prefetch" href="/frontend-notes/assets/js/4.e05c873c.js"><link rel="prefetch" href="/frontend-notes/assets/js/5.33233bc0.js"><link rel="prefetch" href="/frontend-notes/assets/js/6.498ab014.js"><link rel="prefetch" href="/frontend-notes/assets/js/7.8607a034.js"><link rel="prefetch" href="/frontend-notes/assets/js/8.3d764939.js">
+    <link rel="preload" href="/frontend-notes/assets/css/0.styles.9756756f.css" as="style"><link rel="preload" href="/frontend-notes/assets/js/app.b8f5691e.js" as="script"><link rel="preload" href="/frontend-notes/assets/js/2.e79caae7.js" as="script"><link rel="preload" href="/frontend-notes/assets/js/9.90507ed8.js" as="script"><link rel="prefetch" href="/frontend-notes/assets/js/10.e71697a6.js"><link rel="prefetch" href="/frontend-notes/assets/js/11.01db48ca.js"><link rel="prefetch" href="/frontend-notes/assets/js/12.6df00b9d.js"><link rel="prefetch" href="/frontend-notes/assets/js/13.679eb9f0.js"><link rel="prefetch" href="/frontend-notes/assets/js/14.93cb7290.js"><link rel="prefetch" href="/frontend-notes/assets/js/15.ede177fb.js"><link rel="prefetch" href="/frontend-notes/assets/js/16.174ec5e9.js"><link rel="prefetch" href="/frontend-notes/assets/js/17.0279d6ca.js"><link rel="prefetch" href="/frontend-notes/assets/js/18.41d3be34.js"><link rel="prefetch" href="/frontend-notes/assets/js/3.9c229156.js"><link rel="prefetch" href="/frontend-notes/assets/js/4.e05c873c.js"><link rel="prefetch" href="/frontend-notes/assets/js/5.33233bc0.js"><link rel="prefetch" href="/frontend-notes/assets/js/6.498ab014.js"><link rel="prefetch" href="/frontend-notes/assets/js/7.8607a034.js"><link rel="prefetch" href="/frontend-notes/assets/js/8.3d764939.js">
     <link rel="stylesheet" href="/frontend-notes/assets/css/0.styles.9756756f.css">
   </head>
   <body>
@@ -19,9 +19,7 @@
      <span class="token punctuation">}</span>
  <span class="token punctuation">}</span><span class="token punctuation">)</span>
 </code></pre></div><p>如果服务端请求客户端发过来的请求过期了，这个请求就会被视为失效，而且也不会返回正常的数据。那么前端相应的需要根据失效的token做出对应的处理，一般token失效后前端是需要做两种处理，要么token失效，自动退出登录状态，重定向到登陆页面并且提示用户登录凭证过期。要么自动帮用刷新token，延长过期时间。</p> <p>这里具体讲讲刷新token， 一般在thenable函数中处理后端返回的状态码，如果匹配token失效的状态码，将请求失败的接口放到一个任务队列，调用一个新的接口并带上用来刷新的refreshToken，服务端返回新的refreshToken和token后保存到本地，遍历任务队列里请求失败的接口重新请求</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// /utils/request.js</span>
-
 <span class="token keyword">import</span> axios <span class="token keyword">from</span> <span class="token string">&quot;axios&quot;</span><span class="token punctuation">;</span>
-
 <span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token constant">SET_TOKEN</span><span class="token punctuation">,</span> <span class="token constant">REFRESH_TOKEN</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./LOCAL_STORAGE.js&quot;</span><span class="token punctuation">;</span>
 
 <span class="token keyword">function</span> <span class="token function">setToken</span> <span class="token punctuation">(</span><span class="token parameter">token</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -29,7 +27,7 @@
 <span class="token punctuation">}</span>
 
 <span class="token keyword">function</span> <span class="token function">getToken</span> <span class="token punctuation">(</span><span class="token parameter">tokenName</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span>  localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span>tokenName<span class="token punctuation">,</span> token<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span>  localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span>tokenName<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">function</span> <span class="token function">refreshToken</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -66,7 +64,7 @@ instance<span class="token punctuation">.</span>interceptors<span class="token p
             <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
                 abortRequest<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token parameter">token</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
                     <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token function">instance</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
-                        <span class="token operator">...</span>config<span class="token punctuation">,</span>
+                        <span class="token operator">...</span>config<span class="token punctuation">,</span>  
                         headers<span class="token operator">:</span> <span class="token punctuation">{</span>
                             Authorization<span class="token operator">:</span> token
                         <span class="token punctuation">}</span>
@@ -81,11 +79,11 @@ instance<span class="token punctuation">.</span>interceptors<span class="token p
 
 <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
 
-</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新时间:</span> <span class="time">2021/6/24 上午6:00:09</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">上次更新时间:</span> <span class="time">2021/6/28 上午1:12:59</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
       ←
       <a href="/frontend-notes/vue-doc/" class="prev">
         Vue笔记
       </a></span> <!----></p></div> </main></div><div class="global-ui"></div></div>
-    <script src="/frontend-notes/assets/js/app.0ea4d798.js" defer></script><script src="/frontend-notes/assets/js/2.e79caae7.js" defer></script><script src="/frontend-notes/assets/js/9.4e56d95b.js" defer></script>
+    <script src="/frontend-notes/assets/js/app.b8f5691e.js" defer></script><script src="/frontend-notes/assets/js/2.e79caae7.js" defer></script><script src="/frontend-notes/assets/js/9.90507ed8.js" defer></script>
   </body>
 </html>
