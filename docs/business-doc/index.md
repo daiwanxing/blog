@@ -17,9 +17,7 @@ token 是什么? token是当用户成功登录以后，服务端返回给客户�
 
 ```js
 // /utils/request.js
-
 import axios from "axios";
-
 import { SET_TOKEN, REFRESH_TOKEN } from "./LOCAL_STORAGE.js";
 
 function setToken (token) {
@@ -27,7 +25,7 @@ function setToken (token) {
 }
 
 function getToken (tokenName) {
-    return  localStorage.getItem(tokenName, token);
+    return  localStorage.getItem(tokenName);
 }
 
 function refreshToken () {
@@ -64,7 +62,7 @@ function rejectHandler (error) {
             return new Promise((resolve, reject) => {
                 abortRequest.push(token => {
                     resolve(instance({
-                        ...config,
+                        ...config,  
                         headers: {
                             Authorization: token
                         }

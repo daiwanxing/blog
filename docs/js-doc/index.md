@@ -165,6 +165,10 @@ ES6 带来了ES Module的特性，模块的功能可以让我们更好的解耦�
     export * from "./module.js";
 ```
 
+## ES Module 和 CommonJS模块化的区别
+
+ES Module是静态导入的，在预解析时就能分析代码，必须写在模块的最顶层，ES Module 导出的是一个只读的副本，如果导出的是一个基本类型的值的变量，那么我们无法对变量的值进行更改，如果导出的是一个对象，那么不能更改对象的引用。而Common JS则相反，在运行时加载文件，而且Common JS允许在各种判断语句中动态require相关模块，ES Module则无法完成。Common JS 的this指向的是当前模块的最顶层，ES Module的this是undefined（ES Module自动开启严格模式，common js不会）
+
 ## defer 和 async
 
 script标签有一个defer和async属性，其兼容性在2021年已经非常不错了，IE本身就快淘汰了。

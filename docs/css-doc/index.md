@@ -159,3 +159,9 @@ grid-auto-flow指明了grid-item的放置顺序（是先行后列row，还是先
   <div class="fixed-menu"></div>
 </div>
 ```
+
+
+### 视口（View Port）
+
+移动端未设定`<meta name="viewport" content="width=device-width, initial-scale=1.0">`, 默认宽度是980， 指定视口后，页面的宽度就是屏幕的宽度。
+
