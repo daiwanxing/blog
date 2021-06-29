@@ -171,11 +171,11 @@ ES Module是静态导入的，在预解析时就能分析代码，必须写在�
 
 ## defer 和 async
 
-script标签有一个defer和async属性，其兼容性在2021年已经非常不错了，IE本身就快淘汰了。
+script标签有一个defer和async属性，其兼容性在2021年已经非常不错了(IE不支持)。
 
 <img :src="$withBase('/defer.png')" alt="defer兼容性">
 
-总而言之，defer和async的出现的目的是为了防止js脚本阻塞DOM的解析，我们都知道渲染进程解析html文档生成DOM树时，如果遇到script标签，那么会停止解析。转而去加载js脚本并且等脚本加载完毕并且执行脚本完毕之后再去解析DOM，这样会徒增FP的渲染时间。一般通用的做法是将js脚本放到body最后面，这对于老旧浏览器是最优解，但是defer和async能够让我们有更多的优化。
+defer和async的出现的目的是为了防止js脚本阻塞DOM的解析，我们都知道渲染进程解析html文档生成DOM树时，如果遇到script标签，那么会停止解析。转而去加载js脚本并且等脚本加载完毕并且执行脚本完毕之后再去解析DOM，这样会徒增FP的渲染时间。一般通用的做法是将js脚本放到body最后面，这对于老旧浏览器是最优解，但是defer和async能够让我们有更多的优化。
 
 defer 和 async 的加载都是异步的，不会阻塞DOM的解析，唯一的区别在于，async是下载完毕之后就会被执行，执行的顺序和书写的顺序不一定保持一致（根据网络带宽决定）。
 而带defer属性的脚本是在下载完毕之后，DOMCONTENTloaded事件触发之前会被执行。
@@ -214,6 +214,9 @@ defer 和 async 的加载都是异步的，不会阻塞DOM的解析，唯一的�
 * 如果某些脚本需要依赖上一个脚本执行，推荐使用defer
 * 如果某些脚本想在下载完毕之后立即去执行，同时也不需要操作DOM也不依赖其他脚本， 推荐使用async
 * 如果脚本代码很小，推荐直接使用内联脚本放在body最后面
+* 注意，script如果是一个ES Module，其默认设置了defer属性
+* 注意，script标签还有一个`nomodule`属性，表示如果浏览器不支持ES2015+, 则执行该文件，一般用作降级策略
+* 注意，如果是内嵌脚本（没有src）属性，设置defer无效 (但是设置了type为module的内嵌模块有效)
 
 
 ## weak-map 弱引用
@@ -353,3 +356,51 @@ $(element).wheel(function () {}); //  注意mousewheel在firefox的类似事件�
 ```
 
 ## JavaScript 原型链
+
+在javaScript中每一个对象都有各自的prototype，借助原型，我们可以访问自身没有拥有但是原型链上拥有的方法和属性实现委托。每一个函数都有一个prototype属性，每一个对象都有__proto__属性（非标准，浏览器私有属性），__proto__指向的事创建该对象的构造函数的原型。
+
+那么接下来讨论一个老生常谈的问题，当我们在new一个构造函数时，js引擎内部发生了什么？
+
+1. new 关键字，意味着对一个函数进行’构造调用‘，首先会创建一个新的对象，新对象的prototype指向了这个构造函数的原型
+2. 执行函数体，构造函数的this指向了新创建的对象
+3. 执行完毕后，如果没有显示return，则return新创建的对象。
+
+实现一个instanceof吧！
+
+```js
+
+ // 例子
+ const obj = {};
+ obj instanceof Object; // true
+
+function isInstanceOf (origin, target) {
+    let prototype = Object.getPrototypeOf(origin);
+    let isTrue = false;
+    while (prototype != null) {
+       if  (prototype !== target.prototype) {
+           prototype = Object.getPrototypeOf(prototype);
+       } else {
+           isTrue = true;
+           prototype = null;
+       }
+    }
+    return isTrue;
+}
+ // instanceof 就是获取左边的
+```
+
+## js栈空间和堆空间
+
+js中变量存储在栈中，对象存储在堆中。栈空间只是保留了堆中的地址，堆空间很大，可以放很多的数据，栈空间较小，一般存放一些原始类型的数据。
+
+然后说说闭包，闭包的定义： 一个函数有权访问另一个函数作用域中的变量，那么闭包中访问的变量是咋存放的，当执行一个函数时函数内部的变量被其他函数所访问，闭包就产生了:clourse(a), 由于函数b中访问了b1这个变量，那么a执行完毕后，b1这个变量还是需要被b函数访问，不能释放，会存放到堆中。直到被调用才会释放
+
+
+```js
+function a () {
+    var b1 = 123;
+    return function b () {
+        return b1;
+    }
+}
+```

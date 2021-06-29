@@ -52,7 +52,7 @@ module.exports = {
                 path: "/vue-doc/"
             },
             {
-                title: "业务笔记",
+                title: "业务problem",
                 path: "/business-doc/"
             }
         ]
