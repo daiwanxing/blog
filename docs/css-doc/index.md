@@ -109,9 +109,11 @@ div {
 ```
 gap属性是row-gap和column-gap属性的合并简写， column-gap：列与列之间的间距，row-gap: 行与行之间的间距。
 
-grid-auto-flow指明了grid-item的放置顺序（是先行后列row，还是先列后行column）配合dense值，能够使得item紧密填满，尽量不出现空白。
+`auto`关键字表示宽度自适应,grid-tempalte-rows: 50px auto 50px; 第一个单元格和最后一个单元格的宽度设定为50px，第二个单元格的宽度自适应剩余的宽度。 
 
-`grid-auto-flow: row dense`。
+grid-auto-flow指明了grid-item的放置顺序（是先行后列row，还是先列后行column）配合dense值，能够使得item紧密填满，尽量不出现空白的单元格。
+
+`grid-auto-flow: row dense`。 
 
 项目属性： grid-column-start, grid-column-end, grid-row-start, grid-row-end，这四个属性指定了item的四个边框分别定位在哪根网格线
 
@@ -121,13 +123,11 @@ grid-auto-flow指明了grid-item的放置顺序（是先行后列row，还是先
        grid-column: span 3;
  }
 ```
-
 <div class='grid-box'>
    <div>grid-1</div>
    <div>grid-2</div>
    <div>grid-3</div>
 </div>
-
 
 关于grid-template-column 和 grid-template-row的属性值
 
