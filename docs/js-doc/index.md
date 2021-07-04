@@ -386,7 +386,6 @@ function isInstanceOf (origin, target) {
     }
     return isTrue;
 }
- // instanceof 就是获取左边的
 ```
 
 ## js栈空间和堆空间
@@ -405,5 +404,16 @@ function a () {
 }
 ```
 
-## js 垃圾回收
+## requestIdleCallback 更精细的任务调度API
+
+在浏览器处于‘空闲’状态时才会执行回调，它的任务调度优先级很低，一般用来在空闲时处理一些其他的额外的任务，进行更精细的任务调度,避免在主线程“拥挤”的时候执行某些代码。它支持你设定一个超时参数，保证在超时后，即使仍然没有空闲时间也必须执行回调。
+```js
+    window.requestIdleCallback(deadline => {
+        console.log(deadline);
+        // 有一个属性叫didTimeout， 就是判断是否是超时执行的
+        console.log(deadline.timeRemaining());   
+    }, {
+        timeout: 40000
+    })
+```
 

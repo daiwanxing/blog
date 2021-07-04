@@ -45,3 +45,11 @@ function def (target, key ,val) {
 }
 // 将自定义的方法放置到data中数组的原型上
 ```
+
+## Vue中computed 和 watch
+
+不同点：computed可以缓存上次计算的结果（如果依赖没有被更新，只有当依赖的数据发生了变化才会重新计算），watch是只要被侦测的源的值变更了就会执行回调函数
+
+相同点：都是Watcher构造出来的实例
+
+Vue有三个watch， 组件watch，用户watch，computed watch

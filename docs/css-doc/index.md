@@ -166,3 +166,27 @@ grid-auto-flow指明了grid-item的放置顺序（是先行后列row，还是先
 ## 重绘（repaint）与回流(reflow)
 
 重绘一般发生在元素的样式属性发生变化，而回流一般是元素的几何属性发生变化。重绘会跳过绘制layout-tree 与 layer tree，直接进入绘制阶段。而回流（重排）会重新开始执行整个渲染流水线
+
+## img标签srcset 属性
+
+```html
+       <img srcset="1x.png 128w, 2x.png 256">
+       <!-- 表示当img的宽度为128是展示1x.png 宽度为256时展示2x.png -->
+           <img srcset="https://www.hetianlab.com/img/home/10.jpg?e5a1f659 256w, https://www.hetianlab.com/img/home/6.jpg?e6b206e9 512w"
+    src="https://www.hetianlab.com/img/home/12.jpg?7db3a17a"
+    sizes="(max-width: 360px) 512px, 128px"
+    >
+```
+[详见这篇文章](https://www.zhangxinxu.com/wordpress/2014/10/responsive-images-srcset-size-w-descriptor/)
+size属性让我们可以定义在视口宽度小于360px时，我们展示512px规格的图片， 其他情况展示128p像素的图片。
+srcset的w标识符需要搭配size属性一起使用，srcset可以根据不同分辨率，显示对应的图片，比如我们的iphon6的devicePixelRatio是2，也就是一个css像素会在iphone6下会被渲染成2个像素。像这种高像素的手机用来展示二倍图可以得到更好的观感体验。
+
+## font-display属性
+
+```css
+div {
+       font-display: swap 
+       /* 先用默认字体展示文本，字体加载完毕后再替换成新的下载好的字体 */
+       /* 背景图只有当元素挂载到DOM树上，才会发生请求 */
+}
+```
