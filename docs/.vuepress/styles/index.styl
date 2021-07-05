@@ -73,8 +73,10 @@
 }
 
 .start-btn {
+    text-decoration none;
+    position relative;
     height: 32px;
-    padding: 15px 25px;
+    padding: 15px 35px;
     font-size: 24px;
     background-color: #1890ff;
     border-color: #1890ff;
@@ -87,8 +89,23 @@
     transition: all .3s linear;
 }
 
-.start-btn:hover {
-    filter: brightness(0.9);
+.svg-arrow {
+    position absolute;
+    right -1px;
+    transform: rotate(180deg) translateX(-100%);
+    transition transform .4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.start-btn span {
+    transition transform .4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.start-btn:hover span {
+    transform translateX(-15px)
+}
+
+.start-btn:hover .svg-arrow {
+    transform translateX(-10px) rotate(180deg);
 }
 
 .home {
@@ -110,5 +127,7 @@
     margin: 3rem 0;
 }
 
-.home-top .main-button {
+.home-top .start-btn {
+    display flex;
+    margin auto
 }
