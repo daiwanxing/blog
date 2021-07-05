@@ -1,14 +1,19 @@
 <div class="home">
     <div class="home-top" style="text-align: center;">
-        <h3>前端笔记小册</h3>
-        <p>
-            <blockquote>学而不思则罔，思而不学则怠</blockquote>
-        </p>
-        <a href="/frontend-notes/broswer-doc/">
-            <button class="start-btn">点我开始</button>
-        </a>
+        <div class="website">
+            <img :src="$withBase('/logo.png')" alt="logo" width="80" height="80">
+            <h3>前端笔记小册</h3>
+        </div>
+        <div class="main-button">
+            <a href="/frontend-notes/broswer-doc/">
+                <button class="start-btn">点我开始</button>
+            </a>
+        </div>
     </div>
     <div class="appenidx">
+        <p>
+            <blockquote>学而不思则罔，思而不学则怠 - 孔子</blockquote>
+        </p>
         <ul>
             <li>
                 <a href="https://www.bilibili.com/read/cv11408693">Vue3 2021 Conf 杭州</a>
