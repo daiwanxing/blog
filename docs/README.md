@@ -11,7 +11,7 @@
     <div class="appenidx">
         <ul>
             <li>
-                <a href="https://www.bilibili.com/read/cv11408693">Vue3 2021 Conf 杭州]</a>
+                <a href="https://www.bilibili.com/read/cv11408693">Vue3 2021 Conf 杭州</a>
             </li>
             <li>
                 <a href="https://www.bilibili.com/video/BV1kh411Q7WN">下一代前端工具Vite介绍 中英双语字幕</a>
