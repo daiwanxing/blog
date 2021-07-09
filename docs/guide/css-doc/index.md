@@ -12,6 +12,20 @@
        <circle cx="150" cy="80" r="50" class="loading" />
 </svg>
 
+
+svg的viewBox的含义
+
+svg的viewbox规定了画布所在的x轴方向和y轴的方向的位置以画布的width * height
+
+而svg的width和height则是定义了svg容器的大小，svg容器内的元素会被画布尽量铺满到整个svg容器大小，下面这个直角三角形本来是长50宽50的，画布的大小也是50 * 50,但是由于平铺的特性，画布能计算出可以将三角形最大铺满到多少： 300 / 50  = 6  200 / 50 = 4， 宽度会平铺最大拉伸6，高度拉伸4倍
+
+```html
+<svg viewbox="0,0,50,50" width="300" height="200">
+       <polygon points="0,0 0,50 50,50"></polygon> 
+</svg>
+```
+
+
 ## background-size 属性值的含义
 
 1. background-size 设定两个值和设定一个值的区别
@@ -170,12 +184,12 @@ grid-auto-flow指明了grid-item的放置顺序（是先行后列row，还是先
 ## img标签srcset 属性
 
 ```html
-       <img srcset="1x.png 128w, 2x.png 256">
-       <!-- 表示当img的宽度为128是展示1x.png 宽度为256时展示2x.png -->
-       <img srcset="https://www.hetianlab.com/img/home/10.jpg?e5a1f659 256w, https://www.hetianlab.com/img/home/6.jpg?e6b206e9 512w"
+<img srcset="1x.png 128w, 2x.png 256">
+<!-- 表示当img的宽度为128是展示1x.png 宽度为256时展示2x.png -->
+<img srcset="https://www.hetianlab.com/img/home/10.jpg?e5a1f659 256w, https://www.hetianlab.com/img/home/6.jpg?e6b206e9 512w"
     src="https://www.hetianlab.com/img/home/12.jpg?7db3a17a"
     sizes="(max-width: 360px) 512px, 128px"
-    >
+>
 ```
 [详见这篇文章](https://www.zhangxinxu.com/wordpress/2014/10/responsive-images-srcset-size-w-descriptor/)
 size属性让我们可以定义在视口宽度小于360px时，我们展示512px规格的图片， 其他情况展示128p像素的图片。
@@ -188,5 +202,58 @@ div {
        font-display: swap 
        /* 先用默认字体展示文本，字体加载完毕后再替换成新的下载好的字体 */
        /* 背景图只有当元素挂载到DOM树上，才会发生请求 */
+}
+```
+
+
+## 用hr标签装饰分割线
+
+一般我们在开发页面时常常需用用到两根横线 + 中间一段文字分割展示内容,例如下面这样
+
+<hr data-content="这是一条分割线" class="sp-hr">
+
+我们可以借助hr标签轻易做到，同时拥有良好的语义化，以前我都是通过一个div标签，然后设置before和after两个伪元素一前一后来完成。
+
+
+现在只需要 `<hr data-content="这是一条分割线" class="sp-hr">`
+
+```css
+.sp-hr {
+    position: relative;
+    padding: 1em 0;
+    border: 0;
+}
+
+.sp-hr::before {
+    position: absolute;
+    content: attr(data-content);
+    line-height: 1px;
+    border: solid #d0d0d5;
+    border-width: 0 99vw; /* 需要特别注意的是border-width 两个属性表示的是上下两条边宽度为0，左右各99vw */
+    width: fit-content;
+    white-space: nowrap;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #d0d0d5;
+}
+```
+
+还可以借助hr实现波浪线分割
+<hr class='wavy'>
+
+```css
+.wavy {
+    border: 0;
+    color: #d0d0d5;
+    height: .5em;
+    white-space: nowrap;
+    letter-spacing: 100vw;
+    padding: .5em;
+}
+
+.wavy::after {
+    content: "\2000\2000";
+    text-decoration: overline wavy;
 }
 ```
