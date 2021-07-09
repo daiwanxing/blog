@@ -172,7 +172,7 @@ grid-auto-flow指明了grid-item的放置顺序（是先行后列row，还是先
 ```html
        <img srcset="1x.png 128w, 2x.png 256">
        <!-- 表示当img的宽度为128是展示1x.png 宽度为256时展示2x.png -->
-           <img srcset="https://www.hetianlab.com/img/home/10.jpg?e5a1f659 256w, https://www.hetianlab.com/img/home/6.jpg?e6b206e9 512w"
+       <img srcset="https://www.hetianlab.com/img/home/10.jpg?e5a1f659 256w, https://www.hetianlab.com/img/home/6.jpg?e6b206e9 512w"
     src="https://www.hetianlab.com/img/home/12.jpg?7db3a17a"
     sizes="(max-width: 360px) 512px, 128px"
     >

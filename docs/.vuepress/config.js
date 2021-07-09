@@ -1,8 +1,37 @@
+
+const themeConfig = {
+    darkMode: true,
+    lastUpdated: true,
+    lastUpdatedText: "上一次更新时间",
+    logo: "/logo.png",
+    repo: "https://github.com/daiwanxing/frontend-notes",
+    repoLabel: "GitHub",
+    sidebar: {
+        '/guide/': [
+            {
+                text: 'CSS章节',
+                link: "/guide/css-doc",
+                activeMatch: "/"
+            },
+            {
+                text: "浏览器章节",
+                link: "/guide/broswer-doc"
+            },
+            {
+                text: "JavaScript章节",
+                link: "/guide/js-doc"
+            }
+        ]
+    },
+    editLink: false
+}
+
 module.exports = {
     title: '前端笔记小册',
+    lang: "zh-CN",
     base: "/frontend-notes/",
+    description: '学而不思则罔，思而不学则殆',
     port: 8088,
-    description: '用来记录自己平日的学习笔记',
     locales: {
         "/": {
             lang: "zh-CN",
@@ -13,48 +42,12 @@ module.exports = {
         ['link', { rel: 'icon', href: '/fav.ico'}],
         ['meta', { name: "viewport", content: "width=device-width, initial-scale=1.0"}]
     ],
-    themeConfig: {
-        search: true,
-        lastUpdated: '上次更新时间',
-        logo: "/logo.png",
-        sidebarDepth: 2,
-        sidebar: [
-            {
-                title: "浏览器笔记",
-                path: "/broswer-doc/",
-            },
-            {
-                title: "vue-router4 笔记",
-                path: "/vue-router4-doc/",
-            },
-            {
-                title: "javascript笔记",
-                path: "/js-doc/",
-            },
-            {
-                title: "css 笔记",
-                path: "/css-doc/",
-            },
-            {
-                title: "Vue3响应式系统简单实现",
-                path: "/js-doc/reactive"
-            },
-            {
-                title: "自用封装的简单工具类",
-                path: "/tool-kit/"
-            },
-            {
-                title: "常用浏览器内核版本",
-                path: "/tool-kit/core.md"
-            },
-            {
-                title: "Vue笔记",
-                path: "/vue-doc/"
-            },
-            {
-                title: "业务problem",
-                path: "/business-doc/"
-            }
-        ]
-    }
+    // themeConfig 的配置项属于主题配置
+    themeConfig,
+    plugins: [
+        ['@vuepress/search', {
+            searchMaxSuggestions: 10
+        }],
+        '@vuepress/nprogress'
+    ]
 }

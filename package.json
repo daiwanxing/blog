@@ -1,7 +1,7 @@
 {
   "name": "frontend-notes",
   "version": "1.0.0",
-  "description": "主要是记录自己平时整理的一些前端笔记，用VuePress搭建的",
+  "description": "一个基于VuePress的前端笔记小册",
   "main": "index.js",
   "scripts": {
     "docs:dev": "vuepress dev docs",
@@ -12,13 +12,16 @@
     "url": "git+https://github.com/daiwanxing/frontend-notes.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "wonder_dai",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/daiwanxing/frontend-notes/issues"
   },
   "homepage": "https://github.com/daiwanxing/frontend-notes#readme",
   "devDependencies": {
-    "vuepress": "^1.8.2"
+    "vuepress": "^2.0.0-beta.21"
+  },
+  "dependencies": {
+    "@vuepress/plugin-search": "^2.0.0-beta.21"
   }
 }
