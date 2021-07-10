@@ -48,6 +48,7 @@ module.exports = {
         ['@vuepress/search', {
             searchMaxSuggestions: 10
         }],
-        '@vuepress/nprogress'
+        '@vuepress/nprogress',
+        '@vuepress/medium-zoom'
     ]
 }
