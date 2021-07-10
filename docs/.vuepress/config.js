@@ -20,6 +20,10 @@ const themeConfig = {
             {
                 text: "JavaScript章节",
                 link: "/guide/js-doc"
+            },
+            {
+                text: "Vue章节",
+                link: "/guide/vue-doc"
             }
         ]
     },

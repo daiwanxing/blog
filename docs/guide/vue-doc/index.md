@@ -69,4 +69,29 @@ Vue有三个watch， 组件watch，用户watch，computed watch
 
 Vue3 在diff算法中相比vue2增加了静态标记，作用于是给将来会发生变化的地方添加一个flag标记
 
-## diff
+
+## Vue3 移除native修饰符
+
+
+native修饰符一般用在事件绑定上，例如在vue2上，我们需要给一个组件绑定一个原生事件
+
+```html
+<my-foo @click.native='sendFoo'></my-foo>
+````
+
+当我们点击my-foo组件的时候执行的是原生click事件的回调，click事件被绑定到了my-foo的根组件上。如果去掉`native`修饰符，是无法通过点击my-foo组件触发回调函数的执行，必须得在组件内通过`this.$emit('click')`才能触发自定义的click事件。也就是说不加`native`修饰符，vue会视为是一个自定义事件。
+
+那么在vue3中由于移除了native修饰符之后，我们应该怎么样触发原生事件呢❓ 认真阅读文档后我发现，vue3新增了一个emit option, vue推荐我们将自定义的事件约定在emit数组内。如果未在emit数组内定义的事件会被视作为原生事件绑定到组件得根组件上（除非inheritAttr: false，这样就不会绑定到根组件了）
+
+```html {1}
+<my-foo @click='sendFoo'></my-foo>
+````
+
+```js
+Vue.component('my-foo', {
+    emits: []
+})
+````
+
+emits是一个空数组，上面提到过`如果未在emit数组内定义的事件会被视作为原生事件绑定到组件的根组件上`，那么@click就是一个原生事件
+
