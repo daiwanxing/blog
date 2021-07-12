@@ -1,5 +1,3 @@
-# Vue2
-
  ## Vue2 数组是如何实现数据侦测的
 
  vue2自定义了一些相关的数组的方法（push, pop, splice），放置到data中的数组原型上，每当调用这些方法，转而去调用了vue2自定义的相关方法进行拦截。
@@ -81,17 +79,47 @@ native修饰符一般用在事件绑定上，例如在vue2上，我们需要给�
 
 当我们点击my-foo组件的时候执行的是原生click事件的回调，click事件被绑定到了my-foo的根组件上。如果去掉`native`修饰符，是无法通过点击my-foo组件触发回调函数的执行，必须得在组件内通过`this.$emit('click')`才能触发自定义的click事件。也就是说不加`native`修饰符，vue会视为是一个自定义事件。
 
-那么在vue3中由于移除了native修饰符之后，我们应该怎么样触发原生事件呢❓ 认真阅读文档后我发现，vue3新增了一个emit option, vue推荐我们将自定义的事件约定在emit数组内。如果未在emit数组内定义的事件会被视作为原生事件绑定到组件得根组件上（除非inheritAttr: false，这样就不会绑定到根组件了）
+那么在vue3中由于移除了native修饰符之后，我们应该怎么样触发原生事件呢❓ 认真阅读文档后我发现，vue3新增了一个emits option, vue推荐我们将自定义的事件约定在emits数组内。如果未在emits数组内定义的事件会被视作为原生事件绑定到组件得根组件上（除非inheritAttr: false，这样就不会绑定到根组件了）
 
 ```html {1}
 <my-foo @click='sendFoo'></my-foo>
 ````
 
 ```js
-Vue.component('my-foo', {
+app.component('my-foo', {
     emits: []
 })
 ````
+上面的代码中emits是一个空数组，之前提到过`如果未在emit数组内定义的事件会被视作为原生事件绑定到组件的根组件上`，那么click就是一个原生点击事件
 
-emits是一个空数组，上面提到过`如果未在emit数组内定义的事件会被视作为原生事件绑定到组件的根组件上`，那么@click就是一个原生事件
+
+## router-view的新用法
+
+在vue-router4中router-view提供了一个作用域插槽，该插槽暴露了Component、route两个对象
+
+```html
+<router-view v-slot="{Component, route}">
+    <component :is="Component"></component>
+</router-view>
+```
+如果我们需给视图组件添加过渡效果，则不能再直接通过transition组件包裹router-view, 这是因为router-view不能直接在keep-alive和transition内部使用。 必须由transition inside 到 router-view组件才可以。
+
+```html
+<!-- 不再被支持 -->
+<transition>
+    <keep-alive>
+        <router-view></router-view>
+    </keep-alive>
+</transtion>
+````
+
+```html
+<!-- 正确的写法 -->
+<router-view v-slot="{Component, route}">
+    <transition>
+        <keep-alive>
+            <component :is="Component"></component>
+        </keep-alive>
+    </transition>
+</router-view>```
 

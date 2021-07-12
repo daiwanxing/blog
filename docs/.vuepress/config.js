@@ -23,8 +23,14 @@ const themeConfig = {
             },
             {
                 text: "Vue章节",
-                link: "/guide/vue-doc"
-            }
+                link: "/guide/vue-doc",
+                children: [
+                    {
+                        text: "Vue3 源码",
+                        link: "/guide/vue-doc/vue3.md",
+                    }
+                ]
+            }    
         ]
     },
     editLink: false
