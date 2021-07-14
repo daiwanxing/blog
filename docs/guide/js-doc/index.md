@@ -6,7 +6,7 @@
 
 提到事件循环就得说下`requestAnimationFrame`这个API，它能够精确得分配自己的执行时间时发生在下一帧的绘制前，当前帧快结束时分配任务（一般16.6ms 执行一次回调），确保用户看到绘制的每一帧都是最新的，是一个非常适合用来做动画的微任务。
 
-[https://html.spec.whatwg.org/multipage/webappapis.html#task-queue](关于事件循环规范)
+关于事件循环的实现（浏览器HTML5定义的规范）：[https://html.spec.whatwg.org/multipage/webappapis.html#task-queue](关于事件循环规范)
 
 2. 一个宏任务队列里包含着若干个微任务，也就是说每个宏任务执行之后，就先执行当前这个宏任务包含的微任务队列。微任务队列执行完毕之后，会触发一个render。紧接着再接着执行其他宏任务。宏任务是一个个的执行的，微任务是一队列一队列的执行的。我的理解，微任务是发生在其他宏任务（渲染DOM，事件，ajax）之前会被执行 <br />
 

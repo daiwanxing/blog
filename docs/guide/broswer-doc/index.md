@@ -130,5 +130,5 @@ Expires和Cache-Control同时存在，则Cache-control会覆盖Expires, 目前�
 
 ## TCP三次握手，四次挥手
 
-<img :src="$withBase('/tcp三次握手.png')" alt="tcp三次握手">
+<img :src="$withBase('/tcp 三次握手.png')" alt="tcp三次握手">
 
