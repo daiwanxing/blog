@@ -30,7 +30,11 @@ const themeConfig = {
                         link: "/guide/vue-doc/vue3.md",
                     }
                 ]
-            }    
+            },
+            {
+                text: "ts章节",
+                link: "/guide/ts-doc"
+            }
         ]
     },
     editLink: false
