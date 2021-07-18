@@ -227,3 +227,58 @@ Direction[0]; // Top
 枚举的值有两种类型，一种是常量值，一种是计算值，常量枚举要比普通枚举性能更高（直接拿到对应的 值，不需要通过立即执行函数包裹）
 
 ## 泛型
+
+泛型可以根据传入类型，推断返回的数据类型，也就是说用户输入的类型是什么，那么可以动态推断返回的类型
+
+函数泛型
+```ts
+function eat<T, U> (food: T, who: U, taste: string): [U, T, string] {
+    return [who, food, taste]
+}
+
+let result = eat("面条", "小明", "不好吃");
+```
+
+泛型约束，约定一个泛型T具有某些属性
+```ts
+interface Length {
+    length: number,
+    replace: Function
+}
+
+function checkPoint<T extends Length>(name: T): void {
+    // T是一个任意类型， name不一定是一个string类型，那么也就不一定具有有length属性
+    name.replace("v", "");
+}
+
+checkPoint("hello");
+checkPoint(123); // ERROR
+```
+
+类中同样也能使用泛型，泛型类
+
+```ts
+class Computer<T> {
+    print (text: T) {
+        return text;
+    }
+}
+let notebook = new Computer<string>(); // Computer的类型是string
+let Cres = notebook.print("lorem");
+```
+
+接口泛型
+
+在下面的KeyPair接口中，我们无法事先确定key 和 value的类型，可以通过泛型，通过传入的参数动态确定key和value的类型
+```ts
+interface KeyPair<T, U> {
+    key: T,
+    value: U
+}
+
+// 指定key为string类型， value为number类型
+let json: KeyPair<string, number> = {
+    key: 'name',
+    value: 9587
+}
+```
