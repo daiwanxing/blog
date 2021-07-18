@@ -44,6 +44,39 @@ function def (target, key ,val) {
 // 将自定义的方法放置到data中数组的原型上
 ```
 
+##  Vue2的响应式系统的实现原理
+
+Vue2(以下简称v2)的响应式系统的实现，用到了一个ES5的Object.defineProperty的方法，v2内部会将props和data函数返回的对象的自身所有的属性通过调用`defineReactive`方法转换成响应式属性，这个`defineReactive`方法，主要将对象的每一个属性设置一个getter和setter。例如
+
+```js
+export default {
+    data () {
+        return {
+            name: "dwx",
+            age: 21,
+            sex: "male"
+        }
+    }
+}
+```
+v2通过劫持data函数返回的对象的每一个属性将其变为该对象下的响应式属性, 每一个响应式属性都有一个dep,这个dep是依赖项的数组，每当访问该响应式属性就会将watcher存入到dep中，也就是说在[GET]中收集依赖。每当给该响应式属性[SET]操作会调用`Watcher`对象中的`notify`，`notify`会取出subs这个watcher数组，依次调用每个watcher的update更新视图，也就是说在[SET]操作中触发依赖的更新。
+
+```js
+{
+    name: {
+        value: "dwx",
+        get () {
+            // reactiveGetter
+        },  
+        set () {
+            // reactiveSetter
+        }
+    }
+}
+```
+v2会将每个属性通过`defineReactive`变为响应式属性，而属性的[SET]操作的得到的新值（非基本类型的值）会通过`observe`方法构造`Observer`实例将其进行watch，并且打上``__ob__``标记，表示已经该值已经被observer. 为什么基本类型的值不需要被observe，因为在js中基本类型的值都是存在栈中，不像对象放在堆中。我们给基本类型的值赋值都是拿到的一个值的副本。不需要对其进行observe，每当被赋值一个新的基本类型的值时直接update视图即可。
+
+
 ## Vue中computed 和 watch
 
 不同点：computed可以缓存上次计算的结果（如果依赖没有被更新，只有当依赖的数据发生了变化才会重新计算），watch是只要被侦测的源的值变更了就会执行回调函数
