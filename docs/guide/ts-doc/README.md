@@ -82,7 +82,7 @@ let name = 'foo' // string 自动将name推断成sstring类型，如果尝试赋
 name = 1; // error 
 ```
 
-## 联合类型
+## 联合类型（union）
 
 ```ts
 let midType = string | number; // 指定midType可以是string也可以是number
@@ -92,4 +92,138 @@ let midType = string | number; // 指定midType可以是string也可以是number
 
 可以通过`as`关键字断言一个值的类型
 
-## 
+## 类和接口
+
+ts 中对类定义进行了增强 （public, private, protected）
+
+## implements 实现接口
+
+interface将一些共性的东西抽取到接口中，通过类的implements 实现该接口
+
+```ts
+class Car {
+    videoName: string
+    constructor (name: string) {
+        this.videoName = name;
+    }
+    playVideo () {
+        console.log('play video: ', this.videoName);
+    }
+    pauseVideo () {
+        console.log('pause video: ', this.videoName);
+    }
+}
+
+class CellPhone {
+    videoName: string;
+    constructor (name: string) {
+        this.videoName = name
+    }
+    playVideo () {
+        console.log('play video: ', this.videoName);
+    }
+    pauseVideo () {
+        console.log('pause video: ', this.videoName);
+    }
+}
+```
+
+Car和CellPhone两个类都具有播放video和暂停video的方法，应该将公共的功能提取出来，方便维护扩展，但是Car和CellPhone并没有相关联的联系，
+也无法将播放video和暂停video的方法提取到一个彼此的父类中。我们可以通过将其定义到interface来实现复用。
+
+```ts {8,21}
+interface Video {
+    videoName: string,
+    playVideo(): void,
+    pauseVideo(): void
+}
+
+
+class Car implements Video {
+    videoName: string
+    constructor (name: string) {
+        this.videoName = name;
+    }
+    playVideo () {
+        console.log('play video: ', this.videoName);
+    }
+    pauseVideo () {
+        console.log('pause video: ', this.videoName);
+    }
+}
+
+class CellPhone implements Video {
+    videoName: string;
+    constructor (name: string) {
+        this.videoName = name
+    }
+    playVideo () {
+        console.log('play video: ', this.videoName);
+    }
+    pauseVideo () {
+        console.log('pause video: ', this.videoName);
+    }
+}
+```
+
+implements 可以实现多个接口
+
+```ts {5}
+    interface Battery {
+        chargeBattery (chargeVal: number):number
+    }
+
+    class CellPhone implements Video, Battery {
+    videoName: string;
+    constructor (name: string) {
+        this.videoName = name
+    }
+    playVideo () {
+        console.log('play video: ', this.videoName);
+    }
+    pauseVideo () {
+        console.log('pause video: ', this.videoName);
+    }
+    chargeBattery (val: number) {
+        return val;
+    }
+}
+```
+
+## 接口继承
+
+在typescript中，接口也能实现继承
+
+```ts
+interface Ball {
+    shape: String
+}
+
+interface Light extends Ball {
+    color: string
+}
+
+```
+
+## 枚举
+
+```ts
+enum Direction {
+    Top,
+    Left,
+    Right.
+    Down
+}
+```
+
+使用枚举可以限定值的访问范围，在Direction枚举中只能访问Top,Left,Right以及Down，初始值默认是从0开始依次递增1
+
+```ts
+Direction.Top; // 0
+
+Direction[0]; // Top
+```
+
+枚举的值有两种类型，一种是常量值，一种是计算值，常量枚举要比普通枚举性能更高（直接拿到对应的 值，不需要通过立即执行函数包裹）
+
+## 泛型
