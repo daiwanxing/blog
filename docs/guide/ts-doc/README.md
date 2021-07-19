@@ -282,3 +282,43 @@ let json: KeyPair<string, number> = {
     value: 9587
 }
 ```
+
+## 类型别名
+
+
+
+## 声明文件(d.ts)
+
+当我们使用第三方库时，需要引用它的声明文件，才能获得对应的代码补全、接口提示等功能。如果一些三方库没有自带声明文件时，我们需要自己手动编写d.ts文件，当然大多数第三方库一般可以通过`npm install @types/xxx --save-dev` 下载安装声明文件。
+
+```ts
+// jQuery.d.ts 一个简单的jQuery声明语句，声明文件在生产环境时不会被打包，仅用于开发项目时的编译提示
+declare const $: (selector: string) => any;
+
+// 或者
+
+declare function $ (selecotr: string): any;
+```
+
+在声明语句中只能定义类型，不能定义具体的实现
+
+```ts
+declare function $ (selecotr: string): any {
+    return document.querySelectory(selector); // ERROR
+}
+```
+
+在声明文件里也可以用到函数重载
+```ts
+declare function $(selector: string): any
+declare function $(domReadyCallBack: () => any): any
+```
+
+可以在声明文件对`class`进行类型声明
+```ts
+declare class Animal {
+    name: string;
+    constructor (name: string);
+    sayHi(alertMessage: string): void
+}
+```
