@@ -267,3 +267,11 @@ div {
     text-decoration: overline wavy;
 }
 ```
+
+## BFC、FFC、IFC
+
+BFC（Blcok Formatting Context） 块级格式化上下文
+
+FFC(Flex Formate Context) 自适应格式化上下文 
+
+IFC（Inline Formate Context）行级格式化上下文

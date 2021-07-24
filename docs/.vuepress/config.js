@@ -44,7 +44,7 @@ module.exports = {
     title: '前端笔记小册',
     lang: "zh-CN",
     base: "/frontend-notes/",
-    description: '学而不思则罔，思而不学则殆',
+    description: '总结、归纳、提炼',
     port: 8088,
     locales: {
         "/": {
