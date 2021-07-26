@@ -275,3 +275,25 @@ BFC（Blcok Formatting Context） 块级格式化上下文
 FFC(Flex Formate Context) 自适应格式化上下文 
 
 IFC（Inline Formate Context）行级格式化上下文
+
+## 浅谈css中的clip-path属性
+
+说起clip-path属性就不得不说clip-path属性的前身clip属性，clip-path是clip属性的增强。在还未用clip-path属性前，我曾经常用clip属性的rect函数对容器进行裁剪。clip-path同样也是对容器进行裁剪，但是要注意<strong>clip-path要比clip属性的功能多得多，而且clip属性已经被web标准给删除了,[具体详见](https://developer.mozilla.org/zh-CN/docs/Web/CSS/clip)，虽然很多浏览器都实现了该属性，但是性能没有clip-path高，而且clip能做的clip-path也能做，所以不推荐在项目中继续使用clip属性了
+</strong>。clip-path的兼容性在不考虑IE的情况下只需要加上`-webkit-`的前缀就能放心使用。
+
+
+那么clip-path属性具体要如何使用呢，clip-path属性有很多个函数，例如：ellipse()（椭圆） circle()（圆形） polygon()（多边形）path()（路径） inset() 矩形
+
+```css
+.noraml {
+       /* inset函数会画出一个矩形，有五个值分别表示代表上右下左，以及圆角 */
+       clip-path: inset(top, right, bottom, left, radius at px);
+       /*  polygon函数 表示画出一个多边形，一个多边形至少要有三个坐标点， 坐标点(x, y)与坐标点之间用逗号分割 */
+       /* 绘制一个三角形 */
+       clip-path: polygon(50% 0, 0 100%, 100% 100% );
+       /* 绘制一个圆形，有两个参数作为输入， 第一个参数是半径（px或者%） -> r， 第二个参数是圆心，默认是盒模型中心 */
+       clip-path: circle(10px at 150px);
+       /* 绘制一个椭圆, rx表示x轴方向的半径，ry表示y轴方向的radius， position默认是盒模型的center */
+       circle-path: ellipse(rx ry at position)
+}
+```
