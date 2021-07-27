@@ -90,7 +90,7 @@ let midType = string | number; // 指定midType可以是string也可以是number
 
 ## 类型断言：手动指定一个值的类型
 
-可以通过`as`关键字断言一个值的类型，；开发者比ts更清楚的知道值的类型
+可以通过`as`关键字断言一个值的类型；某些时刻开发者比ts更清楚的知道值的类型
 
 ```ts
 let image = document.querySelector("#img");
@@ -331,3 +331,45 @@ declare class Animal {
     sayHi(alertMessage: string): void
 }
 ```
+
+## 仅限类型导入导出
+
+ts3.8新增的一个特性，ts文件中可以设置仅导入导出类型
+
+```ts
+import type { ICardCollection } from './type'; // 仅导入ICardCollection这个类型
+
+// ts中的类型导出和变量命名导出是可以同名的， 但是同时导入他们的话要为其中一个起别名
+
+export type gender = "male" | "female";
+
+export const gender = "male";
+```
+
+
+## interface和type的抉择
+
+interface 和 type 在大多数情况下是非常相似的，但是也有很多区别， type 一旦被创建之后，就不允许被继续扩展了。而interface恰恰相反
+
+for example:
+
+```ts
+interface Person {
+    name?: string;
+}
+
+interface Person {
+    age?: number
+} // no error
+
+type Person = {
+    age?: number;
+}
+
+type Person = {
+    name?: string;
+    // error Duplicate identifier 'Person'.ts(2300)
+}
+```
+
+另外 interface是可以`extends`， 以及 `implements`。type无法做到，interface更适合对一个大的对象每个属性类型进行约束, 以及继承别的接口进行扩展。而type适合确定某个变量的类型，以及使用union 进行类型收窄。

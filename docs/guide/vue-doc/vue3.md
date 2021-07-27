@@ -36,5 +36,3 @@ const emits =  defineEmit(['sendMessage']);
 ```js
 const emits = defineEmits(['sendMessage']); // 不需要手动导入
 ```
-
-## defineProps 配合ts 赋值默认值
