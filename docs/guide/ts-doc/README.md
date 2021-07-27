@@ -90,7 +90,16 @@ let midType = string | number; // 指定midType可以是string也可以是number
 
 ## 类型断言：手动指定一个值的类型
 
-可以通过`as`关键字断言一个值的类型
+可以通过`as`关键字断言一个值的类型，；开发者比ts更清楚的知道值的类型
+
+```ts
+let image = document.querySelector("#img");
+// 尝试访问 image.src tslint 会报错， 因为image被推断成了Element类型，Element未实现src属性
+// 开发者比ts更清楚的知道这是一个image标签，可以断言成HTMLImageElement类型
+
+let image = document.querySelector("#img") as HTMLImageElement;
+
+```
 
 ## 类和接口
 
@@ -230,7 +239,7 @@ Direction[0]; // Top
 
 泛型可以根据传入类型，推断返回的数据类型，也就是说用户输入的类型是什么，那么可以动态推断返回的类型
 
-函数泛型
+### 函数泛型
 ```ts
 function eat<T, U> (food: T, who: U, taste: string): [U, T, string] {
     return [who, food, taste]
@@ -255,7 +264,7 @@ checkPoint("hello");
 checkPoint(123); // ERROR
 ```
 
-类中同样也能使用泛型，泛型类
+### 泛型类
 
 ```ts
 class Computer<T> {
@@ -267,7 +276,7 @@ let notebook = new Computer<string>(); // Computer的类型是string
 let Cres = notebook.print("lorem");
 ```
 
-接口泛型
+### 接口泛型
 
 在下面的KeyPair接口中，我们无法事先确定key 和 value的类型，可以通过泛型，通过传入的参数动态确定key和value的类型
 ```ts
