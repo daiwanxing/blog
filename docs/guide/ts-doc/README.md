@@ -377,7 +377,7 @@ type Person = {
 
 ## TS 内置类型
 
-1. Partial<Interface> 让一个结构化类型中的所有参数变得可选
+1. Partial<\Interface> 让一个结构化类型中的所有参数变得可选
 
 ```ts
 interface Todo {
@@ -390,9 +390,9 @@ let todoList:Partial<Todo> = {
 }
 ```
 
-2. Omit<Interface， property> 屏蔽一个结构化类型中的某个属性
+2. Omit<\Interface， property> 屏蔽一个结构化类型中的某个属性
 
-3. Required<T>  要求泛型T中所有的属性需要被设置
+3. Required<\T>  要求泛型T中所有的属性需要被设置
 
 ```ts
 interface Todo {
@@ -405,7 +405,7 @@ let todoItem:Todo = {}; // pass
 let todoItem:Required<Todo> = {}; // ERROR
 ```
 
-4. Readonly<T>
+4. Readonly<\T>
 
 ```ts
 // 构造一个类型，type身上的所有的属性变为只读，意味着初次分配后 不能再重新分配新的类型
@@ -417,7 +417,7 @@ let readOnlyTodo:Readonly<Todo> = {
 readOnlyTodo.title = '123';
 ```
 
-5. Pick<T, Keys>
+5. Pick<\T, Keys>
 
 <del>怎么感觉有点像Omit类型 ？</del> 从T里面选择一个property 或者一个union type
 
