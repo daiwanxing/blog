@@ -154,5 +154,24 @@ app.component('my-foo', {
             <component :is="Component"></component>
         </keep-alive>
     </transition>
-</router-view>```
+</router-view>
+```
 
+## asyncComponent
+
+Vue2 提供了一个异步加载组件工厂函数， 可以在按需加载的时候加载该组件
+
+```js
+  const asyncCompoent = () => ({
+      component: import('xxxx.js') // component必须是一个已经被resolve的promise
+      loading: loadingComponent,
+      delay: 100, // delay表示是等待多久才出现loading组件，这里是延迟100ms出现loading
+      timeout: 10000, // 允许加载组件的耗时范围
+      error: errorComponent, // 超过设定的timeout 会渲染error组件
+  });
+```
+起初我以为可以用在vue-router中，假设这么一个场景，用户访问某个路由A，在路由A未被resolve的时候先展示loadingComponent，等resolve完成后
+再加载该组件。但我这种想法很美好，忽略了路由解析组件背后的流程。 访问某个路由，会先执行一系列守卫，全局守卫 -> 路由守卫 -> 组件守卫, 等这些守卫
+全部执行完毕后，导航被resolve, 异步组件本体已经下载完毕了，这时是可以直接render到UI上，如果再将Loading组件渲染，就会很多余也不符合业务要求
+
+具体我通过vue-form的一篇帖子找到了答案[vue-form](https://forum.vuejs.org/t/topic/95387/10),
