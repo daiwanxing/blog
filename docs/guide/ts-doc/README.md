@@ -375,9 +375,11 @@ type Person = {
 另外 interface是可以`extends`， 以及 `implements`。type无法做到，interface更适合对一个大的对象每个属性类型进行约束, 以及继承别的接口进行扩展。而type适合确定某个变量的类型，以及使用union 进行类型收窄。
 
 
-## TS 内置类型
+## TS 公共类型（Utility Types）
 
-1. Partial<\Interface> 让一个结构化类型中的所有参数变得可选
+TypeScript 提供内置的公共类型用于常见的类型转换
+
+1. Partia <\/Type> 让一个结构化类型中的所有参数变得可选
 
 ```ts
 interface Todo {
@@ -386,13 +388,14 @@ interface Todo {
 }
 
 let todoList:Partial<Todo> = {
-
+    title?: string,
+    desc?: string
 }
 ```
 
-2. Omit<\Interface， property> 屏蔽一个结构化类型中的某个属性
+2. Omit <\/Interface， property> 屏蔽一个结构化类型中的某个属性
 
-3. Required<\T>  要求泛型T中所有的属性需要被设置
+3. Required<\/T> 要求泛型T中所有的属性需要被设置
 
 ```ts
 interface Todo {
@@ -419,7 +422,7 @@ readOnlyTodo.title = '123';
 
 5. Pick<\T, Keys>
 
-<del>怎么感觉有点像Omit类型 ？</del> 从T里面选择一个property 或者一个union type
+<del>怎么感觉有点像Omit类型 ？</del> 从类型T里面选择一个property 或者一个union type
 
 还是有一定区别，Omit类型是屏蔽某个或多个key，而Pick只选择某个属性（Omit取反）
 
@@ -428,3 +431,46 @@ let pickTodo:Pick<Todo, 'title'> = {
     title: 'xxx'
 }
 ```
+
+6. record <\/Keys, Type> 
+
+构造一个对象类型，属性的键名必须是keys(或者keys如果是js内置类型，则必须是该类型的属性名， 
+众所周知，js对象的属性名的类型是string或者symbol，也可以是number，但是number最终还是会转换成string)，属性的值的类型必须是Type
+
+
+```ts
+interface CatInfo {
+    age?: number;
+    breed?: Record<CatName, CatInfo>;
+  }
+   
+type CatName = "miffy" | "boris" | "mordred";
+
+let plainObject:Record<CatName, CatInfo> = {
+    miffy: {
+        age: 123,
+        breed: {
+            miffy: {
+            },
+            boris: {
+            },
+            mordred: {
+            }
+        }
+    },    boris: {},
+    mordred: {
+    }
+}
+```
+
+7. exclude </\Type, excludeUnion> 字面意思就是排除的意思，构造一个类型 T, 该类型将排除union中指定的类型
+
+下面的示例中，将type中定义的三个字面量类型中的c进行排除
+
+```ts
+type tempExclude = Exclude<"a" | "b" | "c", "c">;
+
+let ab:tempExclude = "a";
+```
+
+8. Extract
