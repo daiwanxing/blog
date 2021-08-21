@@ -34,6 +34,10 @@ const themeConfig = {
             {
                 text: "ts章节",
                 link: "/guide/ts-doc"
+            },
+            {
+                text: "高德地图笔记",
+                link: "/guide/gd-map"
             }
         ]
     },

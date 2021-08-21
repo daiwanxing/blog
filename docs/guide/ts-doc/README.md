@@ -88,6 +88,8 @@ name = 1; // error
 let midType = string | number; // 指定midType可以是string也可以是number
 ```
 
+## 交叉类型 多种类型的集合 type & type
+
 ## 类型断言：手动指定一个值的类型
 
 可以通过`as`关键字断言一个值的类型；某些时刻开发者比ts更清楚的知道值的类型
@@ -301,7 +303,7 @@ let json: KeyPair<string, number> = {
 当我们使用第三方库时，需要引用它的声明文件，才能获得对应的代码补全、接口提示等功能。如果一些三方库没有自带声明文件时，我们需要自己手动编写d.ts文件，当然大多数第三方库一般可以通过`npm install @types/xxx --save-dev` 下载安装声明文件。
 
 ```ts
-// jQuery.d.ts 一个简单的jQuery声明语句，声明文件在生产环境时不会被打包，仅用于开发项目时的编译提示
+// jQuery.d.ts 一个简单的【jQuery声明语句，声明文件在生产环境时不会被打包，仅用于开发项目时的编译提示
 declare const $: (selector: string) => any;
 
 // 或者
@@ -334,10 +336,13 @@ declare class Animal {
 
 ## 仅限类型导入导出
 
-ts3.8新增的一个特性，ts文件中可以设置仅导入导出类型
+ts3.8新增的一个特性，ts文件中可以设置仅导入导出类型, 有了这个特性后，当我们导出一个类型如果被当作变量使用就会报错
 
 ```ts
 import type { ICardCollection } from './type'; // 仅导入ICardCollection这个类型
+
+ICardCollection(); // 错误，ICardCollection是一个类型，而被当作一个值来使用
+
 
 // ts中的类型导出和变量命名导出是可以同名的， 但是同时导入他们的话要为其中一个起别名
 
@@ -374,12 +379,36 @@ type Person = {
 
 另外 interface是可以`extends`， 以及 `implements`。type无法做到，interface更适合对一个大的对象每个属性类型进行约束, 以及继承别的接口进行扩展。而type适合确定某个变量的类型，以及使用union 进行类型收窄。
 
+## Keyof 操作符
+
+将一个对象的所有的键名映射成一个联合类型
+
+## Typeof 操作符
+
+```ts
+let a1 =  "dsa";
+
+let b1: typeof a1 = "string type";
+```
+
+typeof 用在基本类型推断有点鸡肋， 搭配其他内置类型一起使用作用最大，例如 ReturnType内置类型，这个内置类型接受一个函数类型T，并且返回T的类型，
+然后我们可以搭配typeof操作符一起使用
+
+
+```ts
+function printAll (): string {
+    return "hello print";
+}
+
+let c1: ReturnType<typeof printAll>;
+```
+
 
 ## TS 公共类型（Utility Types）
 
 TypeScript 提供内置的公共类型用于常见的类型转换
 
-1. Partia <\/Type> 让一个结构化类型中的所有参数变得可选
+1. Partial <\/Type> 让一个结构化类型中的所有参数变得可选
 
 ```ts
 interface Todo {
@@ -473,4 +502,15 @@ type tempExclude = Exclude<"a" | "b" | "c", "c">;
 let ab:tempExclude = "a";
 ```
 
-8. Extract
+
+## unknown 和 any
+
+unknown 和 any 类型类型，但是 unknown类型比any类型更加类型，如果给一个变量赋值unknown类型，那么意味着操作该变量做任何事情都是违法的,
+
+unknown 类型的变量可以重新被赋值其他类型, unknown类型 一般表示目前不清楚该变量的类型，但是将来会确定该变量的类型。
+
+## never
+
+表示 永远不会返回一个基本类型或者引用类型，一般在函数里死循环或者函数throw error， 就永远不会到达end point;
+
+
