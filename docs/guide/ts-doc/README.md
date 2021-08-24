@@ -513,4 +513,15 @@ unknown 类型的变量可以重新被赋值其他类型, unknown类型 一般�
 
 表示 永远不会返回一个基本类型或者引用类型，一般在函数里死循环或者函数throw error， 就永远不会到达end point;
 
+## abstract 抽象类
+
+abstract即为抽象类， 如果你不想为一个类创建实例，可以通过abstract关键字声明一个抽象类，抽象类只能被继承，不能通过new 关键字创建该类的实例，在抽象类中可以定义抽象方法，抽象方法类似一个简单的声明，具体如何实现这个方法由各个子类去实现。
+
+```ts
+// 声明一个抽象类
+abstract Animal {
+  constructor (public readonly animalType: string) { }
+  abstract voice (): void  // voice是一个抽象方法，这里只是进行简单的定义，每个动物的叫声都不一样，所以具体的实现由各个子类去完成
+}
+```
 
