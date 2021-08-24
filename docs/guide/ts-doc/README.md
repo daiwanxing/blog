@@ -519,9 +519,20 @@ abstract即为抽象类， 如果你不想为一个类创建实例，可以通�
 
 ```ts
 // 声明一个抽象类
-abstract Animal {
+abstract class Animal {
   constructor (public readonly animalType: string) { }
   abstract voice (): void  // voice是一个抽象方法，这里只是进行简单的定义，每个动物的叫声都不一样，所以具体的实现由各个子类去完成
 }
 ```
+
+## declare namespace
+
+最近在用高德地图的时候研究其类型声明文件（d.ts），遇到了以前从未用过的`declare`关键字，通过查阅官方文档查阅得知 通过 `declare` 关键字声明的变量会被视作为一个全局变量/函数/类
+例如
+<ol>
+    <li>declare const model</li>
+    <li>declare namespace model</li>
+    <li>declare class model</li>
+    <li>declare function model</li>
+</ol>
 
