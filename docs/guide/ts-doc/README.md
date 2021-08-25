@@ -443,10 +443,10 @@ let todoItem:Required<Todo> = {}; // ERROR
 // 构造一个类型，type身上的所有的属性变为只读，意味着初次分配后 不能再重新分配新的类型
 let readOnlyTodo:Readonly<Todo> = {
     title: "今日清单",
-    description: "2021/7/29"
+    desc: "2021/7/29"
 }
 
-readOnlyTodo.title = '123';
+readOnlyTodo.title = '123'; // error 不能再重新赋值
 ```
 
 5. Pick<\T, Keys>
