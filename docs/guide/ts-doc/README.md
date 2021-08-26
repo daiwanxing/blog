@@ -294,10 +294,6 @@ let json: KeyPair<string, number> = {
 }
 ```
 
-## 类型别名
-
-
-
 ## 声明文件(d.ts)
 
 当我们使用第三方库时，需要引用它的声明文件，才能获得对应的代码补全、接口提示等功能。如果一些三方库没有自带声明文件时，我们需要自己手动编写d.ts文件，当然大多数第三方库一般可以通过`npm install @types/xxx --save-dev` 下载安装声明文件。
@@ -341,16 +337,26 @@ ts3.8新增的一个特性，ts文件中可以设置仅导入导出类型, 有�
 ```ts
 import type { ICardCollection } from './type'; // 仅导入ICardCollection这个类型
 
-ICardCollection(); // 错误，ICardCollection是一个类型，而被当作一个值来使用
 
+ICardCollection(); // 错误，ICardCollection是一个类型，而被当作一个值来使用
 
 // ts中的类型导出和变量命名导出是可以同名的， 但是同时导入他们的话要为其中一个起别名
 
-export type gender = "male" | "female";
+export type gender = "male" | "female";  // 仅导出类型
 
 export const gender = "male";
 ```
 
+类型导入会在运行时将其"擦除"，不会留下任何代码，而且仅导入导出的声明语法能够让别人一目了然导出的是个类型。
+
+另外再看一个例子
+
+```ts
+import { ICollection } from "hook.ts"
+
+export {  ICollection }
+// 没有人知道ICollection到底是个类型还是变量，连ts编译器也不知道是不是要在编译的时候删除它。所以不够好，才出来了类型导入这个功能
+```
 
 ## interface和type的抉择
 
@@ -502,7 +508,6 @@ type tempExclude = Exclude<"a" | "b" | "c", "c">;
 let ab:tempExclude = "a";
 ```
 
-
 ## unknown 和 any
 
 unknown 和 any 类型类型，但是 unknown类型比any类型更加类型，如果给一个变量赋值unknown类型，那么意味着操作该变量做任何事情都是违法的,
@@ -511,7 +516,7 @@ unknown 类型的变量可以重新被赋值其他类型, unknown类型 一般�
 
 ## never
 
-表示 永远不会返回一个基本类型或者引用类型，一般在函数里死循环或者函数throw error， 就永远不会到达end point;
+表示 永远不会返回一个基本类型或者引用类型，一般在函数里死循环或者函数throw error， 整个应用程序就会down不会后面的流程;
 
 ## abstract 抽象类
 
@@ -529,10 +534,13 @@ abstract class Animal {
 
 最近在用高德地图的时候研究其类型声明文件（d.ts），遇到了以前从未用过的`declare`关键字，通过查阅官方文档查阅得知 通过 `declare` 关键字声明的变量会被视作为一个全局变量/函数/类
 例如
-<ol>
-    <li>declare const model</li>
-    <li>declare namespace model</li>
-    <li>declare class model</li>
-    <li>declare function model</li>
-</ol>
+
+
+```ts
+    declare const model
+    declare const model
+    declare namespace model
+    declare class model
+    declare function model
+```
 
