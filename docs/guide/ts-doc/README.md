@@ -213,8 +213,20 @@ interface Ball {
 interface Light extends Ball {
     color: string
 }
-
 ```
+<strong>注意，接口在继承时如果继承的接口和被继承的接口属性名相同但类型不同，则无法继承，并不会出现后者覆盖前者的情况</strong>
+
+```ts
+interface Ball {
+    shape: String
+}
+
+interface Light extends Ball {
+    color: string;
+    shape: number // Types of property 'shape' are incompatible
+}
+```
+接口也能实现交叉类型，也请注意，如果两个交叉的接口如果有相同的属性名但类型不同，则会被视作undefined类型
 
 ## 枚举
 
