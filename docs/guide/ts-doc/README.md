@@ -213,8 +213,20 @@ interface Ball {
 interface Light extends Ball {
     color: string
 }
-
 ```
+<strong>注意，接口在继承时如果继承的接口和被继承的接口属性名相同但类型不同，则无法继承，并不会出现后者覆盖前者的情况</strong>
+
+```ts
+interface Ball {
+    shape: String
+}
+
+interface Light extends Ball {
+    color: string;
+    shape: number // Types of property 'shape' are incompatible
+}
+```
+接口也能实现交叉类型，也请注意，如果两个交叉的接口如果有相同的属性名但类型不同，则会被视作undefined类型
 
 ## 枚举
 
@@ -554,5 +566,32 @@ abstract class Animal {
     declare namespace model
     declare class model
     declare function model
+```
+
+
+## Indexed Access Types 索引访问类型
+
+```ts
+type Person = { age: number; name: string; alive: boolean };
+
+type I1 = Person["age" | "name"]; // 可以根据索引获取其类型
+
+type I2 = Person[keyof Person]; // keyof 用于获取Person的所有键名： age |  name | alive ， 然后可以通过索引访问类型获取键名对应的类型
+
+type InsertAliveName = "alive" | "name"; // 声明 InsertAliveName 的字面量类型 “alive", "name"
+
+type I3 = Person[InsertAliveName]; // 获取这个两个字面量对应的索引类型
+
+const MyArray = [
+  { name: "Alice", age: 15 },
+  { name: "Bob", age: 23 },
+  { name: "Eve", age: 38 },
+];
+ 
+type PersonOne = typeof MyArray[number]; // { name: string; age: number }  此处的number代表数组的索引签名是number类型
+
+const key = "age";
+type Age = Person[typeof key]; // Person["age"]
+
 ```
 
