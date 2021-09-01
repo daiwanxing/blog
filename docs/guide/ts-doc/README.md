@@ -227,12 +227,23 @@ enum Direction {
 }
 ```
 
-使用枚举可以限定值的访问范围，在Direction枚举中只能访问Top,Left,Right以及Down，初始值默认是从0开始依次递增1
+使用枚举可以限定值的访问范围，在Direction枚举常量中只能访问Top,Left,Right以及Down，初始值默认是从0开始依次递增1
 
 ```ts
 Direction.Top; // 0
 
 Direction[0]; // Top
+
+// 我们也可以给枚举的属性分配常量值
+
+enum Direction {
+    Top = "Top",
+    Left = "Left",
+    Right = "Right"
+    Down = "Down"
+}
+
+// Direction.Top // Top 可以被正确推断Direction.Top的值是一个字符串类型的值
 ```
 
 枚举的值有两种类型，一种是常量值，一种是计算值，常量枚举要比普通枚举性能更高（直接拿到对应的 值，不需要通过立即执行函数包裹）
@@ -356,6 +367,7 @@ import { ICollection } from "hook.ts"
 
 export {  ICollection }
 // 没有人知道ICollection到底是个类型还是变量，连ts编译器也不知道是不是要在编译的时候删除它。所以不够好，才出来了类型导入这个功能
+// 具体看这个链接 https://segmentfault.com/a/1190000039800522?utm_source=tag-newest
 ```
 
 ## interface和type的抉择
