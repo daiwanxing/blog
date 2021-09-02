@@ -239,12 +239,23 @@ enum Direction {
 }
 ```
 
-使用枚举可以限定值的访问范围，在Direction枚举中只能访问Top,Left,Right以及Down，初始值默认是从0开始依次递增1
+使用枚举可以限定值的访问范围，在Direction枚举常量中只能访问Top,Left,Right以及Down，初始值默认是从0开始依次递增1
 
 ```ts
 Direction.Top; // 0
 
 Direction[0]; // Top
+
+// 我们也可以给枚举的属性分配常量值
+
+enum Direction {
+    Top = "Top",
+    Left = "Left",
+    Right = "Right"
+    Down = "Down"
+}
+
+// Direction.Top // Top 可以被正确推断Direction.Top的值是一个字符串类型的值
 ```
 
 枚举的值有两种类型，一种是常量值，一种是计算值，常量枚举要比普通枚举性能更高（直接拿到对应的 值，不需要通过立即执行函数包裹）
@@ -306,10 +317,6 @@ let json: KeyPair<string, number> = {
 }
 ```
 
-## 类型别名
-
-
-
 ## 声明文件(d.ts)
 
 当我们使用第三方库时，需要引用它的声明文件，才能获得对应的代码补全、接口提示等功能。如果一些三方库没有自带声明文件时，我们需要自己手动编写d.ts文件，当然大多数第三方库一般可以通过`npm install @types/xxx --save-dev` 下载安装声明文件。
@@ -353,16 +360,27 @@ ts3.8新增的一个特性，ts文件中可以设置仅导入导出类型, 有�
 ```ts
 import type { ICardCollection } from './type'; // 仅导入ICardCollection这个类型
 
-ICardCollection(); // 错误，ICardCollection是一个类型，而被当作一个值来使用
 
+ICardCollection(); // 错误，ICardCollection是一个类型，而被当作一个值来使用
 
 // ts中的类型导出和变量命名导出是可以同名的， 但是同时导入他们的话要为其中一个起别名
 
-export type gender = "male" | "female";
+export type gender = "male" | "female";  // 仅导出类型
 
 export const gender = "male";
 ```
 
+类型导入会在运行时将其"擦除"，不会留下任何代码，而且仅导入导出的声明语法能够让别人一目了然导出的是个类型。
+
+另外再看一个例子
+
+```ts
+import { ICollection } from "hook.ts"
+
+export {  ICollection }
+// 没有人知道ICollection到底是个类型还是变量，连ts编译器也不知道是不是要在编译的时候删除它。所以不够好，才出来了类型导入这个功能
+// 具体看这个链接 https://segmentfault.com/a/1190000039800522?utm_source=tag-newest
+```
 
 ## interface和type的抉择
 
@@ -522,7 +540,7 @@ unknown 类型的变量可以重新被赋值其他类型, unknown类型 一般�
 
 ## never
 
-表示 永远不会返回一个基本类型或者引用类型，一般在函数里死循环或者函数throw error， 就永远不会到达end point;
+表示 永远不会返回一个基本类型或者引用类型，一般在函数里死循环或者函数throw error， 整个应用程序就会down不会后面的流程;
 
 ## abstract 抽象类
 
@@ -557,12 +575,42 @@ class Cat extends Animal {
 
 最近在用高德地图的时候研究其类型声明文件（d.ts），遇到了以前从未用过的`declare`关键字，通过查阅官方文档查阅得知 通过 `declare` 关键字声明的变量会被视作为一个全局变量/函数/类
 例如
-<ol>
-    <li>declare const model</li>
-    <li>declare namespace model</li>
-    <li>declare class model</li>
-    <li>declare function model</li>
-</ol>
+
+
+```ts
+    declare const model
+    declare const model
+    declare namespace model
+    declare class model
+    declare function model
+```
+
+
+## Indexed Access Types 索引访问类型
+
+```ts
+type Person = { age: number; name: string; alive: boolean };
+
+type I1 = Person["age" | "name"]; // 可以根据索引获取其类型
+
+type I2 = Person[keyof Person]; // keyof 用于获取Person的所有键名： age |  name | alive ， 然后可以通过索引访问类型获取键名对应的类型
+
+type InsertAliveName = "alive" | "name"; // 声明 InsertAliveName 的字面量类型 “alive", "name"
+
+type I3 = Person[InsertAliveName]; // 获取这个两个字面量对应的索引类型
+
+const MyArray = [
+  { name: "Alice", age: 15 },
+  { name: "Bob", age: 23 },
+  { name: "Eve", age: 38 },
+];
+ 
+type PersonOne = typeof MyArray[number]; // { name: string; age: number }  此处的number代表数组的索引签名是number类型
+
+const key = "age";
+type Age = Person[typeof key]; // Person["age"]
+
+```
 
 ## Indexed Access Types 索引访问类型
 

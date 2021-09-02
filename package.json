@@ -19,9 +19,9 @@
   },
   "homepage": "https://github.com/daiwanxing/frontend-notes#readme",
   "devDependencies": {
-    "vuepress": "^2.0.0-beta.21"
+    "vuepress": "^2.0.0-beta.25"
   },
   "dependencies": {
-    "@vuepress/plugin-search": "^2.0.0-beta.21"
+    "@vuepress/plugin-search": "^2.0.0-beta.25"
   }
 }
