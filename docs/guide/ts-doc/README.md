@@ -438,7 +438,7 @@ let c1: ReturnType<typeof printAll>;
 
 TypeScript 提供内置的公共类型用于常见的类型转换
 
-1. Partial <\/Type> 让一个结构化类型中的所有参数变得可选
+1. `Partial<T>` 让一个结构化类型中的所有参数变得可选
 
 ```ts
 interface Todo {
@@ -452,9 +452,9 @@ let todoList:Partial<Todo> = {
 }
 ```
 
-2. Omit <\/Interface， property> 屏蔽一个结构化类型中的某个属性
+2. `Omit<type property>` 屏蔽类型中的某个属性
 
-3. Required<\/T> 要求泛型T中所有的属性需要被设置
+3. `Required<T>` 要求泛型T中所有的属性需要被设置
 
 ```ts
 interface Todo {
@@ -467,7 +467,7 @@ let todoItem:Todo = {}; // pass
 let todoItem:Required<Todo> = {}; // ERROR
 ```
 
-4. Readonly<\T>
+4. `Readonly<T>`
 
 ```ts
 // 构造一个类型，type身上的所有的属性变为只读，意味着初次分配后 不能再重新分配新的类型
@@ -479,7 +479,7 @@ let readOnlyTodo:Readonly<Todo> = {
 readOnlyTodo.title = '123'; // error 不能再重新赋值
 ```
 
-5. Pick<\T, Keys>
+5. `Pick<T, K>`
 
 <del>怎么感觉有点像Omit类型 ？</del> 从类型T里面选择一个property 或者一个union type
 
