@@ -420,7 +420,7 @@ let c1: ReturnType<typeof printAll>;
 
 TypeScript 提供内置的公共类型用于常见的类型转换
 
-1. Partial <\/Type> 让一个结构化类型中的所有参数变得可选
+1. `Partial<T>` 让一个结构化类型中的所有参数变得可选
 
 ```ts
 interface Todo {
@@ -434,9 +434,9 @@ let todoList:Partial<Todo> = {
 }
 ```
 
-2. Omit <\/Interface， property> 屏蔽一个结构化类型中的某个属性
+2. `Omit <Interface， property>` 屏蔽一个结构化类型中的某个属性
 
-3. Required<\/T> 要求泛型T中所有的属性需要被设置
+3. `Required<T>` 要求泛型T中所有的属性需要被设置
 
 ```ts
 interface Todo {
@@ -449,7 +449,7 @@ let todoItem:Todo = {}; // pass
 let todoItem:Required<Todo> = {}; // ERROR
 ```
 
-4. Readonly<\T>
+4. `Readonly<T>`
 
 ```ts
 // 构造一个类型，type身上的所有的属性变为只读，意味着初次分配后 不能再重新分配新的类型
@@ -461,7 +461,7 @@ let readOnlyTodo:Readonly<Todo> = {
 readOnlyTodo.title = '123'; // error 不能再重新赋值
 ```
 
-5. Pick<\T, Keys>
+5. `Pick<T, Keys>`
 
 <del>怎么感觉有点像Omit类型 ？</del> 从类型T里面选择一个property 或者一个union type
 
@@ -504,7 +504,7 @@ let plainObject:Record<CatName, CatInfo> = {
 }
 ```
 
-7. exclude </\Type, excludeUnion> 字面意思就是排除的意思，构造一个类型 T, 该类型将排除union中指定的类型
+7. exclude `<Type, excludeUnion>` 字面意思就是排除的意思，构造一个类型 T, 该类型将排除union中指定的类型
 
 下面的示例中，将type中定义的三个字面量类型中的c进行排除
 
@@ -513,7 +513,6 @@ type tempExclude = Exclude<"a" | "b" | "c", "c">;
 
 let ab:tempExclude = "a";
 ```
-
 
 ## unknown 和 any
 
@@ -535,6 +534,23 @@ abstract class Animal {
   constructor (public readonly animalType: string) { }
   abstract voice (): void  // voice是一个抽象方法，这里只是进行简单的定义，每个动物的叫声都不一样，所以具体的实现由各个子类去完成
 }
+
+// 如果想通过new 关键字 实例化抽象类是会报错误的 
+
+new Animal("cat"); // Cannot create an instance of an abstract class.(2511)
+
+// 抽象类 类比做一个蓝图， 构建一个抽象的事物大致需要的动作、行为、属性
+
+// 实现该抽象类
+class Cat extends Animal {
+    constructor () {
+        super("cat");
+    }
+    voice () {
+        console.log(this.animalType + ": voice 喵");
+    }
+}
+
 ```
 
 ## declare namespace
