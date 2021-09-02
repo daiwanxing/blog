@@ -413,14 +413,38 @@ type Person = {
 
 将一个对象的所有的键名映射成一个联合类型
 
+```ts
+interface Man {
+    name: string;
+    age: number;
+    length: number;
+    weight: number;
+    power: number;
+    married: boolean
+}
+
+type Ali<T> = {
+    [property in keyof T]: string;
+}
+
+const lihua: Partial<Ali<Man>> = {
+    name: "lihua"
+}
+
+```
+
 ## Typeof 操作符
 
 ```ts
 let a1 =  "dsa";
 
 let b1: typeof a1 = "string type";
-```
 
+// 这里的a1是一个常量，它的类型被infer成了string; 
+
+type Ta1 = "stringType"; 
+typeof Ta1; // 得到的一个“stringType” 的字面量类型
+```
 typeof 用在基本类型推断有点鸡肋， 搭配其他内置类型一起使用作用最大，例如 ReturnType内置类型，这个内置类型接受一个函数类型T，并且返回T的类型，
 然后我们可以搭配typeof操作符一起使用
 
@@ -585,32 +609,6 @@ class Cat extends Animal {
     declare function model
 ```
 
-
-## Indexed Access Types 索引访问类型
-
-```ts
-type Person = { age: number; name: string; alive: boolean };
-
-type I1 = Person["age" | "name"]; // 可以根据索引获取其类型
-
-type I2 = Person[keyof Person]; // keyof 用于获取Person的所有键名： age |  name | alive ， 然后可以通过索引访问类型获取键名对应的类型
-
-type InsertAliveName = "alive" | "name"; // 声明 InsertAliveName 的字面量类型 “alive", "name"
-
-type I3 = Person[InsertAliveName]; // 获取这个两个字面量对应的索引类型
-
-const MyArray = [
-  { name: "Alice", age: 15 },
-  { name: "Bob", age: 23 },
-  { name: "Eve", age: 38 },
-];
- 
-type PersonOne = typeof MyArray[number]; // { name: string; age: number }  此处的number代表数组的索引签名是number类型
-
-const key = "age";
-type Age = Person[typeof key]; // Person["age"]
-
-```
 
 ## Indexed Access Types 索引访问类型
 
