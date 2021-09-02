@@ -413,14 +413,38 @@ type Person = {
 
 将一个对象的所有的键名映射成一个联合类型
 
+```ts
+interface Man {
+    name: string;
+    age: number;
+    length: number;
+    weight: number;
+    power: number;
+    married: boolean
+}
+
+type Ali<T> = {
+    [property in keyof T]: string;
+}
+
+const lihua: Partial<Ali<Man>> = {
+    name: "lihua"
+}
+
+```
+
 ## Typeof 操作符
 
 ```ts
 let a1 =  "dsa";
 
 let b1: typeof a1 = "string type";
-```
 
+// 这里的a1是一个常量，它的类型被infer成了string; 
+
+type Ta1 = "stringType"; 
+typeof Ta1; // 得到的一个“stringType” 的字面量类型
+```
 typeof 用在基本类型推断有点鸡肋， 搭配其他内置类型一起使用作用最大，例如 ReturnType内置类型，这个内置类型接受一个函数类型T，并且返回T的类型，
 然后我们可以搭配typeof操作符一起使用
 
@@ -522,7 +546,7 @@ let plainObject:Record<CatName, CatInfo> = {
 }
 ```
 
-7. exclude </\Type, excludeUnion> 字面意思就是排除的意思，构造一个类型 T, 该类型将排除union中指定的类型
+7. exclude `<Type, excludeUnion>` 字面意思就是排除的意思，构造一个类型 T, 该类型将排除union中指定的类型
 
 下面的示例中，将type中定义的三个字面量类型中的c进行排除
 
@@ -552,6 +576,23 @@ abstract class Animal {
   constructor (public readonly animalType: string) { }
   abstract voice (): void  // voice是一个抽象方法，这里只是进行简单的定义，每个动物的叫声都不一样，所以具体的实现由各个子类去完成
 }
+
+// 如果想通过new 关键字 实例化抽象类是会报错误的 
+
+new Animal("cat"); // Cannot create an instance of an abstract class.(2511)
+
+// 抽象类 类比做一个蓝图， 构建一个抽象的事物大致需要的动作、行为、属性
+
+// 实现该抽象类
+class Cat extends Animal {
+    constructor () {
+        super("cat");
+    }
+    voice () {
+        console.log(this.animalType + ": voice 喵");
+    }
+}
+
 ```
 
 ## declare namespace
@@ -594,4 +635,3 @@ const key = "age";
 type Age = Person[typeof key]; // Person["age"]
 
 ```
-
