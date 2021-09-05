@@ -1,4 +1,6 @@
-## typescript 学堂
+# typescript 随记
+
+## 介绍typescript
 
 1. typescript 是 javascript的superset，ts并不是一门的新的语言，它在js的基础上为js带来了只有静态语言拥有的相关特性，例如：泛型、类型检查、类型推断、接口以及多态、重载等等。
 
@@ -515,7 +517,7 @@ let pickTodo:Pick<Todo, 'title'> = {
 }
 ```
 
-6. record <\/Keys, Type> 
+6. `record <K, T>`
 
 构造一个对象类型，属性的键名必须是keys(或者keys如果是js内置类型，则必须是该类型的属性名， 
 众所周知，js对象的属性名的类型是string或者symbol，也可以是number，但是number最终还是会转换成string)，属性的值的类型必须是Type
@@ -582,7 +584,6 @@ abstract class Animal {
 new Animal("cat"); // Cannot create an instance of an abstract class.(2511)
 
 // 抽象类 类比做一个蓝图， 构建一个抽象的事物大致需要的动作、行为、属性
-
 // 实现该抽象类
 class Cat extends Animal {
     constructor () {
@@ -592,11 +593,9 @@ class Cat extends Animal {
         console.log(this.animalType + ": voice 喵");
     }
 }
-
 ```
 
 ## declare namespace
-
 最近在用高德地图的时候研究其类型声明文件（d.ts），遇到了以前从未用过的`declare`关键字，通过查阅官方文档查阅得知 通过 `declare` 关键字声明的变量会被视作为一个全局变量/函数/类
 例如
 
