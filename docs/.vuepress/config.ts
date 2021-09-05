@@ -42,7 +42,7 @@ module.exports = {
         }  
     },
     head: [
-        ['link', { rel: 'icon', href: '/fav.ico'}],
+        ['link', { rel: 'icon', href: '/fav.png', type: "image/png", sizes:"32x32" }],
         ['meta', { name: "viewport", content: "width=device-width, initial-scale=1.0"}]
     ],
     // themeConfig 的配置项属于主题配置
