@@ -289,7 +289,7 @@ IFC（Inline Formate Context）行级格式化上下文
 ```css
 .noraml {
        /* inset函数会画出一个矩形，有五个值分别表示代表上右下左，以及圆角 */
-       clip-path: inset(top, right, bottom, left, radius at px);
+       clip-path: inset(top right bottom left round [px]);
        /*  polygon函数 表示画出一个多边形，一个多边形至少要有三个坐标点， 坐标点(x, y)与坐标点之间用逗号分割 */
        /* 绘制一个三角形 */
        clip-path: polygon(50% 0, 0 100%, 100% 100% );
