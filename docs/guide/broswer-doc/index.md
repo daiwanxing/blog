@@ -1,4 +1,4 @@
-# 浏览器随记p
+# 浏览器随记
 
 ## link标签中的prefetch 与 preload 的差异
 

@@ -296,6 +296,6 @@ IFC（Inline Formate Context）行级格式化上下文
        /* 绘制一个圆形，有两个参数作为输入， 第一个参数是半径（px或者%） -> r， 第二个参数是圆心，默认是盒模型中心 */
        clip-path: circle(10px at 150px);
        /* 绘制一个椭圆, rx表示x轴方向的半径，ry表示y轴方向的radius， position默认是盒模型的center */
-       circle-path: ellipse(rx ry at position)
+       circle-path: ellipse(rx ry at position | postionX positionY)
 }
 ```
