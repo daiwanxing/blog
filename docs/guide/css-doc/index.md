@@ -120,22 +120,51 @@ div {
 
 <div class='shadow-loading'></div>
 
-## grid布局
+## Grid布局
 
-给一个容器声明`display: grid`，该容器生成二维布局，grid容器的直接子元素为grid-item，grid-item拥有一些属于自己的属性，grid也拥有一些属于自己的属性，grid-item的宽度没有被指定时占满整个容器宽。
+给一个容器声明`display: grid`，或者`display: inline-grid`该容器将生成二维的行列布局，inline-grid和grid的区别仅仅在于容器在外部的排列方式是独占一行还是和其他行内元素参与排列。grid容器的直接子元素为grid项，grid项拥有一些属于自己的属性，grid也拥有一些属于自己的属性，grid-item的宽度没有被指定时占满整个容器宽。
 
 ```css
 .grid-box {
        display: grid;
        grid-template-columns: repeat(3, 100px);
-       grid-template-columns: repeat(3, 100px);
        grid-template-rows: repeat(3, 100px);
-       gap: 20px;
+       /* 上面的属性还可以直接简写成  */
+       grid: repeat(3, 100px) / repeat(3, 100px);
+
+       /* 之前的grid-gap属性已经被废弃，新的定义间距的属性为gap */
+       gap: 20px; /* 可以是px、%、vh、vw、em、rem等等 */
 }
 ```
 gap属性是row-gap和column-gap属性的合并简写， column-gap：列与列之间的间距，row-gap: 行与行之间的间距。
 
-`auto`关键字表示宽度自适应,grid-tempalte-rows: 50px auto 50px; 第一个单元格和最后一个单元格的宽度设定为50px，第二个单元格的宽度自适应剩余的宽度。 
+<del>`auto`关键字表示宽度自适应,grid-tempalte-rows: 50px auto 50px; 第一个单元格和最后一个单元格的宽度设定为50px，第二个单元格的宽度自适应剩余的宽度。 </del>
+
+`auto`值是基于grid项本身的内容宽度来设定，类似于`width: fit-content`
+
+该值和fr有着本质的区别，grid项的内容过长，其auto的值也会变大
+
+而fr的实际是各个fr累加然后平分剩余的宽度，如果累加的fr总值小于1，则每个grid项实际的宽高是 设置fr * 剩余可用的宽高。大于1那就根据累加的总值来均分。
+
+```css
+div {
+    display: grid-box;
+    grid: 100px / repeat(3, 1fr 2fr 3fr);
+    /* 已知容器总宽是1000，求三个grid项的宽 */
+    /* 1fr + 2fr + 3fr = 6fr,  6fr = 1000, 平均1fr = 166px */
+    /* 所以就很容易得到了 */
+}
+```
+
+```css
+div {
+    display: grid-box;
+    grid: 100px / repeat(3, .2fr .1fr .2fr);
+    /* 已知容器总宽是1000，求三个grid项的宽 */
+    /* .2fr + .1fr + .2fr = .5fr < 1, 每个grid项的实际宽度是容器可用宽度  * 各自设定的fr得到值 */
+}
+```
+
 
 grid-auto-flow指明了grid-item的放置顺序（是先行后列row，还是先列后行column）配合dense值，能够使得item紧密填满，尽量不出现空白的单元格。
 
@@ -162,7 +191,7 @@ grid-auto-flow指明了grid-item的放置顺序（是先行后列row，还是先
    div {
        grid-template-column: 1fr  /* 表示第一列占据容器的全部宽度*/
        grid-template-column: 1fr 2fr  /* 表示第一列占据容器宽度的1/3, 第二列占据 2/3 */
-       grid-template-column: 1fr auto 100px /* auto默认会平分剩余的宽度, 容器的总宽度 - 100px， 得到剩余的宽度.
+       grid-template-column: 1fr auto 100px /* auto在内容为空是才会平分剩余的宽度,，否则其宽度由实际的内容宽度来决定 容器的总宽度 - 100px， 得到剩余的宽度.
        其中 第二列的宽度是文字内容的宽度，剩下的宽度 = 1fr  */
    }
 ```
