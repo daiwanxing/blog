@@ -114,6 +114,32 @@ div {
 }
 ```
 
+重叠曲线的渲染机制是有一套公式的:  <code>
+                        f = min(l
+                        <sub>h</sub> / S
+                        <sub>h</sub>, l
+                        <sub>v</sub> / s
+                        <sub>v</sub>)
+                    </code>
+
+如果f的值是小于1的话，那么每个圆角的实际值 * f， 反之则无需相乘。
+
+其中 <code>l<sub>h</sub></code> 是指的是水平方向的宽， <code>l<sub>v</sub></code> 是垂直方向的高.
+<code>s<sub>h</sub></code> 是水平方向的半径之和,<code>s<sub>v</sub></code> 是垂直方向的半径之和。
+
+```css
+div {
+  width: 150px;
+  height: 100px;
+  border-raidus: 100%;
+  /* 求实际的圆角值 */
+}
+```
+
+根据上面的公式可得，f = min(150 / 300, 100 / 200); f = 0.5; 最终所有的半径都要乘以0.5, 这里border-radius使用的百分比是参照自己身的宽高
+也就是`border-radius: 150px 100px` * 0.5 = `border-radius: 75px 50px`;
+
+
 ## box-shadow 多阴影
 
 可以利用box-shadow 设置多个阴影来实现一个简单的loading效果
@@ -166,6 +192,16 @@ div {
 ```
 
 
+### Grid布局中的三个常用函数
+
+1. fit-content()
+2. minmax()
+3. repeat()
+
+fit-content函数的作用是让尺寸适应内容，但不会超过设定的尺寸，例如我给一个grid项设置fit-content(200px)，如果该grid项的内容大于200px,也不会让grid项撑开。如果内容小于200px，则grid项的实际宽度以内容为准。
+
+minmax函数的作用是限制grid项的宽度最小不能超过min的设定值，最大不能超过max的设定值，例如`minmax(100px, 200px)`, grid项的最大宽度是200px,最小宽度是100px，但是当我们设定后，grid项会直接取设定的最大宽度。那么最小宽度在什么时候会生效呢。根据我的实践一般在搭配`minmax(100px, 1fr)`的时候会生效介于100px ~ 1fr之间的宽度，grid容器希望能够尽可能的容纳更多的grid项，只要值不小于设定的min，grid容器会计算出最大可容纳grid项目的宽度。
+
 grid-auto-flow指明了grid-item的放置顺序（是先行后列row，还是先列后行column）配合dense值，能够使得item紧密填满，尽量不出现空白的单元格。
 
 `grid-auto-flow: row dense`。 
@@ -178,31 +214,6 @@ grid-auto-flow指明了grid-item的放置顺序（是先行后列row，还是先
        grid-column: span 3;
  }
 ```
-<div class='grid-box'>
-   <div>grid-1</div>
-   <div>grid-2</div>
-   <div>grid-3</div>
-</div>
-
-关于grid-template-column 和 grid-template-row的属性值
-
-1. fr, 表示`片段`的意思
-```css
-   div {
-       grid-template-column: 1fr  /* 表示第一列占据容器的全部宽度*/
-       grid-template-column: 1fr 2fr  /* 表示第一列占据容器宽度的1/3, 第二列占据 2/3 */
-       grid-template-column: 1fr auto 100px /* auto在内容为空是才会平分剩余的宽度,，否则其宽度由实际的内容宽度来决定 容器的总宽度 - 100px， 得到剩余的宽度.
-       其中 第二列的宽度是文字内容的宽度，剩下的宽度 = 1fr  */
-   }
-```
-
-2. grid-template-area属性
-
-   网格布局允许指定”区域“（area），一个区域由单个或多个单元格组成。
-
-   ```css
-       grid-template-area: 'a a a'
-   ```
 
 ## css层的定位问题--父元素设置overflow，绝对定位的子元素会被隐藏或一起滚动
 
