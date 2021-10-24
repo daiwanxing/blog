@@ -146,6 +146,22 @@ div {
 
 <div class='shadow-loading'></div>
 
+## Flex布局深入了解
+
+flex: none 和 flex: 0的区别点
+
+1. flex: none === flex: 0  0 auto, 其中auto属性表示flex项目的宽度由内容来撑开。适合设置在内容不能换行显示的小控件元素上
+
+2. flex: 0 === flex: 0 1 0%，flex-basis 为 0 表现为最小内容宽度，就是一柱擎天的效果， flex-shrink为1能够在容器宽度不足的时候得到很好的收缩。
+
+3. flex: auto === flex: 1 1 auto, 适合用于元素的宽度比值不固定的情况，或者宽度的值由内容来决定。对每个flex项的宽度不要求一致
+
+4. flex: 100px === flex: 1 1 100px
+
+flex-basis属性与width属性的关系，flex-basis属性下的最小尺寸是由内容决定的，而width属性下的最小尺寸是由width的计算值来决定的。
+
+flex-shrink 累加 < 1 ，结果就是每一项乘以 各自设定的比值, >=1 就是
+
 ## Grid布局
 
 给一个容器声明`display: grid`，或者`display: inline-grid`该容器将生成二维的行列布局，inline-grid和grid的区别仅仅在于容器在外部的排列方式是独占一行还是和其他行内元素参与排列。grid容器的直接子元素为grid项，grid项拥有一些属于自己的属性，grid也拥有一些属于自己的属性，grid-item的宽度没有被指定时占满整个容器宽。
@@ -163,6 +179,7 @@ div {
 }
 ```
 gap属性是row-gap和column-gap属性的合并简写， column-gap：列与列之间的间距，row-gap: 行与行之间的间距。
+
 
 <del>`auto`关键字表示宽度自适应,grid-tempalte-rows: 50px auto 50px; 第一个单元格和最后一个单元格的宽度设定为50px，第二个单元格的宽度自适应剩余的宽度。 </del>
 
@@ -192,6 +209,22 @@ div {
 ```
 
 
+### css自定义属性
+
+1. css自定义属性不能用于媒体查询
+```css
+:root {
+  --lg: 1020px;
+}
+
+@media screnn and (max-width: var(--lg)); /* 无效 */
+```
+
+2. 自定义属性不能自身赋值
+
+像在javascript中我们可以设置`let a = 123; a = 321`, 但是在css的自定义属性值中是违法的
+
+
 ### Grid布局中的三个常用函数
 
 1. fit-content()
@@ -201,6 +234,14 @@ div {
 fit-content函数的作用是让尺寸适应内容，但不会超过设定的尺寸，例如我给一个grid项设置fit-content(200px)，如果该grid项的内容大于200px,也不会让grid项撑开。如果内容小于200px，则grid项的实际宽度以内容为准。
 
 minmax函数的作用是限制grid项的宽度最小不能超过min的设定值，最大不能超过max的设定值，例如`minmax(100px, 200px)`, grid项的最大宽度是200px,最小宽度是100px，但是当我们设定后，grid项会直接取设定的最大宽度。那么最小宽度在什么时候会生效呢。根据我的实践一般在搭配`minmax(100px, 1fr)`的时候会生效介于100px ~ 1fr之间的宽度，grid容器希望能够尽可能的容纳更多的grid项，只要值不小于设定的min，grid容器会计算出最大可容纳grid项目的宽度。
+
+注意：repeat()函数 是不能和auto搭配使用的，但是可以和长度、百分比搭配使用。
+
+```css
+div {
+   grid: repeat(auto-fit, 300px, 200px, 100px) auto /* invalid */
+}
+```
 
 grid-auto-flow指明了grid-item的放置顺序（是先行后列row，还是先列后行column）配合dense值，能够使得item紧密填满，尽量不出现空白的单元格。
 
@@ -225,6 +266,25 @@ grid-auto-flow指明了grid-item的放置顺序（是先行后列row，还是先
   <div class="fixed-menu"></div>
 </div>
 ```
+
+## 关于calc()函数使用的一些限制规则
+
+随着css变量的兴起与浏览器的大力至此，calc函数的使用率也非常广泛，但是在使用calc函数进行 + - * / 运算的时候有需要注意的事项。
+
+1. 运算前后必须保留空格
+
+```css
+div {
+  /* 为了区分负数运算 */
+  width: calc(100px - 20px); 
+}
+```
+
+2. 运算符左侧如果是一个不带单位的数值那么可以与带单位的相乘
+
+3. 运算符左侧如果是一个带单位的那么可以与不带单位的数值（该数值不能为0）相除
+
+4. 如果两侧都有单位，只能进行加减运算
 
 ## 视口（View Port）
 移动端未设定`<meta name="viewport" content="width=device-width, initial-scale=1.0">`, 默认宽度是980， 指定视口后，页面的宽度就是屏幕的宽度。
