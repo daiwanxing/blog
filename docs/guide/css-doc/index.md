@@ -4,7 +4,7 @@
 
 ```css
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" class="load">
-       <circle cx="150" cy="80" r="50" class="other" />
+       <circle cx="150" cy="80" r="50" class="other" /> 
        <circle cx="150" cy="80" r="50" class="loading" />
 </svg>
 ````
@@ -40,6 +40,8 @@ svg的viewbox规定了画布所在的x轴方向和y轴的方向的位置以画�
 2. background-size: cover 和 contain 的区别
 
 都是等比例缩放图片的宽高，区别在于contain总是会显示图片的全部的内容，不会发生裁剪，所以如果图片原始尺寸大于容器尺寸，会造成容器的一侧有一部分空白区域，而cover是将背景完全的覆盖到容器的区域，会发生裁剪，不会失真图片。
+
+
 
 
 
@@ -159,6 +161,8 @@ flex: none 和 flex: 0的区别点
 4. flex: 100px === flex: 1 1 100px
 
 flex-basis属性与width属性的关系，flex-basis属性下的最小尺寸是由内容决定的，而width属性下的最小尺寸是由width的计算值来决定的。
+
+如果flex-basis和width属性同时设置，则width属性失效，flex-basis和width都是表示的是元素的基本尺寸。
 
 flex-shrink 累加 < 1 ，结果就是每一项乘以 各自设定的比值, >=1 就是
 
@@ -399,3 +403,10 @@ IFC（Inline Formate Context）行级格式化上下文
        circle-path: ellipse(rx ry at position | postionX positionY)
 }
 ```
+
+clip-path和transform一起使用，则先执行clip-path裁剪后的图形，再通过transform属性的函数对图形进行变化。
+
+元素应用transform属性后的变化
+
+1. 创建层叠上下文
+2. 改变overflow对绝对定位元素的限制

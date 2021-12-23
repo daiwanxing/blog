@@ -12,7 +12,8 @@ const sidebar: SidebarConfig = {
                 '/guide/vue-doc/index.md',
                 '/guide/ts-doc/README.md',
                 '/guide/gd-map/README.md',
-                "/guide/gsap/README.md"
+                "/guide/gsap/README.md",
+                "/guide/mini-app/README.md"
             ]
         }
     ]

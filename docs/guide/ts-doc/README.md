@@ -228,7 +228,7 @@ interface Light extends Ball {
     shape: number // Types of property 'shape' are incompatible
 }
 ```
-接口也能实现交叉类型，也请注意，如果两个交叉的接口如果有相同的属性名但类型不同，则会被视作undefined类型
+接口也能实现交叉类型，也请注意，如果两个交叉的接口如果有相同的属性名但类型不同，则会被视作never类型
 
 ## 枚举
 
