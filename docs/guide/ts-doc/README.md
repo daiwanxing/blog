@@ -2,16 +2,17 @@
 
 ## 介绍typescript
 
-1. typescript 是 javascript的superset，ts并不是一门的新的语言，它在js的基础上为js带来了只有静态语言拥有的相关特性，例如：泛型、类型检查、类型推断、接口以及多态、重载等等。
+1. typescript是javascript的超集，ts并不是一门的新的语言，它在js的基础上为js带来了只有静态语言拥有的相关特性，例如：泛型、类型检查、类型推断、接口以及多态、重载等等。
 
 2. typescript 需要通过ts compiler 将其编译成js文件，在webpack中我们需要借助ts-loader将其编译成js文件.
 
-3. 使用ts进行项目开发可以得到严格的类型检查，确保在开发的过程中能够及时发现数据类型不一致,访问属性undefined的bug
+3. 使用ts进行项目开发可以得到严格的类型检查，确保在开发的过程中能够及时发现数据类型不一致等低级的错误bug.
 
 
 ## typescript 类型注解
 
 ```ts
+// interface 描述了一种“填鸭式“的数据结构
 interface People {
     name: string
 }
@@ -21,7 +22,7 @@ let numberScore: Array<number>;
 let a:number = 123; // 声明变量a的值必须是一个number类型
 let b:string = 'harmony'; // 声明变量b的值必须是一个string类型
 let c:People = {
-    // 要求变量c的值必须是一个people类型，而且要定义people类型下的属性
+    // 要求变量c的值必须是一个people类型，且实现people类型下的name属性
     name: "dwx"
 }
 // 定义变量d的值必须是一个函数，而且该函数需要返回一个string类型的值
@@ -30,33 +31,12 @@ let d: () => string = function () {
 }
 ```
 
-数组的两种声明
-
-```ts
-// 下面两种写法都是声明一个数组，并且数组每一项的值必须是number类型
-
-let scoreNum: number [];
-
-let scoreNum: Array<number>; // 泛型写法
-```
-
-```ts
-interface Score {
-    maxScore: number,
-    minScore: number,
-    midScore: number
-}
-
-// 数组的每一项都是一个score对象
-let scoreNum: Array<Score>; 
-```
-
 ## tuple
 
-数组是将同一类型的数据聚合到了一起，而tuple定义了数组中不同类型的数据
+数组是将同一类型的数据聚合到了一起，而tuple(元组)定义了数组中不同类型的数据，
 
 ```ts
-const tuple: [number, string]; // 定义了tuple数组只能接收number和string两种类型的数据
+const tuple: [number, string] = [0, '1']; // 定义了tuple数组只能接收number和string两种类型的数据
 ```
 
 ## interface
@@ -79,7 +59,7 @@ interface Duck {
 
 ```ts
 
-let name = 'foo' // string 自动将name推断成sstring类型，如果尝试赋值其他类型的值会编译失败
+let name = 'foo' // string 自动将name推断成string类型，如果尝试赋值其他类型的值会编译失败
 
 name = 1; // error 
 ```
@@ -90,19 +70,34 @@ name = 1; // error
 let midType = string | number; // 指定midType可以是string也可以是number
 ```
 
-## 交叉类型 多种类型的集合 type & type
+## 交叉类型: 多种类型的集合
+
+```ts
+type Male = {
+    name: string;
+    sex: "male";
+    age: number;
+}
+
+type FeMale = {
+    name: string;
+    sex: "female";
+    age: number
+}
+
+ //注意，如果有相同的属性，但是类型不同，则交叉得到的是一个never类型, 这里的People是一个Never
+type People = Male & FeMale;
+```
 
 ## 类型断言：手动指定一个值的类型
 
-可以通过`as`关键字断言一个值的类型；某些时刻开发者比ts更清楚的知道值的类型
+可以通过`as`关键字断言一个值的类型；因为某些时刻开发者比ts更清楚的知道值的类型，所以可以通过as断言成我们想要的类型
 
 ```ts
 let image = document.querySelector("#img");
 // 尝试访问 image.src tslint 会报错， 因为image被推断成了Element类型，Element未实现src属性
 // 开发者比ts更清楚的知道这是一个image标签，可以断言成HTMLImageElement类型
-
 let image = document.querySelector("#img") as HTMLImageElement;
-
 ```
 
 ## 类和接口
@@ -115,7 +110,7 @@ interface将一些共性的东西抽取到接口中，通过类的implements 实
 
 ```ts
 class Car {
-    videoName: string
+    readonly videoName: string; // videoName是一个只读的属性
     constructor (name: string) {
         this.videoName = name;
     }
