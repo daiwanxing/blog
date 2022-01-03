@@ -174,7 +174,7 @@ class CellPhone implements Video {
 }
 ```
 
-implements 可以实现多个接口
+使用implements关键字可以实现多个接口
 
 ```ts {5}
     interface Battery {
@@ -229,10 +229,10 @@ interface Light extends Ball {
 
 ```ts
 enum Direction {
-    Top,
-    Left,
-    Right.
-    Down
+    Top, // 0
+    Left, // 1
+    Right, // 2
+    Down, // 3
 }
 ```
 
@@ -255,7 +255,7 @@ enum Direction {
 // Direction.Top // Top 可以被正确推断Direction.Top的值是一个字符串类型的值
 ```
 
-枚举的值有两种类型，一种是常量值，一种是计算值，常量枚举要比普通枚举性能更高（直接拿到对应的 值，不需要通过立即执行函数包裹）
+枚举的值有两种类型，一种是常量值，一种是计算值，常量枚举要比普通枚举性能更高, 在编译时会直接被删除, 常量枚举不能使用计算属性。
 
 ## 泛型
 
@@ -268,6 +268,13 @@ function eat<T, U> (food: T, who: U, taste: string): [U, T, string] {
 }
 
 let result = eat("面条", "小明", "不好吃");
+
+// 泛型不指定，也能被推断
+function Print<T, V extends keyof T = keyof T>(printHandler: T, msg: V): void {
+    // msg会被推断成一个string类型, 并且约束了string类型的值得范围是T的所有的任一键名
+}
+
+Print({ name: "dwx" }, "name");
 ```
 
 泛型约束，约定一个泛型T具有某些属性
