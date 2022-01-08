@@ -279,6 +279,11 @@ grid布局中控制显式网格的属性有： grid-column、 grid-row、grid-te
 
 grid布局中控制隐式网格的属性有： grid-auto-columns、grid-auto-rows， 这两个属性的作用是指定任何自动生成的网格的宽高，所谓的自动生成的网格就是当我们显示指定了网格的大小后，超出指定的网格的大小的那些网格。
 
+## 关于grid布局一些缩写属性
+
+grid-column是grid-column-start / grid-column-end属性的缩写
+grid-row是grid-row-start / grid-row-end属性的缩写。
+
 
 ## css层的定位问题--父元素设置overflow，绝对定位的子元素会被隐藏或一起滚动
 
