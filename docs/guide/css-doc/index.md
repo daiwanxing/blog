@@ -248,6 +248,19 @@ div {
 ```
 
 grid-auto-flow指明了grid-item的放置顺序（是先行后列row，还是先列后行column）配合dense值，能够使得item紧密填满，尽量不出现空白的单元格。
+grid-auto-flow的属性值可以用在grid属性里,
+
+```css
+.grid-container {
+       grid: auto-flow dense 100px / 100px 100px;
+       /* 等同于 */
+       grid-auto-flow: row dense;
+       grid-auto-rows: 100px;
+       grid-template-columns: 100px 100px;
+       /* auto-flow的值取决与在斜杠左边还是右边,如果是右边 auto-flow的值则是columns,否则为row */
+       /* 并且auto-flow后面的值会被自动归并到 grid-auto-rows(grid-auto-columns)中 */
+}
+```
 
 `grid-auto-flow: row dense`。 
 
@@ -260,9 +273,16 @@ grid-auto-flow指明了grid-item的放置顺序（是先行后列row，还是先
  }
 ```
 
+### 关于Grid布局中的隐式网格和显式网格
+
+grid布局中控制显式网格的属性有： grid-column、 grid-row、grid-template-column、grid-template-row
+
+grid布局中控制隐式网格的属性有： grid-auto-columns、grid-auto-rows， 这两个属性的作用是指定任何自动生成的网格的宽高，所谓的自动生成的网格就是当我们显示指定了网格的大小后，超出指定的网格的大小的那些网格。
+
+
 ## css层的定位问题--父元素设置overflow，绝对定位的子元素会被隐藏或一起滚动
 
-如果一个元素设置了overflow： auto，产生了滚动条，则脱离文档流的子元素将会被隐藏或者被一起滚动，这种情况下解决的办法，让滚动的内容由一个新的容器去包裹，这个新的容器隶属于父元素的最近子级元素怒
+如果一个元素设置了overflow： auto，产生了滚动条，则脱离文档流的子元素将会被隐藏或者被一起滚动，这种情况下解决的办法，让滚动的内容由一个新的容器去包裹，这个新的容器隶属于父元素的最近子级元素
 
 ```html
 <div>
