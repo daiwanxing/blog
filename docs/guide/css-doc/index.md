@@ -164,7 +164,7 @@ flex-basis属性与width属性的关系，flex-basis属性下的最小尺寸是�
 
 如果flex-basis和width属性同时设置，则width属性失效，flex-basis和width都是表示的是元素的基本尺寸。
 
-flex-shrink 累加 < 1 ，结果就是每一项乘以 各自设定的比值, >=1 就是
+flex-shrink 累加 < 1 ，则每一项乘以各自设定的比值, >=1 就是 每个flex-item的shrink值累加，再等比平分.
 
 ## Grid布局
 
@@ -439,4 +439,37 @@ clip-path和transform一起使用，则先执行clip-path裁剪后的图形，�
 
 ## vertical-align的原理
 
-vertical-align 只能用于inline元素和       
+vertical-align 只能用于inline元素
+
+
+## animation-delay 负值的思考
+
+今天再次拜读了张鑫旭的<<CSS新世界>>，其中animation动画那个章节中提到了animation-delay也可以是负值，老实说我从来没有使用该属性时用到负值。
+其实负值得意思很简单，就是动画提前进行。
+
+例如下面这段简单的code
+
+描述了一个盒子会从0 运动到 100px， 整个动画的持续时间是4秒，但是我设定了`aniamtion-delay: -2s`，之前提到过负值，就是让动画提前进行，
+那么-2s就是立即播放到第2秒对应的帧，然后再就是我们肉眼可见的从第二秒开始的帧进行渲染。
+
+由下面的偏移参数可知，从 0 - 100px 需要运动4秒， 那么每秒运动了25px, 我们设置了delay为-2，就是提前播放到了第二秒，也就是提前将盒子渲染
+到了第50px，那么用户从观感上就是从第50px运动到了100px， 并且视觉上整个动画的持续时间也就2秒。
+
+```html
+<style lang="scss">
+   .box {
+       width: 300px;
+       height: 200px;
+       animation: moveX -2s 4s ease;  
+   }
+
+   @keyframes moveX {
+       from {
+            transform: translateX(0);
+       }
+       to {
+          transform: translateX(100px);
+       }
+   }
+</style>
+```
