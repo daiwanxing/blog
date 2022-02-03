@@ -560,6 +560,24 @@ type tempExclude = Exclude<"a" | "b" | "c", "c">;
 let ab:tempExclude = "a";
 ```
 
+8. parameters `<T>`
+
+提取一个函数的所有形参的全部类型并构造一个元组类型，会过滤掉所有的never类型
+
+```ts
+type MyParameters = Parameters<(name: string, age: number) => void>; // 构造一个元组类型，元组数组的类型为参数的类型
+
+// type MyParameters = [name: string, age: number]
+```
+到现在关于Exclude和Extract的概念还是比较模糊的，
+
+Exclude 字面意思是排除，接受两个参数 T, U, 从T中找到<strong>不extends U</strong>中的类型，并将其返回(返回U中有但是T中无的类型)
+
+Extract 字面意思是提取, 接受两个参数 T, U, 从T中找到<strong>extends U</strong>中的类型，并将其返回
+
+
+9. ThisType
+
 ## unknown 和 any
 
 unknown 和 any 类型类型，但是 unknown类型比any类型更加类型，如果给一个变量赋值unknown类型，那么意味着操作该变量做任何事情都是违法的,
