@@ -392,7 +392,14 @@ function isInstanceOf (origin, target) {
 
 ## js __proto__
 
-__proto__的值必须是对象或者null， 否则会被忽略掉，
+__proto__的值必须是对象或者null， 否则会被忽略掉，(本质上__proto__就是一对getter和setter)
+```js
+const obj = {};
+
+obj.__proto__ = 1; // 先检查obj自身或者原型链上是否存在同名的属性，此处可以访问到原型链上的__proto__
+// 之前提到过__proto__本质上是accessor，对其执行setter，会验证值的类型，如果合法，允许赋值。
+// 不会在obj对象自身创建同名的__proto__属性。（如果原型链上没有__proto__），则对象自身会创建一个同名的属性。
+```
 
 `__proot__`是浏览器的私有属性，过去没有一个方法可以获取到对象的原型，所有各大浏览器厂商在对象身上实现了`__proto__`获取对象的原型，
 从ES6开始该属性已经被更好的`getPrototypeOf`取代，但是为了兼容性考虑浏览器必须实现`__proto__`，在非浏览器上该属性是可选的。
@@ -401,6 +408,8 @@ __proto__的值必须是对象或者null， 否则会被忽略掉，
 `__proto__`是一种访问`[[prototype]]`的方式，而不是`[[prototype]]`本身。
 
 1. `Object.create` 创建一个空对象，该对象内部的`[[protoType]]`会被proto赋值
+
+2.
 
 
 
