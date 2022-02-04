@@ -580,13 +580,13 @@ Extract 字面意思是提取, 接受两个参数 T, U, 从T中找到<strong>ext
 
 ## unknown 和 any
 
-unknown 和 any 类型类型，但是 unknown类型比any类型更加类型，如果给一个变量赋值unknown类型，那么意味着操作该变量做任何事情都是违法的,
+any表示任何类型，如果给一个变量赋值unknown类型，那么意味着操作该变量做任何事情都是违法的,unknown比any更加安全，
 
 unknown 类型的变量可以重新被赋值其他类型, unknown类型 一般表示目前不清楚该变量的类型，但是将来会确定该变量的类型。
 
 ## never
 
-表示 永远不会返回一个基本类型或者引用类型，一般在函数里死循环或者函数throw error， 整个应用程序就会down不会后面的流程;
+表示永远不会返回一个基本类型或者引用类型，一般在函数里死循环或者函数throw error， 是所有类型的`bottom`也就是兜底类型， never在TS中常用来做类型收窄。 never类型不能被其他任何类型赋值
 
 ## abstract 抽象类
 
