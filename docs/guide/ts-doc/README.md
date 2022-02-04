@@ -578,6 +578,8 @@ Extract 字面意思是提取, 接受两个参数 T, U, 从T中找到<strong>ext
 
 9. ThisType
 
+ThisType<T> 
+
 ## unknown 和 any
 
 any表示任何类型，如果给一个变量赋值unknown类型，那么意味着操作该变量做任何事情都是违法的,unknown比any更加安全，

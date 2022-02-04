@@ -390,6 +390,20 @@ function isInstanceOf (origin, target) {
 }
 ```
 
+## js __proto__
+
+__proto__的值必须是对象或者null， 否则会被忽略掉，
+
+`__proot__`是浏览器的私有属性，过去没有一个方法可以获取到对象的原型，所有各大浏览器厂商在对象身上实现了`__proto__`获取对象的原型，
+从ES6开始该属性已经被更好的`getPrototypeOf`取代，但是为了兼容性考虑浏览器必须实现`__proto__`，在非浏览器上该属性是可选的。
+
+`__proto__`不是一个对象的属性，是`Object.prototype`的访问器属性。也就是`Object.protype`属性的getter / setter;
+`__proto__`是一种访问`[[prototype]]`的方式，而不是`[[prototype]]`本身。
+
+1. `Object.create` 创建一个空对象，该对象内部的`[[protoType]]`会被proto赋值
+
+
+
 ## js栈空间和堆空间
 
 js中变量存储在栈中，对象存储在堆中。栈空间只是保留了堆中的地址，堆空间很大，可以放很多的数据，栈空间较小，一般存放一些原始类型的数据。
