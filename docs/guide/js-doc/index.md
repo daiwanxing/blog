@@ -129,6 +129,7 @@ async是Generator 函数的语法糖
 
 ES6 带来了ES Module的特性，模块的功能可以让我们更好的解耦代码功能逻辑，共用且不会与其他模块变量命名冲突, 浏览器的模块加载不同于node中的模块加载，浏览器是异步加载各个ESM。
 
+
 1. 导入的几种方式
 
 ```js
@@ -157,11 +158,14 @@ ES6 带来了ES Module的特性，模块的功能可以让我们更好的解耦�
     // 重新导出命名导出，从module脚本文件导出moduleA再导出给其他模块
     export { moduleA } from "./module.js";
 
-    // 重新导出默认导出,
+    // 重新导出默认的导出,
     export { default } from "./module.js";
 
     // 重新将默认导出命名为命名导出
-    export { default as module } from "./module.js";
+    export { default as moduleA } from "./module.js";
+
+    // 将命名导出改为默认导出
+    export { sayHi as Default }
 
     // 重新导出所有的命名导出
     export * from "./module.js";
@@ -170,6 +174,20 @@ ES6 带来了ES Module的特性，模块的功能可以让我们更好的解耦�
 ## ES Module 和 CommonJS模块化的区别
 
 ES Module是静态导入的，在预解析时就能分析代码，必须写在模块的最顶层，ES Module 导出的是一个只读的副本，如果导出的是一个基本类型的值的变量，那么我们无法对变量的值进行更改，如果导出的是一个对象，那么不能更改对象的引用。而Common JS则相反，在运行时加载文件，而且Common JS允许在各种判断语句中动态require相关模块，ES Module则无法完成。Common JS 的this指向的是当前模块的最顶层，ES Module的this是undefined（ES Module自动开启严格模式，common js不会）
+
+
+## ES Module
+import.meta 对象包含了当前模块的信息，在内嵌脚本中，import.meta.url是文档的链接, 而对于外部脚本，import.meta.url的值则是脚本的链接
+
+每一个module都有一个顶级作用域、每个模块的this都是undefined, module会自动开启严格模式。
+
+```js
+// commonjs 模块导出语法
+exports = {};
+
+export.a = 132;
+```
+现在node.js中也能使用es module，需要后缀名为`.mjs`的脚本或者在package.json中指定type为module
 
 ## defer 和 async
 
@@ -218,7 +236,7 @@ defer 和 async 的加载都是异步的，不会阻塞DOM的解析，唯一的�
 * 如果脚本代码很小，推荐直接使用内联脚本放在body最后面
 * 注意，script如果是一个ES Module，其默认设置了defer属性
 * 注意，script标签还有一个`nomodule`属性，表示如果浏览器不支持ES2015+, 则执行该文件，一般用作降级策略
-* 注意，如果是内嵌脚本（没有src）属性，设置defer无效 (但是设置了type为module的内嵌模块有效)
+* 注意，如果是内嵌脚本（没有src）属性，设置defer无效 (但是设置了type为module的内嵌模块有效)（async可以用于普通的内嵌脚本）
 
 
 ## weak-map 弱引用
@@ -408,10 +426,6 @@ obj.__proto__ = 1; // 先检查obj自身或者原型链上是否存在同名的�
 `__proto__`是一种访问`[[prototype]]`的方式，而不是`[[prototype]]`本身。
 
 1. `Object.create` 创建一个空对象，该对象内部的`[[protoType]]`会被proto赋值
-
-2.
-
-
 
 ## js栈空间和堆空间
 
