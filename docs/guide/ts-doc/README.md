@@ -578,7 +578,7 @@ Extract 字面意思是提取, 接受两个参数 T, U, 从T中找到<strong>ext
 
 9. ThisType
 
-ThisType<T> 
+ThisType`<T>` 
 
 ## unknown 和 any
 

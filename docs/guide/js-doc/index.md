@@ -189,6 +189,12 @@ export.a = 132;
 ```
 现在node.js中也能使用es module，需要后缀名为`.mjs`的脚本或者在package.json中指定type为module
 
+## dynamic import 动态导入
+
+`import()`表达式加载模块并返回一个promise, 用于实现动态导入
+
+`尽管import()看起来像一个函数调用，但它只是一种特殊语法，只是恰好使用了括号（类似于 super()）。因此，我们不能将 import 复制到一个变量中，或者对其使用 call/apply。因为它不是一个函数。`
+
 ## defer 和 async
 
 script标签有一个defer和async属性，其兼容性在2021年已经非常不错了(IE不支持)。
