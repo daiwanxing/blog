@@ -263,6 +263,9 @@ defer 和 async 的加载都是异步的，不会阻塞DOM的解析，唯一的�
 * 注意，如果是内嵌脚本（没有src）属性，设置defer无效 (但是设置了type为module的内嵌模块有效)（async可以用于普通的内嵌脚本）
 
 
+
+
+
 ## weak-map 弱引用
 
 Weakmap对象只能接受对象作为键名，值可以是任意类型，弱引用的意思比较抽象，我的理解是`键名`所引用的`对象`的弱引用，弱引用在计算机中中的概念是:<br/>
@@ -455,8 +458,7 @@ obj.__proto__ = 1; // 先检查obj自身或者原型链上是否存在同名的�
 
 js中变量存储在栈中，对象存储在堆中。栈空间只是保留了堆中的地址，堆空间很大，可以放很多的数据，栈空间较小，一般存放一些原始类型的数据。
 
-然后说说闭包，闭包的定义： 一个函数有权访问另一个函数作用域中的变量，那么闭包中访问的变量是咋存放的，当执行一个函数时函数内部的变量被其他函数所访问，闭包就产生了:clourse(a), 由于函数b中访问了b1这个变量，那么a执行完毕后，b1这个变量还是需要被b函数访问，不能释放，会存放到堆中。直到被调用才会释放
-
+然后说说闭包，闭包的定义： 一个函数有权访问另一个函数作用域中的变量，那么闭包中访问的变量是咋存放的，当执行一个函数时函数内部的变量被其他函数所访问，闭包就产生了:clourse(a), 由于函数b中访问了b1这个变量，那么a执行完毕后，b1这个变量还是需要被b函数访问，不能释放，会存放到堆中。直到被调用才会释放。
 
 ```js
 function a () {
@@ -467,13 +469,33 @@ function a () {
 }
 ```
 
+
+## 中断异步任务
+
+js 有个特殊的内置对象用来中断异步任务： `AbortController`,
+
+通过`new AbortController()`生成一个控制器实例, 该实例具有一个属性： signal和一个method: abort()
+
+
+```ts
+const abortController = new AbortController();
+
+const signal = abortController.signal;
+
+abortController.abort(); // 执行中断方法
+signal.addEventListener("abort", fn); // 监听abort的事件，执行回调
+signal.aborted; // 返回一个布尔值，表示是否被中断
+```
+与fetch请求深度集成，通过调用fetch传递第二个配置参数对象中的signal属性，来中断fetch请求。（fetch会监听signal的值）
+
+
 ## requestIdleCallback 更精细的任务调度API
 
 在js引擎处于<strong>空闲</strong> 状态时才会执行回调，空闲的字面意思是指本轮事件循环中主线程同步任务执行完毕了，且任务队列里的异步任务也一并执行完成了。它的任务调度优先级很低，一般用来在空闲时处理一些其他的额外的任务，进行更精细的任务调度,避免在主线程“拥挤”的时候执行某些代码。它支持你设定一个超时参数timeout，如果在timeout后仍未执行该回调，则在下一次事件循环中空闲时期下强制执行。
 ```js
     window.requestIdleCallback(deadline => {
         console.log(deadline);
-        // 有一个属性叫didTimeout， 就是判断是否是超时执行的
+        // deadline有一个属性叫didTimeout， 就是判断是否是超时执行的
         console.log(deadline.timeRemaining());   
     }, {
         timeout: 40000
