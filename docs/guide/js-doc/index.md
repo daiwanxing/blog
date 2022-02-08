@@ -125,6 +125,24 @@ async是Generator 函数的语法糖
     // 执行到return语句的时候，剩下的yield不再执行
 ```
 
+## 可选链和??的语法使用
+
+可选链:  ?. chrome 80+支持
+
+双问号: ?? chrome 85+支持
+
+```js
+
+const demo = {};
+
+const res = demo?.name; // 如果demo.name存在返回demo.name的值，否则就是undefined
+
+const subject = null;
+
+const result = subject || 2; // 如果 ?? 前面的是null或者undefined则输出问号后面的值， 和 || 语法不同。
+
+```
+
 ## import & export
 
 ES6 带来了ES Module的特性，模块的功能可以让我们更好的解耦代码功能逻辑，共用且不会与其他模块变量命名冲突, 浏览器的模块加载不同于node中的模块加载，浏览器是异步加载各个ESM。
