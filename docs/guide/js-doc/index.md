@@ -262,10 +262,6 @@ defer 和 async 的加载都是异步的，不会阻塞DOM的解析，唯一的�
 * 注意，script标签还有一个`nomodule`属性，表示如果浏览器不支持ES2015+, 则执行该文件，一般用作降级策略
 * 注意，如果是内嵌脚本（没有src）属性，设置defer无效 (但是设置了type为module的内嵌模块有效)（async可以用于普通的内嵌脚本）
 
-
-
-
-
 ## weak-map 弱引用
 
 Weakmap对象只能接受对象作为键名，值可以是任意类型，弱引用的意思比较抽象，我的理解是`键名`所引用的`对象`的弱引用，弱引用在计算机中中的概念是:<br/>
@@ -469,7 +465,6 @@ function a () {
 }
 ```
 
-
 ## 中断异步任务
 
 js 有个特殊的内置对象用来中断异步任务： `AbortController`,
@@ -486,6 +481,7 @@ abortController.abort(); // 执行中断方法
 signal.addEventListener("abort", fn); // 监听abort的事件，执行回调
 signal.aborted; // 返回一个布尔值，表示是否被中断
 ```
+
 与fetch请求深度集成，通过调用fetch传递第二个配置参数对象中的signal属性，来中断fetch请求。（fetch会监听signal的值）
 
 

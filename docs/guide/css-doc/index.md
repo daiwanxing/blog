@@ -476,3 +476,83 @@ vertical-align 只能用于inline元素
    }
 </style>
 ```
+
+
+## scss语法被忽略的特性
+
+### 属性嵌套（Nested Properties）
+
+```scss
+h1 {
+
+  color: orange;
+  // 具有相同的css属性遵循相同的命名空间， 例如font-size: font-weight   
+  font: {
+    size: 32px;
+    weight: 900;
+  }
+}
+```
+
+2. 注释
+
+scss注释分为多行注释`/*  */` 和 单行注释`//`， 前者会被编译到最终生成的scss文件中（在非压缩模式下），而后者不会.
+
+3. @extend
+
+将某个选择器下的样式继承给另一个选择器.
+
+```scss
+.base--title {
+  font-size: 46px;
+  font-weight: 900;
+}
+
+h1 {
+  color: rgb(133, 21, 21);
+  @extend .base--title;
+
+  background: {
+    image: linear-gradient(45deg, black, transparent);
+    size: cover;
+    position: center;
+  }
+}
+```
+
+### 将@import替换成@use
+
+sass 团队计划在未来几年彻底移除@import 这个rule，并引入了更好用的@use规则。
+（注意，sass的@import和@use完全是在编译期间完成的，这点不同于原生的CSS @import）
+
+至于`@import`规则为什么要被移除，原因如下
+
+1. @import 多次导入同一个scss文件会被生成多个相同的scss文件，而@use规则无论导入一个文件多少次始终只加载一次。
+
+2. @import 导入的global mixin 以及变量必须要加下划线防止冲突，导入的全局变量也难以理解在哪些地方被使用， 增加全局命名空间冲突
+
+@use 加载的样式表被称之为模块， @use加载的scss文件中，如果命名的以`_`或者`-`连字符开头的变量被认为是private var。是不允许被外部访问的。
+
+```scss
+@use "src/corners" as c;
+
+button {
+   @include c.big-size; // 导入c模块中的size类名
+}
+```
+
+### @mixin的运用
+
+
+@mixin规则可以让我们将需要重用的样式规则提取出来，再通过@include规则引入。这样做的好处是减少冗余代码，方便维护。
+
+```scss
+@mixin reset-title {
+     font-size: 32px;
+     color: red;
+}
+
+h1 {
+   @include reset-title;
+}
+```
