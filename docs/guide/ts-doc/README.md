@@ -656,3 +656,25 @@ const key = "age";
 type Age = Person[typeof key]; // Person["age"]
 
 ```
+
+
+## 非空断言
+
+非空断言是typescript特有的一种语法，将某个值的值域中排除null 和 undefined
+
+举个栗子
+
+```ts
+type Prop = {
+    name: (() => void) | null
+};
+
+const definePro:Prop = {
+    name: null
+};
+
+// 此处definePro.name 可能是 null 也可能是一个函数，所以通过非空断言将null从值域中排除，只剩下函数这种类型
+definePro.name!();
+```
+
+<strong>该语法只在ts文件被编译前可以使用，和ES6+ 的 ?. 有明显的区别，切勿混淆</strong>
