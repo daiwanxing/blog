@@ -169,6 +169,29 @@ flex-shrink 累加 < 1 ，则每一项乘以各自设定的比值, >=1 就是 �
 一个flex子项最终尺寸是基础尺寸、弹性增长或收缩、最大最小尺寸共同作用的结果。
 优先级：最大最小尺寸 > 弹性增长尺寸 > 基础尺寸   
 
+## 关于flex-shrink的计算规则总算搞懂了
+
+<strong>如果每个flex项的shrink值累加之和 大于 1</strong>
+
+1. 将每个元素的width * flex-shrink 得到放大后的宽度， 设为 gw
+
+2. 将 每个 gw 相加得到 tgw
+
+2. 将溢出的宽度 * gw / tgw 得到每个元素要缩放的宽度 sw
+
+3. 每个元素的基础宽度 - sw得到缩放后的实际宽度
+
+<strong>如果每个flex项的shrink值累加之和 小于 1</strong>
+
+1. 假设溢出的宽度为 ow;  每个flex项目的基础尺寸为bw
+
+2. 得到溢出值ov: ow * ((flex-shrink + flex-shrink...) / 1)
+
+3. 算出总权重ot：(bw * flex-shrink) + (bw * flex-shrink)....
+
+4.  ov  * ( bw * flex-shrink / ot) 得到 要缩小的尺寸
+
+
 ## Grid布局
 
 给一个容器声明`display: grid`，或者`display: inline-grid`该容器将生成二维的行列布局，inline-grid和grid的区别仅仅在于容器在外部的排列方式是独占一行还是和其他行内元素参与排列。grid容器的直接子元素为grid项，grid项拥有一些属于自己的属性，grid也拥有一些属于自己的属性，grid-item的宽度没有被指定时占满整个容器宽。
@@ -543,7 +566,6 @@ button {
 
 ### @mixin的运用
 
-
 @mixin规则可以让我们将需要重用的样式规则提取出来，再通过@include规则引入。这样做的好处是减少冗余代码，方便维护。
 
 ```scss
@@ -556,3 +578,4 @@ h1 {
    @include reset-title;
 }
 ```
+### @function的运用
