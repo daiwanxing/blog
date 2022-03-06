@@ -500,7 +500,6 @@ vertical-align 只能用于inline元素
 </style>
 ```
 
-
 ## scss语法被忽略的特性
 
 ### 属性嵌套（Nested Properties）
@@ -579,3 +578,30 @@ h1 {
 }
 ```
 ### @function的运用
+
+### sass内置模块
+
+`color.adjust($color,...)` adjust方法可以调整传入的色值，比如改变透明度、饱和度、亮度等等
+
+### extends 关键字
+
+当我们写一些很冗余的样式，需要将样式给抽取出来时给其他selector使用。
+
+我们可以提取样式
+
+```scss
+
+// 通过%开头定义通用的样式
+%button-extract {
+    padding: 3px 6px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 8px;
+}
+
+.error {
+   // 继承我们定义好的抽取出来的样式 
+   @extend %button-extract;
+}
+```

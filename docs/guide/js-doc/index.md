@@ -511,3 +511,34 @@ signal.aborted; // 返回一个布尔值，表示是否被中断
 ## webGL 和 canvas 的区别 
 
 canvas是HTML5推出一个具有绘图功能的画布，可以通过`getContext('2d')` 或者 `getContext('3d')`获取2d或者3d渲染上下文，其中3d是通过凭借webgl的渲染能力实现的。
+
+
+## 如何获取css中的transform属性的值
+
+假如我们有这么一行代码:
+
+```ts
+const el = document.querySelector(".box");
+el.style.transform = `translateX(100px)`;
+```
+我们想通过js去得到el的translateX的值，可能很多人想到了可以直接`el.style.transform`拿到这个属性的值，但是可惜拿到的是一大串字符串，而且必须得
+使正则去匹配花括号里面的值还要转换成number类型，较为麻烦。
+
+于是我通过浏览stackOverflow得到一个更为优雅得办法，那就是使用`WebKitCSSMatrix`这个构造函数生成一个4*4的3D矩阵实例，它接收一个DOM对象，
+并可以直接访问DOM对象的X,Y,Z轴的变换值。
+
+:::tip 提示
+3D矩阵都是 4 * 4, 而2D矩阵则是3 * 3
+:::
+
+```ts
+const matrix = new WebKitCSSMatrix(el);
+
+matrix.m41; // 得到了translateX的变换值
+```
+你可能会好奇m41是个什么属性？为什么能拿到translateX的值?
+
+前面我们提到WebKitCSSMatrix生成的是一个4*4的3D矩阵，4 * 4代表了4行4列，而translateX表示的是第四列第一行的坐标（也就是m41）,
+而同样的translateY表示的是第四列第2行所在的坐标（也就是m42），下面有张图清晰的说明了这个偏移值所在的3D矩阵的坐标点。
+
+![3D矩阵各个transform属性所在的位置](https://i.stack.imgur.com/QQX5V.png);
