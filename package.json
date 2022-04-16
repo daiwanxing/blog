@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/daiwanxing/frontend-notes#readme",
   "devDependencies": {
-    "husky": "^7.0.4",
+    "husky": "^7.0.0",
     "vuepress": "^2.0.0-beta.39"
   },
   "dependencies": {
