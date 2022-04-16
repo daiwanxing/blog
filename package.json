@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:build": "vuepress build docs",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,8 @@
   },
   "homepage": "https://github.com/daiwanxing/frontend-notes#readme",
   "devDependencies": {
-    "vuepress": "^2.0.0-beta.25"
+    "husky": "^7.0.4",
+    "vuepress": "^2.0.0-beta.39"
   },
   "dependencies": {
     "@vuepress/plugin-search": "^2.0.0-beta.25"
