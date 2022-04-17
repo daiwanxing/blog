@@ -525,7 +525,7 @@ el.style.transform = `translateX(100px)`;
 使正则去匹配花括号里面的值还要转换成number类型，较为麻烦。
 
 于是我通过浏览stackOverflow得到一个更为优雅得办法，那就是使用`WebKitCSSMatrix`这个构造函数生成一个4*4的3D矩阵实例，它接收一个DOM对象，
-并可以直接访问DOM对象的X,Y,Z轴的变换值。
+并可以直接访问DOM对象的X,Y,Z轴的变换值。 
 
 :::tip 提示
 3D矩阵都是 4 * 4, 而2D矩阵则是3 * 3
@@ -542,3 +542,36 @@ matrix.m41; // 得到了translateX的变换值
 而同样的translateY表示的是第四列第2行所在的坐标（也就是m42），下面有张图清晰的说明了这个偏移值所在的3D矩阵的坐标点。
 
 ![3D矩阵各个transform属性所在的位置](https://i.stack.imgur.com/QQX5V.png);
+
+
+## delete操作符
+
+delete操作符可以删除对象的一个属性（前提是该对象的属性是可配置的).
+如果删除的操作成功， 则返回布尔值true, 否则返回false（如果要删除的属性不在对象自身，仍会返回true）
+
+```ts
+const obj = {
+    name: "lucy"
+};
+
+delete obj.name // true
+obj.name; // undefined
+
+Object.defineProperty(obj, "gender", {
+    configurable: false,
+    value: 12
+});
+
+delete obj.gender; // false
+obj.gender; // 12
+```
+
+如果对数组的元素进行delete操作则不会改变数组的长度, 只会删除数组下标属性的值
+
+```ts
+const fruitList = ["apple", "pear"];
+
+delete fruitList[1]; // true
+
+fruitList; // ["apple", empty * 1];
+```
