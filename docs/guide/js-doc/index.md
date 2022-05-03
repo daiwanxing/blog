@@ -193,6 +193,14 @@ ES6 带来了ES Module的特性，模块的功能可以让我们更好的解耦�
 
 ES Module是静态导入的，在预解析时就能分析代码，必须写在模块的最顶层，ES Module 导出的是一个只读的副本，如果导出的是一个基本类型的值的变量，那么我们无法对变量的值进行更改，如果导出的是一个对象，那么不能更改对象的引用。而Common JS则相反，在运行时加载文件，而且Common JS允许在各种判断语句中动态require相关模块，ES Module则无法完成。Common JS 的this指向的是当前模块的最顶层，ES Module的this是undefined（ES Module自动开启严格模式，common js不会）
 
+## 在node中使用es module
+
+在node版本>= 14，支持使用es module, 需要将文件名命名成`.mjs`表示是一个es module的文件，或者可以直接在项目的根目录下的package.json文件中，设置`type = "module"` 表示所有的js文件都是基于es module规范。此外如果想单独在某个文件使用commonjs， 可以将该文件命名成`.cjs`表示一个commonjs module。
+
+:::tip
+因为es module允许顶级await的特性（ES Modoule的脚本支持异步加载，而cjs加载的脚本必须同步加载），所以不能在cjs文件里直接导入mjs的文件，但是可以在mjs文件里导入cjs的默认导出，不能导出其命名导出。这是因为CJS脚本和ES Module内部执行逻辑不同，CJS脚本只有在执行时才计算它们的命名导出，而ES Module要求在解析脚本时就确定命名的导出。
+:::
+
 
 ## ES Module
 import.meta 对象包含了当前模块的信息，在内嵌脚本中，import.meta.url是文档的链接, 而对于外部脚本，import.meta.url的值则是脚本的链接
@@ -442,13 +450,13 @@ obj.__proto__ = 1; // 先检查obj自身或者原型链上是否存在同名的�
 // 不会在obj对象自身创建同名的__proto__属性。（如果原型链上没有__proto__），则对象自身会创建一个同名的属性。
 ```
 
-`__proot__`是浏览器的私有属性，过去没有一个方法可以获取到对象的原型，所有各大浏览器厂商在对象身上实现了`__proto__`获取对象的原型，
+`__proto__`是浏览器的私有属性，过去没有一个方法可以获取到对象的原型，所有各大浏览器厂商在对象身上实现了`__proto__`获取对象的原型，
 从ES6开始该属性已经被更好的`getPrototypeOf`取代，但是为了兼容性考虑浏览器必须实现`__proto__`，在非浏览器上该属性是可选的。
 
 `__proto__`不是一个对象的属性，是`Object.prototype`的访问器属性。也就是`Object.protype`属性的getter / setter;
 `__proto__`是一种访问`[[prototype]]`的方式，而不是`[[prototype]]`本身。
 
-1. `Object.create` 创建一个空对象，该对象内部的`[[protoType]]`会被proto赋值
+1. `Object.create` 创建一个空对象，该对象内部的`[[protoType]]`会链接到prototype
 
 ## js栈空间和堆空间
 
@@ -560,7 +568,7 @@ obj.name; // undefined
 Object.defineProperty(obj, "gender", {
     configurable: false,
     value: 12
-});
+}); 
 
 delete obj.gender; // false
 obj.gender; // 12
