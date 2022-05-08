@@ -81,7 +81,7 @@ Expires和Cache-Control同时存在，则Cache-control会覆盖Expires, 目前�
 
 |指令|作用|
 |---|:--:|
-|public|资源能被代理服务器和客户端同时缓存|
+|public|资源能被代理服务器和客户端同时缓存| 
 |private|资源只能被客户端缓存|
 |no-cache|只是不走200，但是可以走304|
 |no-store|不缓存任何响应|
