@@ -608,6 +608,12 @@ new Animal("cat"); // Cannot create an instance of an abstract class.(2511)
 // 抽象类 类比做一个蓝图， 构建一个抽象的事物大致需要的动作、行为、属性
 // 实现该抽象类
 class Cat extends Animal {
+    // 公共的属性，在子类、实例中都能访问
+    public name: string;
+    // 保护属性，只能在子类或者父类中访问，无法在实例中访问
+    protected age: number;
+    // 私有属性, 只能在当前类中访问
+    private gender: number;
     constructor () {
         super("cat");
     }
