@@ -27,3 +27,30 @@
         return isVisible;
     }
 ```
+
+### 记录一次如何用vue-cli忽略控制台配置信息以及改变打包时的进度样式展示
+
+
+vue-cli 打包时控制台会不断输出当前打包的资源路径和依赖信息，导致不断的滚动控制台信息，不优雅美观，对于前端而言只需要关注当前的打包进度即可，不需要关注打包时实时输出的信息。
+
+解决办法：
+
+使用`yarn add webpackbar`， `webpackbar`是一个美观、简洁的打包分析库，让开发者实时了解当前的打包进度，可配置化输出打包完后的各个资源信息.
+
+由于vue-cli4使用的是webpack4.*, 所以可以用stats option来忽略掉控制台警告
+
+```js
+{
+    chainWebpack: (config) => {
+        config.plugins.delete("progress");
+        config.plugin("webpackbar").use(WebpackBar);
+        config.stats({
+            // 这里我选择忽略掉vue3的deep选择器使用方式警告
+            warningsFilter: (warning) => {
+                const reg = /::v-deep usage as a combinator has been deprecated/;
+                return reg.test(warning);
+            },
+        });
+    }
+}
+```
