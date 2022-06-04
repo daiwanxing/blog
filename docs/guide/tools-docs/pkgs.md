@@ -14,3 +14,5 @@
 
 `.yarnrc.yml`: `"strict-ssl": false` <br />
 `.npmrc`: `strict-ssll=false`
+
+[pnpm、npm、yarn三者之间的区别](https://blog.logrocket.com/javascript-package-managers-compared/#brief-history-javascript-package-managers)
