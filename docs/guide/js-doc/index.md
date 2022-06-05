@@ -510,6 +510,21 @@ signal.aborted; // 返回一个布尔值，表示是否被中断
 
 `JSON.parse`方法解析一个形如对象的json字符串的时候，会过滤掉其属性的值为undefined、function以及symbol类型的属性
 
+`JSON.stringify`接收一个对象进行JSON转换时，会对其对象的属性值为`undefined`、`symbol`、`function`的属性直接过滤掉,
+
+```js
+const data = { name: undefined };
+
+const json = JSON.stringify(data); // `{}`
+```
+当然我们也可以给对象声明一个`toJSON`的属性，其值是一个函数，`JSON.stringify`会调用该方法根据得到的返回值进行转化, `toJSON`存在的目的是为了能在某些无法解析值的场景下返回一个适当的值， 此外`JSON.stringify`接收第二个参数replacer，将对象中每一个即将被序列化的值进行转换。
+
+```js
+const data = { name: undefined, toJSON () { return { name: "david" } } };
+
+const json = JSON.stringify(data); // `{ name: 'david' }`
+```
+
 
 ## 为什么各大浏览器厂商都未实现尾递归调用优化？
 
@@ -574,7 +589,7 @@ delete obj.gender; // false
 obj.gender; // 12
 ```
 
-如果对数组的元素进行delete操作则不会改变数组的长度, 只会删除数组下标属性的值
+如果对数组的元素进行delete操作则不会改变数组的长度, 只会删除数组下标属性的值, 留出一个空槽
 
 ```ts
 const fruitList = ["apple", "pear"];
