@@ -598,3 +598,10 @@ delete fruitList[1]; // true
 
 fruitList; // ["apple", empty * 1];
 ```
+
+
+## Symbol内置属性
+
+### Symbol.Iterator 
+
+该属性需要实现一个函数并返回一个具有next属性的迭代器对象，for..of 操作会尝试获取一个对象的迭代器对象，如果无法取到该对象，则无法进行for循环
