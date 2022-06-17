@@ -598,3 +598,30 @@ delete fruitList[1]; // true
 
 fruitList; // ["apple", empty * 1];
 ```
+
+## 生成器
+ 
+生成器函数是一个特殊的函数，其最为强大的功能可以暂停/恢复函数内部的代码的运行。
+
+1. 创建一个生成器 通过`*`标志创建一个生成器函数，执行该函数返回一个迭代器对象
+
+```js
+function *foo () {
+    // 其中 yield关键字表示当迭代器解析到这行代码时暂停执行
+    // 并且只有当调用下一个next时恢复这行代码的执行，直到遇到下一个yield关键字为止
+    yield bar();
+    yield seo();
+}
+
+const it = foo();
+
+it.next(); // { value: undefined, done: false }
+// 第一个next 只是为了负责启动生成器函数，当执行到一个yield时阻塞函数体内的代码的执行, 此时next函数返回的是yield关键字 后面的表达式的值，如果yield关键字后的表达式为空，
+// 则value的值是undefined { value: undefined, done: false }
+it.next(); // { value: undefined, done: false }
+// next的最后一项的值，会作为生成器函数return的值， 如果没有显示指定return的值，则最后一个调用next函数所传递的值会被丢弃，return隐示的值是undefined
+it.next();
+```
+
+2. 规范和所有兼容浏览器都会默认丢弃传递给第一个next的任何东西，因此第一个next只是负责用来启动生成器，不应该对其传递任何参数。
+通常有个规律，next函数的调用次数 = 声明yield关键字的次数+1
