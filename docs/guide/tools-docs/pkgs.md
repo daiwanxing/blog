@@ -8,9 +8,11 @@
 |卸载单个依赖|yarn remove package-name|npm uninstall package-name|
 |升级某个依赖|yarn upgrade package-name|npm update package-name|
 
-注意：在yarn1.*中是兼容`.npmrc`文件的且`.npmrc`优先级高于`.yarnrc`，但是yarn2.*开始不再支持，需要自己手动配置一个`.yarnxml`文件。
+注意：在yarn1.*中是兼容`.npmrc`文件的且`.npmrc`优先级高于`.yarnrc`，但是yarn2.*(又名 yarn Berry)开始不再支持`.npmrc`和`.yarnrc`，而是用`.yarnrc.yml`作为替代。
 
-而且`.yarnxml`和`.npmrc`的配置文件语法格式不同,
+而且`.yarnrc.yml`和`.npmrc`的配置文件语法格式不同,
 
-`.yarnxml`: `"strict-ssl": false` <br />
+`.yarnrc.yml`: `"strict-ssl": false` <br />
 `.npmrc`: `strict-ssll=false`
+
+[pnpm、npm、yarn三者之间的区别](https://blog.logrocket.com/javascript-package-managers-compared/#brief-history-javascript-package-managers)
