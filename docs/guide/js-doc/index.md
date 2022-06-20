@@ -609,8 +609,6 @@ fruitList; // ["apple", empty * 1];
 function *foo () {
     // 其中 yield关键字表示当迭代器解析到这行代码时暂停执行
     // 并且只有当调用下一个next时恢复这行代码的执行，直到遇到下一个yield关键字为止
-    yield bar();
-    yield seo();
 }
 
 const it = foo();

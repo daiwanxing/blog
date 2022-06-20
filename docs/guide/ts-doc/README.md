@@ -683,4 +683,20 @@ const definePro:Prop = {
 definePro.name!();
 ```
 
-<strong>该语法只在ts文件被编译前可以使用，和ES6+ 的 ?. 有明显的区别，切勿混淆</strong>
+<strong>该语法只在ts文件被编译前可以使用，和ES6+ 的 `?.` 有明显的区别，切勿混淆</strong>
+
+## TS三种类型来源和三种模块语法 
+一般的，当我们声明一个type可以在ts文件里通过type或者interface关键字来进行类型定义。当然除了这种声明方式之外，我们还可以通过`declare`关键字给变量声明类型。
+
+如下代码，当我们使用printHello函数时，可自动得到参数的类型。
+
+```ts
+declare function printHello (msg: string): string;
+```
+当我们使用内置的API, 例如`window.requestAnimationFrame`，这些BOM API的类型通常存在一个lib目录，里面有大量的lib.d.ts文件，这就是ts内置的类型声明文件。
+
+可以通过在`tsconfig.json`文件中的compilerOptions中的lib字段让typescript选择加载哪些Lib, ts内置的类型通常只包含es和dom。
+
+但是当我们开发node的项目是没有内置的dts文件来获取类型提示的，可以通过@types/node下载node类型包，并在tsconfig.json通过types字段让ts查找@types包下的类型声明。
+
+https://mp.weixin.qq.com/s/DAL4_JxE-O-ALXPCStvvGA
