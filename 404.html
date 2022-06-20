@@ -3,13 +3,31 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="generator" content="VuePress 2.0.0-beta.25">
+    <meta name="generator" content="VuePress 2.0.0-beta.48">
+    <style>
+      :root {
+        --c-bg: #fff;
+      }
+      html.dark {
+        --c-bg: #22272e;
+      }
+      html, body {
+        background-color: var(--c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem('vuepress-color-scheme');
+			const systemDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+			if (userMode === 'dark' || (userMode !== 'light' && systemDarkMode)) {
+				document.documentElement.classList.toggle('dark', true);
+			}
+    </script>
     <link rel="icon" href="/frontend-notes/whale-16x16.png" type="image/png" sizes="16x16"><link rel="icon" href="/frontend-notes/fav.png" type="image/png" sizes="32x32"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>前端笔记小册</title><meta name="description" content="总结、归纳、提炼">
-    <link rel="preload" href="/frontend-notes/assets/js/runtime~app.b229acf0.js" as="script"><link rel="preload" href="/frontend-notes/assets/css/styles.5c1497ea.css" as="style"><link rel="preload" href="/frontend-notes/assets/js/567.e68de5e3.js" as="script"><link rel="preload" href="/frontend-notes/assets/js/app.ee2841f1.js" as="script">
-    <link rel="stylesheet" href="/frontend-notes/assets/css/styles.5c1497ea.css">
+    <link rel="modulepreload" href="/frontend-notes/assets/app.658ffcf5.js"><link rel="modulepreload" href="/frontend-notes/assets/404.html.7b5938e4.js"><link rel="modulepreload" href="/frontend-notes/assets/404.html.265028f6.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.14854f7c.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.321749e5.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.919defbc.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.64688563.js"><link rel="prefetch" href="/frontend-notes/assets/core.html.94f99bc5.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.24d8bda4.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.619b7fa7.js"><link rel="prefetch" href="/frontend-notes/assets/two.html.e2caafab.js"><link rel="prefetch" href="/frontend-notes/assets/READM.html.4268e132.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.9157c8e6.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.db72e501.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.16b9d8af.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.f2b476a5.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.77bc97c6.js"><link rel="prefetch" href="/frontend-notes/assets/reactive.html.c5f1c3c0.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.a80af893.js"><link rel="prefetch" href="/frontend-notes/assets/pkgs.html.1441ea50.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.7d7bd610.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.d9993783.js"><link rel="prefetch" href="/frontend-notes/assets/vue3.html.0c55042c.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.7118e52a.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.8c5e840a.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.c1098889.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.59f8e588.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.ae9c19fb.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.f1638229.js"><link rel="prefetch" href="/frontend-notes/assets/core.html.703165df.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.f252cd22.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.e007915a.js"><link rel="prefetch" href="/frontend-notes/assets/two.html.444ed733.js"><link rel="prefetch" href="/frontend-notes/assets/READM.html.d9f42536.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.1ed1b761.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.c6754a54.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.614d7897.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.f97a93f1.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.83f9cf5f.js"><link rel="prefetch" href="/frontend-notes/assets/reactive.html.eb5342c1.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.565b422d.js"><link rel="prefetch" href="/frontend-notes/assets/pkgs.html.28320c43.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.48dc24b5.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.8d160560.js"><link rel="prefetch" href="/frontend-notes/assets/vue3.html.4f80f87f.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.d0d5f3b0.js"><link rel="prefetch" href="/frontend-notes/assets/index.html.61cb64b4.js"><link rel="prefetch" href="/frontend-notes/assets/404.f81bbdea.js"><link rel="prefetch" href="/frontend-notes/assets/Layout.24171290.js">
+    <link rel="stylesheet" href="/frontend-notes/assets/style.735172de.css">
   </head>
   <body>
-    <div id="app"><!--[--><div class="theme-container"><div class="theme-default-content"><h1>404</h1><blockquote>Looks like we&#39;ve got some broken links.</blockquote><a href="/frontend-notes/" class="">Take me home</a></div></div><!----><!--]--></div>
-    <script src="/frontend-notes/assets/js/runtime~app.b229acf0.js" defer></script><script src="/frontend-notes/assets/js/567.e68de5e3.js" defer></script><script src="/frontend-notes/assets/js/app.ee2841f1.js" defer></script>
+    <div id="app"><!----></div>
+    <script type="module" src="/frontend-notes/assets/app.658ffcf5.js" defer></script>
   </body>
 </html>
