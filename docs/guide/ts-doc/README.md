@@ -699,4 +699,7 @@ declare function printHello (msg: string): string;
 
 但是当我们开发node的项目是没有内置的dts文件来获取类型提示的，可以通过@types/node下载node类型包，并在tsconfig.json通过types字段让ts查找@types包下的类型声明。
 
+如果@types库中没有我们想要的类型定义文件，我们可以在全局的`*.d.ts`文件中自己手写简单的类型声明。dts文件一般指的是类型定义文件。但是如果在d.ts文件里使用import / export语法，那么无法直接全局声明类型。
+需要在global命名空间下声明全局类型，或者我们也可以通过三斜线指令导入我们需要的类型，然后自己再编写全局类型
+
 https://mp.weixin.qq.com/s/DAL4_JxE-O-ALXPCStvvGA
