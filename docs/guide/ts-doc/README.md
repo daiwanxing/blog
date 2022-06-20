@@ -703,3 +703,25 @@ declare function printHello (msg: string): string;
 需要在global命名空间下声明全局类型，或者我们也可以通过三斜线指令导入我们需要的类型，然后自己再编写全局类型
 
 https://mp.weixin.qq.com/s/DAL4_JxE-O-ALXPCStvvGA
+
+
+## TS 协变和逆变
+
+协变和逆变的简述：子类型可以赋值给父类型的叫做协变，父类型可以赋值给子类型叫做逆变。
+
+```ts
+interface Computer {
+    cpu: string;
+    memory: string;
+    disk: string;
+}
+
+interface Laptop {
+    cpu: string;
+    memory: string;
+    disk: string;
+    screen: string;
+}
+
+// Laptop和computer是两个不同类型的，但是laptop类型可以分配给computer类型
+```
