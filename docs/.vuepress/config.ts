@@ -2,6 +2,7 @@ import type { SidebarConfig } from '@vuepress/theme-default';
 import { defineUserConfig } from "@vuepress/cli";
 import { viteBundler } from "@vuepress/bundler-vite";
 import { defaultTheme } from "@vuepress/theme-default";
+import { docsearchPlugin } from "@vuepress/plugin-docsearch"
 
 const sidebar: SidebarConfig = {
     '/guide': [
@@ -51,8 +52,10 @@ module.exports = defineUserConfig({
         contributors: false,
     }),
     plugins: [
-        // ['@vuepress/search', {
-        //     searchMaxSuggestions: 10
-        // }],
+        docsearchPlugin({
+            apiKey: "599cec31baffa4868cae4e79f180729b",
+            appId: "R2IYF7ETH7",
+            indexName: "docsearch"
+        })
     ],
 });
