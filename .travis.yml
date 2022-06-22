@@ -2,6 +2,7 @@ language: node_js # node环境
 node_js:
   - lts/*
 script:
+  - npm cache clear --force
   - npm run docs:build && ls # 执行命令
 deploy:
   commit_message: :construction_worker:Deploy %{project_name} with Travis CI ROBOT
