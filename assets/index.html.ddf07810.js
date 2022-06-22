@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-772dc58b","path":"/business-doc/","title":"","lang":"zh-CN","frontmatter":{},"excerpt":"","headers":[{"level":2,"title":"token \u81EA\u52A8\u5237\u65B0","slug":"token-\u81EA\u52A8\u5237\u65B0","children":[]}],"git":{"updatedTime":1630505997000},"filePathRelative":"business-doc/index.md"}');export{e as data};
