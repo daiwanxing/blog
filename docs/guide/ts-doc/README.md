@@ -725,3 +725,44 @@ interface Laptop {
 
 // Laptop和computer是两个不同类型的，但是laptop类型可以分配给computer类型
 ```
+
+
+## Ts函数重载的三种写法
+
+1. declare function 
+
+```
+
+
+```
+
+2. interface
+
+3. 交叉类型
+
+
+## object vs Record<string, any>
+
+`Record<K, V>` 用于构造一个对象类型，K表示的是键名, 在未开启`keyofStringsOnly: true时`， K的类型可以是string 、number或 symbol。 V表示值的类型。;
+
+<img :src="$withBase('/ts-01.png')" alt="ts keyof any" />
+
+object 也表示一个对象类型，但是ts已经不建议通过object声明一个对象类型，因为`Record<string, any>`更加语义化
+
+```ts
+declare const data: object; // ❌
+
+declare const data: Record<string, unknown>; // ✅
+```
+
+## ‘-’操作符
+
+在ts中可以通过减号操作符去掉已有修饰符
+
+```ts
+// 移除可选修饰符
+type Required<T> = { [Key in keyof T]-?: T[Key] }
+
+// 移除只读修饰符
+type Mutable<T> = {  -readonly [Key in keyof T]: T[Key] }
+```
