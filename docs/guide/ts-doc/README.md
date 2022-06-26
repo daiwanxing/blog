@@ -766,3 +766,31 @@ type Required<T> = { [Key in keyof T]-?: T[Key] }
 // 移除只读修饰符
 type Mutable<T> = {  -readonly [Key in keyof T]: T[Key] }
 ```
+
+## infer
+
+infer可以用来在extends条件语句中推断类型变量的类型.
+
+```ts
+type Result<T> = T extends (args: Array<infer P>) => void ? P : never;
+
+// infer 放置在待推断的类型变量P前面，可以通过条件运算符返回推断出来的类型
+```
+
+
+## 分布式条件类型 [Distributive conditional types]
+
+如果一个类型是unionType，则当进行extends分配时，将unionType里的每一个type拆分出来构成一个naked type parameter 再进行条件运算.
+
+```ts
+type Stu = "name" | "age" | "stuNo" | "gender";
+
+type isKeyString<T> = T extends string ? T : never; 
+
+// 此处T是一个Union-Type，当进行条件运算将其分散成naked type, 再一一进行分配运算
+
+// "name" extends string ? "name" : never | "age" extends string ? "age" : never ....
+
+// "name" 
+```
+
