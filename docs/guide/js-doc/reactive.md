@@ -72,3 +72,34 @@ effect(() => {
     salePrice = product.price * 0.9;
 });
 ```
+
+Vue3 响应式系统数据结构
+```md
+WeakMap -> Map -> Set
+```
+
+```ts
+const normalData = {
+    name: "lucy",
+    age: 21
+}
+
+const reactiveData = reactive(normalData);
+const depMap = new Map();
+
+Object.keys(reactiveData).forEach(key => {
+    const effect = new Set();
+    depMap.add(key, effect)
+});
+
+// WeakMap的key是未被劫持的对象本身，Value则是响应式Map, 当对象销毁时对应的Map也会销毁。
+
+// 而Map的key则是响应式对象的每个Property， value是依赖这个对象属性的effect函数集合
+
+const reactiveMap = new WeakMap(normalData);
+```
+
+我们通常所说的依赖收集，即收集响应式对象属性的effect将其存入到dep-set中。
+
+我们通常所说的派发更新，也称之为触发依赖，即修改对象属性的时候从dep-set中以此执行所有的effect。
+
