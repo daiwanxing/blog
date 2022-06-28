@@ -74,9 +74,12 @@ effect(() => {
 ```
 
 Vue3 响应式系统数据结构
+
 ```md
 WeakMap -> Map -> Set
 ```
+其数据结构如下图所示：
+<img :src="$withBase('/rn.png')" alt="响应式数据结构图">
 
 ```ts
 const normalData = {
