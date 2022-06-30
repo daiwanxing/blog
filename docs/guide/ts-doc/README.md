@@ -411,7 +411,7 @@ type Person = {
 }
 ```
 
-另外 interface是可以`extends`， 以及 `implements`。type无法做到，interface更适合对一个大的对象每个属性类型进行约束, 以及继承别的接口进行扩展。而type适合确定某个变量的类型，以及使用union 进行类型收窄。
+interface更适合对一个大的对象每个属性类型进行约束, 以及继承别的接口进行扩展。而type适合确定某个变量的类型，以及使用union 进行类型收窄。
 
 ## Keyof 操作符
 
@@ -449,6 +449,7 @@ let b1: typeof a1 = "string type";
 type Ta1 = "stringType"; 
 typeof Ta1; // 得到的一个“stringType” 的字面量类型
 ```
+
 typeof 用在基本类型推断有点鸡肋， 搭配其他内置类型一起使用作用最大，例如 ReturnType内置类型，这个内置类型接受一个函数类型T，并且返回T的类型，
 然后我们可以搭配typeof操作符一起使用
 
