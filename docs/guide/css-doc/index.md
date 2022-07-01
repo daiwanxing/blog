@@ -175,6 +175,19 @@ flex-shrink 累加 < 1 ，则每一项乘以各自设定的比值, >=1 就是 �
 
 1. 将每个元素的width * flex-shrink 得到放大后的宽度， 设为 gw
 
+```ts
+const growWidth1 = width1 * flexShrink1;
+const growWidth2 = width2 * flexShrink2;
+
+const totalGrowWidth = growWidth1 + growWidth2;
+
+const overflowWidth = 20;
+
+const shrinkWidth = overflowWidth * growWidth1 / totalGrowWidth;
+
+width1 - shrinkWidth;
+```
+
 2. 将 每个 gw 相加得到 tgw
 
 2. 将溢出的宽度 * gw / tgw 得到每个元素要缩放的宽度 sw
@@ -192,9 +205,9 @@ flex-shrink 累加 < 1 ，则每一项乘以各自设定的比值, >=1 就是 �
 4.  ov  * ( bw * flex-shrink / ot) 得到 要缩小的尺寸
 
 
-## Grid布局
+## Grid-layout
 
-给一个容器声明`display: grid`，或者`display: inline-grid`该容器将生成二维的行列布局，inline-grid和grid的区别仅仅在于容器在外部的排列方式是独占一行还是和其他行内元素参与排列。grid容器的直接子元素为grid项，grid项拥有一些属于自己的属性，grid也拥有一些属于自己的属性，grid-item的宽度没有被指定时占满整个容器宽。
+给一个容器声明`display: grid`，或者`display: inline-grid`该容器将生成二维的行列布局，inline-grid和grid的区别仅仅在于容器在外部的排列方式是独占一行还是和其他行内元素参与排列。grid容器的直接子元素为grid项，grid项拥有一些属于自己的属性，grid也拥有一些属于自己的属性，grid-item的宽度没有被指定时按照流体布局，独占一行的宽度。
 
 ```css
 .grid-box {
