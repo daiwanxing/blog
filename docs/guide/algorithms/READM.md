@@ -29,3 +29,44 @@
 
 3. 循环链表
     链表的尾节点的`next`的引用永远指向头节点.
+
+
+## 算法
+
+### 快速排序
+
+快排是一种处理大数据集最快的排序算法之一，是一种采用递归算法、分而治之将数据分解成包含较小和较大的不同子序列。
+
+算法的核心是采用递归，每次切分后将切分的数组第一个元素视作为基准值(pivot)，将比pivot大的值放置在右侧，比它小的放置在左侧。接着再次递归调用当前函数并将切分后的数组传递，当切分到最小个数时，也就是数组的长度为0，则将这些切分后的数组连结起来变成一个有序数组。
+
+
+```ts
+// 快速排序法
+function qSort(list: number[]): any {
+    if (list.length === 0) return [];
+    // 选择第一个数为基准值
+    const pivot = list[0];
+    round++;
+    // 将小于pivot的值放置在左边，大于Pivot的值置于右边
+    const left = [];
+    const right = [];
+    for (let idx = 1; idx < list.length; idx++) {
+        const val = list[idx];
+        if (val < pivot) {
+            left.push(val);
+        } else {
+            right.push(val);
+        }
+    }
+
+    return qSort(left).concat(pivot, qSort(right));
+}
+
+const mockData = [];
+
+for (let idx = 0; idx < 100; idx++){
+    mockData.push(Math.round(Math.random() * 1000));
+}
+
+console.log(qSort(mockData));
+```
