@@ -44,5 +44,3 @@ In contrast to pnpm, it uses symbolic links to ensure that only those dependenci
 
 It would take a lot of time to explain the details of how it works, so I put it in another article. If you are interested in it, please check it out.
 ```
-
-3. 
