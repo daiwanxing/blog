@@ -1,4 +1,4 @@
-import{_ as p,o as t,c as e,b as n,a as s,e as c}from"./app.3d3aea9f.js";const o={},l=s(`<div class="language-javascript ext-js line-numbers-mode"><pre class="language-javascript"><code><span class="token keyword">let</span> activeEffect <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+import{_ as p,o as t,c as e,b as n,a as s,e as c}from"./app.1ac8d824.js";const o={},l=s(`<div class="language-javascript ext-js line-numbers-mode"><pre class="language-javascript"><code><span class="token keyword">let</span> activeEffect <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
 
 <span class="token keyword">function</span> <span class="token function">effect</span> <span class="token punctuation">(</span><span class="token parameter">eff</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     activeEffect <span class="token operator">=</span> eff<span class="token punctuation">;</span>
