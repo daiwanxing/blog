@@ -70,3 +70,5 @@ for (let idx = 0; idx < 100; idx++){
 
 console.log(qSort(mockData));
 ```
+
+## 二分查找
