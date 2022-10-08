@@ -29,14 +29,20 @@ let c:People = {
 let d: () => string = function () {
     return 'foo'
 }
+
+// void类型表示没有任何类型，一般用于定义方法时不返回任何东西，也就是没有return语句
+// 函数中的类型为void就是没有返回值
+function noop():void {
+    console.error("not return anything...")
+}
 ```
 
 ## tuple
 
-数组是将同一类型的数据聚合到了一起，而tuple(元组)定义了数组中不同类型的数据，
+数组是将同一类型的数据聚合到了一起，而tuple(元组)定义了数组中存储的不同类型的数据，
 
 ```ts
-const tuple: [number, string] = [0, '1']; // 定义了tuple数组只能接收number和string两种类型的数据
+const tuple: [number, string] = [0, '1']; // 该tuple只允许存储的数据长度为2，且第一个下标的值只能是number，第二个下标的值只能是string
 ```
 
 ## interface
@@ -67,7 +73,7 @@ name = 1; // error
 ## 联合类型（union）
 
 ```ts
-let midType = string | number; // 指定midType可以是string也可以是number
+let midType: string | number; // 指定midType可以是string也可以是number
 ```
 
 ## 交叉类型: 多种类型的集合
