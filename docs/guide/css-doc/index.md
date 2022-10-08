@@ -618,3 +618,36 @@ h1 {
    @extend %button-extract;
 }
 ```
+
+### 关于@media
+
+css中以`@`符号开头的名称一般叫做规则, 例如`@media`, `@import`, `@support`。
+
+一般在做不同分辨率下的设备页面适配中，`@media`就能发挥出它的威力，
+
+@media 后面可以拼接三个词汇， media-type + media-features + operator(and、not、only)。
+
+如果声明了media-type，则operator是必填项
+
+我们常用的最多的media-type就是screen，指代媒体查询规则应用的具体设备是屏幕, 搭配`and`（operator）组合多个规则一起使用，`and`operator一般用于将多个媒体规则连接起来，为true才apply括号内的样式。
+
+
+```css
+@media screen and (max-width: 900px)
+              and (min-width: 520px) 
+       {
+              /* css rules */
+       }
+
+
+@meida (max-width: 900px) {
+       /* 如果省略media-type, 则将样式规则应用到任何媒体设备且满足条件（如果有）的元素上 */
+}
+
+/* 仅将样式应用到打印机设备上 */
+@media print and (max-width: 900px) {
+       header {
+           font-size: 100px;
+       }
+}
+```
