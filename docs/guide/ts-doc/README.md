@@ -553,7 +553,7 @@ let pickTodo:Pick<Todo, 'title'> = {
 }
 ```
 
-6. `record <K, T>`
+6. `Record <K, T>`
 
 构造一个对象类型，属性的键名必须是keys(或者keys如果是js内置类型，则必须是该类型的属性名， 
 众所周知，js对象的属性名的类型是string或者symbol，也可以是number，但是number最终还是会转换成string)，属性的值的类型必须是Type.
@@ -583,7 +583,7 @@ let plainObject:Record<CatName, CatInfo> = {
 }
 ```
 
-7. exclude `<Type, excludeUnion>` 字面意思就是排除的意思，构造一个类型 T, 该类型将排除union中指定的类型
+7. `Exclude<T, K>` 字面意思就是排除的意思，构造一个类型 T, 该类型将排除union中指定的类型
 
 下面的示例中，将type中定义的三个字面量类型中的c进行排除
 
@@ -593,7 +593,7 @@ type tempExclude = Exclude<"a" | "b" | "c", "c">;
 let ab:tempExclude = "a";
 ```
 
-8. parameters `<T>`
+8. `Parameters<T>`
 
 提取一个函数的所有形参的全部类型并构造一个元组类型，会过滤掉所有的never类型
 
@@ -608,10 +608,7 @@ Exclude 字面意思是排除，接受两个参数 T, U, 从T中找到<strong>�
 
 Extract 字面意思是提取, 接受两个参数 T, U, 从T中找到<strong>extends U</strong>中的类型，并将其返回
 
-
-9. ThisType
-
-ThisType`<T>` 
+9. `ThisType<T>` 指定This的实例
 
 ## unknown 和 any
 
@@ -764,11 +761,6 @@ interface Laptop {
 ## Ts函数重载的三种写法
 
 1. declare function 
-
-```
-
-
-```
 
 2. interface
 
