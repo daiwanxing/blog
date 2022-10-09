@@ -58,7 +58,18 @@ link的替代品，link伪类太鸡肋了，被点击之后，link伪类的样�
 
 兼容性目前比较差（2021/5/20），目前来看就Chrome86以上版本支持，它的作用主要是可以区分一个元素被聚焦时是鼠标聚焦还是键盘聚焦，只有键盘聚焦才会应用该伪类样式。想让鼠标聚焦时设置样式，应该用focus伪类（focus伪类点击后，必须点击其他地方，focus样式才会被取消）
 
+<button class="focus-btn">I apply focus pesudo class style</button>
+<button class="focus-visible-btn">I apply focus-visible pesudo class style</button>
+
 updated on 2022/10/09: 如果被鼠标聚焦的元素是一个input元素，则也会apply focus-visible伪类的样式(如果有设置focus-visible伪类)，仅对input element做了特殊处理。
+
+```css
+input:focus-visible {
+      font-size: 24px;
+}
+```
+
+<input placeholder="press something whatever you want" /></br>
 
 至于为何会这样，更多信息可以参考这个issue讨论[Input fields adding focus-visible on click #131](https://github.com/WICG/focus-visible/issues/131)
 
@@ -71,7 +82,20 @@ updated on 2022/10/09: 如果被鼠标聚焦的元素是一个input元素，则�
 <input placeholder='这是一段提升文本' type='text' />
 
 <style>
+.focus-btn:focus {
+    border: 10px inset #09f;
+}
+
+.focus-visible-btn:focus-visible {
+    border: 10px groove #09f;
+}
+
+input:focus-visible {
+       font-size: 24px;
+}
+
 input:placeholder-shown {
+       width: 240px;
        outline: 2px solid #2970ff;
 }
 </style>
