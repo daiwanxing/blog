@@ -41,10 +41,6 @@ svg的viewbox规定了画布所在的x轴方向和y轴的方向的位置以画�
 
 都是等比例缩放图片的宽高，区别在于contain总是会显示图片的全部的内容，不会发生裁剪，所以如果图片原始尺寸大于容器尺寸，会造成容器的一侧有一部分空白区域，而cover是将背景完全的覆盖到容器的区域，会发生裁剪，不会失真图片。
 
-
-
-
-
 ## CSS不常用的伪类
 
 1. any-link
@@ -62,6 +58,10 @@ link的替代品，link伪类太鸡肋了，被点击之后，link伪类的样�
 
 兼容性目前比较差（2021/5/20），目前来看就Chrome86以上版本支持，它的作用主要是可以区分一个元素被聚焦时是鼠标聚焦还是键盘聚焦，只有键盘聚焦才会应用该伪类样式。想让鼠标聚焦时设置样式，应该用focus伪类（focus伪类点击后，必须点击其他地方，focus样式才会被取消）
 
+updated on 2022/10/09: 如果被鼠标聚焦的元素是一个input元素，则也会apply focus-visible伪类的样式(如果有设置focus-visible伪类)，仅对input element做了特殊处理。
+
+至于为何会这样，更多信息可以参考这个issue讨论[Input fields adding focus-visible on click #131](https://github.com/WICG/focus-visible/issues/131)
+
 5. placeholder-shown
 
 当输入框设置placeholder时，匹配该输入框，兼容性还可（IE10+,带ms前缀就可以）
@@ -71,9 +71,9 @@ link的替代品，link伪类太鸡肋了，被点击之后，link伪类的样�
 <input placeholder='这是一段提升文本' type='text' />
 
 <style>
-       input:placeholder-shown {
-              outline: 2px solid #2970ff;
-       }
+input:placeholder-shown {
+       outline: 2px solid #2970ff;
+}
 </style>
 
 6. disabled
