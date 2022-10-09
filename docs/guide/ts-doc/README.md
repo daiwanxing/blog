@@ -4,7 +4,7 @@
 
 1. typescript是javascript的超集，ts并不是一门的新的语言，它在js的基础上为js带来了只有静态语言拥有的相关特性，例如：泛型、类型检查、类型推断、接口以及多态、重载等等。
 
-2. typescript 需要通过ts compiler 将其编译成js文件，在webpack中我们需要借助ts-loader将其编译成js文件.
+2. typescript 需要通过ts compiler 将其编译成js文件，在webpack中我们需要借助ts-loader将ts代码编译成js代码.   
 
 3. 使用ts进行项目开发可以得到严格的类型检查，确保在开发的过程中能够及时发现数据类型不一致等低级的错误bug.
 
@@ -67,16 +67,20 @@ interface Duck {
 
 let name = 'foo' // string 自动将name推断成string类型，如果尝试赋值其他类型的值会编译失败
 
-name = 1; // error 
+name = 1; // error， 不能将number类型的值赋值给string类型
 ```
 
-## 联合类型（union）
+## 联合类型（union） 
+
+联合类型表示一个值可以是几种类型之一。 用竖线(|)分隔
 
 ```ts
 let midType: string | number; // 指定midType可以是string也可以是number
 ```
 
-## 交叉类型: 多种类型的集合
+## 交叉类型
+
+交叉类型是将多个类型合并为一个类型。这让我们可以把现有的多种类型叠加到一起成为一种类型，它包含了所需的所有类型的特性
 
 ```ts
 type Male = {
@@ -469,7 +473,7 @@ let c1: ReturnType<typeof printAll>;
 ```
 
 
-## TS 公共类型（Utility Types）
+## TS 内置类型（Utility Types）
 
 TypeScript 提供内置的公共类型用于常见的类型转换
 
@@ -481,15 +485,39 @@ interface Todo {
     desc: string;
 }
 
-let todoList:Partial<Todo> = {
-    title?: string,
-    desc?: string
+let todoList:Partial<Todo> = {}
+
+// 手动实现一个Partial type
+type MyPartial<T> = {
+    // `?`修饰符表示该属性类型可选
+    [k in keyof T]?: T[k]
 }
 ```
 
-2. `Omit<type property>` 屏蔽类型中的某个属性
+2. `Omit<T, U>` 在类型T中屏蔽指定的属性U
 
-3. `Required<T>` 要求泛型T中所有的属性需要被设置
+```ts
+type R = Omit<{
+    name: string;
+    age: number;
+    gender: string;
+}, "name" | "age">
+
+// type R = { gender: string }
+
+// 手动实现一个Omit
+type MyOmit<T, U> = Pick<T, Exclude<keyof T, U>>;
+```
+
+3. `Required<T>` 要求泛型T中所有的属性需要被实现
+
+```ts
+// 手动实现一个Required
+type MyRequired<T> = {
+    // `-`表示去掉可选修饰符
+    [K in keyof T]-?: T[K]
+}
+```
 
 ```ts
 interface Todo {
@@ -502,11 +530,14 @@ let todoItem:Todo = {}; // pass
 let todoItem:Required<Todo> = {}; // ERROR
 ```
 
-4. `Readonly<T>`
+4. `Readonly<T>` 将泛型T的所有属性设置为只读
 
 ```ts
-// 构造一个类型，type身上的所有的属性变为只读，意味着初次分配后 不能再重新分配新的类型
-let readOnlyTodo:Readonly<Todo> = {
+type MyReadOnly<T> = {
+    readonly [K in keyof T]: T[K]
+}
+
+let readOnlyTodo:MyReadOnly<Todo> = {
     title: "今日清单",
     desc: "2021/7/29"
 }
@@ -514,11 +545,7 @@ let readOnlyTodo:Readonly<Todo> = {
 readOnlyTodo.title = '123'; // error 不能再重新赋值
 ```
 
-5. `Pick<T, K>`
-
-<del>怎么感觉有点像Omit类型 ？</del> 从类型T里面选择一个property 或者一个union type
-
-还是有一定区别，Omit类型是屏蔽某个或多个key，而Pick只选择某个属性（Omit取反）
+5. `Pick<T, K>` 从K中取出可以extends keyof T 中的属性进行过滤.
 
 ```ts
 let pickTodo:Pick<Todo, 'title'> = {
@@ -529,8 +556,7 @@ let pickTodo:Pick<Todo, 'title'> = {
 6. `record <K, T>`
 
 构造一个对象类型，属性的键名必须是keys(或者keys如果是js内置类型，则必须是该类型的属性名， 
-众所周知，js对象的属性名的类型是string或者symbol，也可以是number，但是number最终还是会转换成string)，属性的值的类型必须是Type
-
+众所周知，js对象的属性名的类型是string或者symbol，也可以是number，但是number最终还是会转换成string)，属性的值的类型必须是Type.
 
 ```ts
 interface CatInfo {
