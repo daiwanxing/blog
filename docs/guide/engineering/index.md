@@ -141,4 +141,18 @@ app.use(Antd);
 
 3. 在项目的根目录删除 babel.config.js, 在vite中我们不需要babel对业务代码进行polyfill，也不需要babel-plugin-import来实现按需导入。vite面向是的现代的浏览器（指的是能够支持dynamic import的浏览器）无需做api层面的转换，语法层面上的转换交给了esbuild.
 
-4. 将public中的文件夹内的index.html文件挪到项目的根目录中，vite服务器只会从项目根目录找到index.html文件, 删除html文件中声明的模板变量
+如果项目的确需要考虑向后兼容较低版本的浏览器，可以使用vite官方提供的@vitejs/plugin-legacy插件
+
+> 传统浏览器可以通过插件 @vitejs/plugin-legacy 来支持，它将自动生成传统版本的 chunk 及与其相对应 ES 语言特性方面的 polyfill。兼容版的 chunk 只会在不支持原生 ESM 的浏览器中进行按需加载。
+
+
+
+4. 将public中的文件夹内的index.html文件挪到项目的根目录中，vite服务器只会从项目根目录找到index.html文件, 删除html文件中声明的模板变量。
+
+5. 重新配置相关的eslint规则
+
+6. 将项目文件中用到的`process.env` 替换为 `import.meta`，import.meta是es6中的一个新的元数据属性对象. Vite对其进行了扩展.
+
+7. 将 `.env`、`.env-local`等环境变量的文件中的`VUE`开头的常量改为`VITE`开头.
+
+8. 将项目中用到了`require.context`方法替换成`import.meta.glob`.
