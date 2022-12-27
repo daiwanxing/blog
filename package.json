@@ -4,8 +4,9 @@
   "description": "一个基于VuePress的前端笔记小册",
   "main": "index.js",
   "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
     "prepare": "husky install"
   },
   "repository": {
@@ -22,13 +23,17 @@
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
-    "@vuepress/client": "^2.0.0-beta.48",
-    "@vuepress/plugin-docsearch": "^2.0.0-beta.48",
     "husky": "^7.0.0",
-    "vue": "^3.2.37",
-    "vuepress": "^2.0.0-beta.48"
+    "vue": "^3.2.37"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search"
+      ]
+    }
   },
   "dependencies": {
-    "@vuepress/plugin-search": "^2.0.0-beta.25"
+    "vitepress": "1.0.0-alpha.33"
   }
 }
