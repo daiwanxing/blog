@@ -27,7 +27,7 @@
     // 用于指定是否在编译期间引入辅助函数。辅助函数是由ts编译器自动生成的代码，用于支持一些功能，例如装饰器、解构赋值等。
     // 一般用不着，对于语法polyfill，可以借助esbuild、babel等工具.
     "importHelpers": false,
-    // 顾名思义，是否允许你的项目中是否能用js写代码
+    // 顾名思义，允许你的项目中是否能用js写代码
     "allowJs": true,
     // this 不能是any, 如果在一个普通函数中访问this，它的类型是any，开启此选项会对this为any的代码进行报错。
     "noImplicitThis": false,
