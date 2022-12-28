@@ -94,12 +94,7 @@ const baz: WktModule.Wkit; // [!code error]
 
 :::
 
-为此有两种办法可以解决
-
--   使用三斜线指令引入其他包的类型定义
--   使用 `declare global`
-
-第一种办法会在下个章节展开来讲，第二个办法就是直接使用`declare global`将 我们想要提升到全局变量下的类型进行提升
+为此可以使用 `declare global`解决, 使用`declare global`将我们想要提升到全局变量下的类型进行提升
 
 ```ts
 // wkt.d.ts
@@ -119,4 +114,11 @@ declare global {
         }
     }
 }
+```
+
+这样就可以正确得到类型了
+
+```ts{3}
+// baz.ts
+const baz: WktModule.Wkit;
 ```
