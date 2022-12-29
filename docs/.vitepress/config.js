@@ -66,6 +66,10 @@ export default {
                      link: "/ts/",
                   },
                   {
+                     text: "类型系统",
+                     link: "/ts/type-narrow.md",
+                  },
+                  {
                      text: "如何配置tsconfig.json",
                      link: "/ts/tsconfig.md",
                   },
@@ -85,6 +89,14 @@ export default {
          { text: "javascript", link: "/js/", activeMatch: "/js/" },
          { text: "typescript", link: "/ts/", activeMatch: "/ts/" },
          { text: "css", link: "https://github.com/..." },
+         {
+            text: "其他",
+            items: [
+               {
+                  items: [{ text: "告别2022", link: "..." }],
+               },
+            ],
+         },
       ],
       socialLinks: [{ icon: "github", link: "https://github.com/daiwanxing" }],
    },
