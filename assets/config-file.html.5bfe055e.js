@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-bcccd2f0","path":"/guide/tools-docs/config-file.html","title":"","lang":"zh-CN","frontmatter":{},"excerpt":"","headers":[{"level":2,"title":"tsconfig.json - jsconfig.json","slug":"tsconfig-json-jsconfig-json","children":[]}],"git":{"updatedTime":1657159701000},"filePathRelative":"guide/tools-docs/config-file.md"}');export{e as data};
