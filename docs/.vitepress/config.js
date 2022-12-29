@@ -90,10 +90,15 @@ export default {
          { text: "typescript", link: "/ts/", activeMatch: "/ts/" },
          { text: "css", link: "https://github.com/..." },
          {
-            text: "其他",
+            text: "other",
             items: [
                {
-                  items: [{ text: "告别2022", link: "..." }],
+                  items: [
+                     {
+                        text: "👋good-bye 2022",
+                        link: "/other/about-me/goodbye-2022.md",
+                     },
+                  ],
                },
             ],
          },
