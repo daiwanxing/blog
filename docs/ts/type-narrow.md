@@ -1,6 +1,6 @@
 # 重新认识 typescript
 
-## ts 中的类型系统
+## ts 中的结构化类型系统
 
 typescript 中的类型系统借鉴了数学中的集合的概念，让我先仔细回顾下大学线代课程的集合的概念
 
@@ -43,5 +43,42 @@ function print(arg: unknown) {
       // 在这个代码块, arg已经被收窄成了Array类型
       arg.push(100);
    }
+
+   if (typeof arg === "string") {
+      // arg 被收窄成了string类型
+      // 在该if代码块中可以安全的使用 string原型上的方法
+      arg.split(""); // safe
+   }
 }
 ```
+
+除了`never` 和 `unknown` 之外，还有一个特殊的类型 `any`。严格的来讲，`any`不是类型，如果一个变量的类型为`any`，那么这个变量就已经失去了类型保护，在该变量上调用相关方法或者进行算数运算操作返回的值也是`any`类型，ts 也无法检测到这些操作是否是合法的、有效的。作为开发者，已经无法具得知值的类型。在我看来，如果不到万不得已，是千万不要使用`any`类设置变量的类型的。
+
+在一切需要用到 any 的地方，你最好用`unknown`去替代它。至少`unknown`搭配类型断言或者 ts 的类型收窄功能可以轻松的得到确切的值的类型，不会丢失类型保护。
+
+## 分布式条件类型 （Distributive conditional types）
+
+我认为 ts 中的分布式条件类型有点类似于小学数学中的分配律， `(a+b)c = ab + bc`。
+
+例如在 ts 中有如下一个条件类型
+
+```ts
+type ABC = "A" | "B" | "C";
+
+type AB = "A" | "D";
+
+type Distributive<T> = T extends ABC ? T : never;
+```
+
+在这里，如果把类型 AB 传入到泛型 T 中。
+
+可得：`'A' extends ABC ? 'A' : never | 'D' extends ABC  ? 'D' : never`
+
+简化运算结果: `'A' | never => 'A'`, 虽然传入给泛型 T 的是类型`AB`, 但是这里的 AB 是一个`union-type`，所以会将每个类型拆分出来判断是否能分配给类型`ABC`。
+
+## 逆变与协变
+
+-  在 typescript 中判断两个类型是否类型兼容，只需要判断它们的类型结构是否一致即可。
+-  在 typescript 中，函数类型是逆变的。
+
+## subtype 与 superType
