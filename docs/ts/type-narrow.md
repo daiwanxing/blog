@@ -76,9 +76,75 @@ type Distributive<T> = T extends ABC ? T : never;
 
 简化运算结果: `'A' | never => 'A'`, 虽然传入给泛型 T 的是类型`AB`, 但是这里的 AB 是一个`union-type`，所以会将每个类型拆分出来判断是否能分配给类型`ABC`。
 
-## 逆变与协变
-
--  在 typescript 中判断两个类型是否类型兼容，只需要判断它们的类型结构是否一致即可。
--  在 typescript 中，函数类型是逆变的。
-
 ## subtype 与 superType
+
+subType 和 superType 分别代表的是子类型和父类型
+
+```ts
+// Fruit 是一个superType
+type Fruit = {
+   apperance: string;
+   shape: string;
+};
+
+// Apple 是一个 subType
+interface Apple extends Fruit {
+   hasCore: boolean;
+}
+
+let apple: Apple;
+
+let fruit: Fruit;
+
+fruit = apple; // apple 可以被 分配给 fruit，因为Fruit类型定义的结构可以兼容Apple
+
+apple = fruit; // error, fruit不能分配给apple，因为fruit中没有apple类型中定义的hasCore属性
+```
+
+在 ts 中，subType 的属性比 superType 更多，且更为具体。也就是说子类型是父类型的超集，父类型是子类型的子集。这点有别于数学中的集合。
+
+在集合中，如果集合 A 的任意一个元素都属于集合 B，那么可得，集合 A 属于集合 B，或者集合 A 是集合 B 的子集。**_在集合中属性更少的集合是子集,这个与 ts 中的类型正好相反_**。
+
+由 ts 中的子类型和父类型可以引申出来`协变`和 `逆变`两个概念。`协变`和`逆变`的概念很生涩难懂，我只会谈谈我的理解，并且理解的知识并不会脱离官方定义的概念中。
+
+-  `协变` 是指 `subType` 可以分配给 `superType`
+-  `逆变` 是指 `superType` 可以分配给`superType`
+
+在前面的例子中, `fruit = apple`就是协变，因为`Apple`类型是`Fruit`类型的子类型，所以`Apple`类型的变量可以分配给`Fruit`类型的变量.
+
+```ts
+fruit = apple; // fruit 依然可以使用Fruit类型上定义的属性和方法
+
+fruit.shape; // ok
+```
+
+再来看看一个`逆变`的例子
+
+```ts
+let printApple = (apple: Apple) => {
+   if (apple.hasCore) {
+      console.log("apple has core");
+   }
+};
+
+let printFruit = (fruit: Fruit) => {
+   console.log(fruit.shape);
+};
+
+printFruit = printApple;
+
+const fruit:Fruit = {
+   apperance: "red";
+   shape: "circle";
+}
+
+printFruit(fruit);
+```
+
+如果将 `printFruit = printApple`，请问`printFruit()` 还能正常执行吗？
+
+答案肯定是执行会报类型错误的，因为`printApple()`函数中访问了参数的`hasCore`属性，但是`printFruit`中的参数并未实现该属性。
+
+但是反之，`printApple = printFruit`是完全可行的，因为后续调用`printApple()`会传入一个比`fruit`属性更为具体的`apple`，函数体内部的一切访问都会是正常的。
+
+在`tsconfig.json`中,`strictFunctionType`值默认为`false`,也就意味着上面的例子是不会报错的，因为默认开启了双向协变，`subType`可以分配给`superType`，反之也可。在开启 `strictFunctionType: true` 后才会严格按照 `逆变` 来约束赋值关系。
