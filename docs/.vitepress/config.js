@@ -81,6 +81,10 @@ export default {
                      text: "三斜线指令是什么",
                      link: "/ts/three-triple-line.md",
                   },
+                  {
+                     text: "typescript-changelog",
+                     link: "/ts/typescript-changelog.md",
+                  },
                ],
             },
          ],
