@@ -1,3 +1,5 @@
+import cssTableContents from "../css/table-contents";
+
 export default {
    title: "daiwanxing的日志",
    lang: "zh-CN",
@@ -88,11 +90,12 @@ export default {
                ],
             },
          ],
+         "/css/": cssTableContents,
       },
       nav: [
          { text: "javascript", link: "/js/", activeMatch: "/js/" },
          { text: "typescript", link: "/ts/", activeMatch: "/ts/" },
-         { text: "css", link: "https://github.com/..." },
+         { text: "css", link: "/css/", activeMatch: "/css/" },
          {
             text: "other",
             items: [
