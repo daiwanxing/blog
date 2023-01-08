@@ -1,6 +1,7 @@
 import cssTableContents from "../css/table-contents";
 import tsTableContents from "../ts/table-contents";
 import jsTableContents from "../js/table-contents";
+import RegExTableContents from "../regex/table-contents";
 
 const ProjectBase = "/frontend-notes/";
 
@@ -55,6 +56,7 @@ export default {
          "/js/": jsTableContents,
          "/ts/": tsTableContents,
          "/css/": cssTableContents,
+         "/regex/": RegExTableContents,
       },
       nav: [
          { text: "javascript", link: "/js/", activeMatch: "/js/" },

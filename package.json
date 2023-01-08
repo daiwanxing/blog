@@ -1,39 +1,39 @@
 {
-  "name": "frontend-notes",
-  "version": "1.0.0",
-  "description": "一个基于VuePress的前端笔记小册",
-  "main": "index.js",
-  "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
-    "prepare": "husky install"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/daiwanxing/frontend-notes.git"
-  },
-  "keywords": [],
-  "author": "wonder_dai",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/daiwanxing/frontend-notes/issues"
-  },
-  "homepage": "https://github.com/daiwanxing/frontend-notes#readme",
-  "devDependencies": {
-    "@commitlint/cli": "^16.2.3",
-    "@commitlint/config-conventional": "^16.2.1",
-    "husky": "^7.0.0",
-    "vue": "^3.2.37"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "@algolia/client-search"
-      ]
-    }
-  },
-  "dependencies": {
-    "vitepress": "1.0.0-alpha.33"
-  }
+   "name": "frontend-notes",
+   "version": "1.0.0",
+   "description": "一个基于VuePress的前端笔记小册",
+   "main": "index.js",
+   "scripts": {
+      "docs:dev": "vitepress dev docs",
+      "docs:build": "vitepress build docs",
+      "docs:preview": "vitepress preview docs",
+      "prepare": "husky install"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/daiwanxing/frontend-notes.git"
+   },
+   "keywords": [],
+   "author": "wonder_dai",
+   "license": "ISC",
+   "bugs": {
+      "url": "https://github.com/daiwanxing/frontend-notes/issues"
+   },
+   "homepage": "https://github.com/daiwanxing/frontend-notes#readme",
+   "devDependencies": {
+      "@commitlint/cli": "^16.2.3",
+      "@commitlint/config-conventional": "^16.2.1",
+      "husky": "^7.0.0",
+      "vue": "^3.2.37"
+   },
+   "pnpm": {
+      "peerDependencyRules": {
+         "ignoreMissing": [
+            "@algolia/client-search"
+         ]
+      }
+   },
+   "dependencies": {
+      "vitepress": "1.0.0-alpha.35"
+   }
 }
