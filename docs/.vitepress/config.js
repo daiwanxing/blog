@@ -1,11 +1,15 @@
 import cssTableContents from "../css/table-contents";
+import tsTableContents from "../ts/table-contents";
+import jsTableContents from "../js/table-contents";
+
+const ProjectBase = "/frontend-notes/";
 
 export default {
    title: "daiwanxing的日志",
    lang: "zh-CN",
    lastUpdated: true,
    ignoreDeadLinks: true,
-   base: "/frontend-notes/",
+   base: ProjectBase,
    description:
       "一个developer将这几年开发生涯中走过的弯路、学到的技术以及总结的经验写下来给自己看的一本碎碎念的日志",
    head: [
@@ -13,7 +17,7 @@ export default {
          "link",
          {
             rel: "icon",
-            href: "/logo-32x32.ico",
+            href: `${ProjectBase}logo-32x32.ico`,
             type: "image/x-icon",
             size: "32x32",
          },
@@ -22,7 +26,7 @@ export default {
          "link",
          {
             rel: "icon",
-            href: "/logo-64x64.ico",
+            href: `${ProjectBase}logo-64x64.ico`,
             type: "image/x-icon",
             size: "64x64",
          },
@@ -31,71 +35,32 @@ export default {
          "link",
          {
             rel: "icon",
-            href: "/logo-128x128.ico",
+            href: `${ProjectBase}logo-128x128.ico`,
             type: "image/x-icon",
             size: "128x128",
          },
       ],
       [
          "link",
-         { rel: "apple-touch-icon", href: "/logo-32x32.ico", size: "32x32" },
+         {
+            rel: "apple-touch-icon",
+            href: `${ProjectBase}logo-32x32.ico`,
+            size: "32x32",
+         },
       ],
    ],
    themeConfig: {
       lastUpdatedText: "最近一次更新于",
       sidebar: {
-         "/js/": [
-            {
-               text: "javascript",
-               items: [
-                  {
-                     text: "聊聊requestAnimationFrame",
-                     link: "/js/requestAnimationFrame",
-                  },
-                  {
-                     text: "WeakMap&WeakSet",
-                     link: "/js/WeakMap&WeakSet",
-                  },
-               ],
-            },
-         ],
-         "/ts/": [
-            {
-               text: "typescript",
-               items: [
-                  {
-                     text: "typescript练习题",
-                     link: "/ts/",
-                  },
-                  {
-                     text: "类型系统",
-                     link: "/ts/type-narrow.md",
-                  },
-                  {
-                     text: "如何配置tsconfig.json",
-                     link: "/ts/tsconfig.md",
-                  },
-                  {
-                     text: "declare关键字的使用",
-                     link: "/ts/declare.md",
-                  },
-                  {
-                     text: "三斜线指令是什么",
-                     link: "/ts/three-triple-line.md",
-                  },
-                  {
-                     text: "typescript-changelog",
-                     link: "/ts/typescript-changelog.md",
-                  },
-               ],
-            },
-         ],
+         "/js/": jsTableContents,
+         "/ts/": tsTableContents,
          "/css/": cssTableContents,
       },
       nav: [
          { text: "javascript", link: "/js/", activeMatch: "/js/" },
          { text: "typescript", link: "/ts/", activeMatch: "/ts/" },
          { text: "css", link: "/css/", activeMatch: "/css/" },
+         { text: "regex", link: "/regex/", activeMatch: "/regex/" },
          {
             text: "other",
             items: [
@@ -110,6 +75,9 @@ export default {
             ],
          },
       ],
-      socialLinks: [{ icon: "github", link: "https://github.com/daiwanxing" }],
+      socialLinks: [
+         { icon: "github", link: "https://github.com/daiwanxing" },
+         { icon: "twitter", link: "https://twitter.com/OcovqgH046VC8u2" },
+      ],
    },
 };
