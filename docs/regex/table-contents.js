@@ -7,7 +7,7 @@ export default [
             link: "/regex/",
          },
          {
-            text: "基础的概念",
+            text: "基础概念",
             link: "/regex/base-knowledge",
          },
       ],
