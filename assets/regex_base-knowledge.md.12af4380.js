@@ -1,1 +1,0 @@
-import{_ as e,c as t,o as a}from"./app.c09ce765.js";const i=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"regex/base-knowledge.md","lastUpdated":1673190189000}'),o={name:"regex/base-knowledge.md"};function r(s,n,c,d,p,_){return a(),t("div")}const m=e(o,[["render",r]]);export{i as __pageData,m as default};
