@@ -10,6 +10,10 @@ export default [
             text: "WeakMap&WeakSet",
             link: "/js/WeakMap&WeakSet",
          },
+         {
+            text: "事件循环",
+            link: "/js/event-loopV2",
+         },
       ],
    },
 ];

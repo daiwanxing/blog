@@ -66,7 +66,7 @@ input_str.match(/[ewd]/g); // ["e", "w", "d"]
 
 <iframe frameborder="0" width="100%" height="120" src="https://jex.im/regulex/#!embed=true&flags=&re=%5B%5Ea-z%5D"></iframe>
 
-相信你已经见识到了正则中字符组匹配与量词匹配的强大之处了，当然这还只是开胃菜了，咱们接着往下说。
+相信你已经见识到了正则中字符组匹配与量词匹配的强大之处了，当然这还只是开胃菜了，咱们接着往下说其他的。
 
 ## 修饰符
 
