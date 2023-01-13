@@ -72,9 +72,6 @@ microTask 也称之为`微任务`, microTask 不等同于 `task`， 所有的`mi
 
 `microtask`相关的 api 有`Promise`、`Mutation-Observer`，`queueMicroTask`eg...
 
-## UI Render
-
-
 ## 事件循环的运行机制
 
 为了更好的去了解事件循环，下面提供一个示例去了解事件循环的工作机制
@@ -119,3 +116,6 @@ function fetchData() {
 
 ## 总结
 
+- task-queue 是存放的是一组任务的集合，task-queue的数据结构并不是队列而是Set，task总是会grab第一个可以runable的任务放入到call-stack中运行。
+- microTask-queue 是存放一组微任务的队列，具有FIFO的特点，processing-model会不断地从microTask-queue取出一个个的microTask push 到call-stack执行，重复此步骤直到MicroTask Queue为空。
+- 当task内的所有的microTask执行完毕后，浏览器会渲染一次UI。
