@@ -69,7 +69,11 @@ export default {
                {
                   items: [
                      {
-                        text: "👋good-bye 2022",
+                        text: "🚀deploy github-pages",
+                        link: "/other/deploy-page/"
+                     },
+                     {
+                        text: "👋2022",
                         link: "/other/about-me/goodbye-2022.md",
                      },
                   ],
