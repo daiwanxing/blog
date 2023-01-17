@@ -6,7 +6,7 @@ import RegExTableContents from "../regex/table-contents";
 const ProjectBase = "/frontend-notes/";
 
 export default {
-   title: "daiwanxing的日志",
+   title: "Wonder Dai的日志",
    lang: "zh-CN",
    lastUpdated: true,
    ignoreDeadLinks: true,
