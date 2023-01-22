@@ -90,9 +90,9 @@ export * from "./bar"; // import all named features from bar and export it.
 `export * from "./bar"` 与 `import * as allFetch from "./foo"` 不同。 前者只会导入 bar 模块中所有的**命名功能**并导出。而后者会将 foo 模块中**所有的导出**并赋值给变量来访问。
 :::
 
-## 模块相互依赖
+## 模块循环依赖
 
-在 commonjs 与 Es Module 中，模块与模块之前相互引用对方所带来的一系列变化是不同的。
+在 commonJS 与 ES Module 中，模块与模块之前相互引用对方所带来的一系列副作用是不同的。
 
 什么是模块与模块相互引用？
 
@@ -106,45 +106,29 @@ import bar from "./bar.js";
 
 可以从上面两段代码看出，执行脚本 bar.js 第一行代码时, 找到 foo.js 并执行，执行 foo.js，开始导入 bar.js 并执行。由此可看到两个脚本相互构成了一个模块依赖关系。
 
-回顾之前学过的知识，在 ES Module 中同一个脚本一旦被 import 就会被 cache，之后不管 import N 次都只会取出之前缓存的脚本. 所以在上面这个例子中，并不会构成一个 import 死循环的关系。
+之前提高过，多次重复导入一个 module, 则该 module 只会执行一次，并且任何后续的导入将只会创建对相同导出的引用。
 
 当执行 bar.js 时，es module 静态加载解析特性，将所有可提升的变量提升到模块最顶层作用域。接着加载 foo.js 导入 bar.js 中的 api，如果该 api 已经被初始化则可立即被执行。接着执行 foo.js 剩余可执行的所有代码后回到 bar.js 执行剩余的代码。
 
-一句话总结：一旦某个模块被循环加载，只会输出已经执行了部分，没有执行的不输出。
+**需要记住的是，一旦某个模块被循环加载，只会输出已经执行了部分，没有执行的不输出。**
 
 在 CommonJS 中循环依赖也是类似的策略，唯一不同的是 commonjs 脚本是动态加载的，导出的 api 不具有变量提升特性。
 
-## ES Module 和 CommonJS 模块化的区别
+## ES Module 和 CommonJS 的区别
 
-ES Module 是静态导入的，在预解析时就能分析代码，必须写在模块的最顶层，ES Module 导出的是一个只读的副本，如果导出的是一个基本类型的值的变量，那么我们无法对变量的值进行更改，如果导出的是一个对象，那么不能更改对象的引用。而 Common JS 则相反，在运行时加载文件，而且 Common JS 允许在各种判断语句中动态 require 相关模块，ES Module 则无法完成。Common JS 的 this 指向的是当前模块的最顶层，ES Module 的 this 是 undefined（ES Module 自动开启严格模式，common js 不会）。
+- esm 只支持静态导入，必须将导入的模块声明在最顶部。cjs支持在模块内的任何作用域中动态加载其他模块，在加载模块时才进行导入分析。
+- cjs 的 this 是 `module.exports`，而 esm 中的 this 是 undefined。（node 中的 global 对象等同于浏览器环境中的 window）。
+- esm 中的导出的是一个只读的值的引用（如果值是对象类型），而在 cjs 中导出的是一个值的浅拷贝，可以直接对浅拷贝的对象进行操作。
+- 如果导出是一个基本类型的值，则在 esm 中该值是一个只读的副本。
+- esm 支持 top level await, 这点在 cjs 中不被支持。
 
-此外，commonjs 中输出的是一个值的拷贝，一旦模块内部的改变了这个值，则不影响外部的变化。
-
-## 在 node 中使用 es module
-
-在 node 版本>= 14，支持使用 es module, 需要将文件名命名成`.mjs`表示是一个 es module 的文件，或者可以直接在项目的根目录下的 package.json 文件中，设置`type = "module"` 表示所有的 js 文件都是基于 es module 规范。此外如果想单独在某个文件使用 commonjs，可以将该文件命名成`.cjs`表示一个 commonjs module。
-
-:::tip
-因为 es module 允许顶级 await 的特性（ES Modoule 的脚本支持异步加载，而 cjs 加载的脚本必须同步加载），所以不能在 cjs 文件里直接导入 mjs 的文件，但是可以在 mjs 文件里导入 cjs 的默认导出，不能导出其命名导出。这是因为 CJS 脚本和 ES Module 内部执行逻辑不同，CJS 脚本只有在执行时才计算它们的命名导出，而 ES Module 要求在解析脚本时就确定命名的导出。
-:::
-
-## ES Module
+## import.meta
 
 import.meta 对象包含了当前模块的信息，在内嵌脚本中，import.meta.url 是文档的链接, 而对于外部脚本，import.meta.url 的值则是脚本的链接
 
-每一个 module 都有一个顶级作用域、每个模块的 this 都是 undefined, module 会自动开启严格模式。
+每一个 module 都有一个顶级作用域、每个模块的 this 都是 undefined。
 
-```js
-// commonjs 模块导出语法
-exports = {};
-
-export.a = 132;
-```
-
-现在 node.js 中也能使用 es module，需要后缀名为`.mjs`的脚本或者在 package.json 中指定 type 为 module
 
 ## dynamic import 动态导入
 
-`import()`表达式加载模块并返回一个 promise, 用于实现动态导入
-
-`尽管import()看起来像一个函数调用，但它只是一种特殊语法，只是恰好使用了括号（类似于 super()）。因此，我们不能将 import 复制到一个变量中，或者对其使用 call/apply。因为它不是一个函数。`
+从 chrome63+ 开始，esm 也支持异步加载模块，可以通过 `import(assignExpression)` 动态加载一个模块并返回一个 pending 的 promise 对象，当模块被解析且加载完毕时，该 promise 的 state会被已实现（fulfilled），否则会被已拒绝（rejected）。需要注意的是这是一种特殊的语法，并不是一个函数,而是一个类函数表达式。应该是类似于 `await` 通过语法制导并进行一系列操作。
