@@ -14,6 +14,10 @@ export default [
             text: "事件循环",
             link: "/js/event-loopV2",
          },
+         {
+            text: "ES module 和 Commonjs",
+            link: "/js/module-system"
+         }
       ],
    },
 ];
