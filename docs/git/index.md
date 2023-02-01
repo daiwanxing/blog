@@ -1,0 +1,72 @@
+# Git 操作
+
+
+## git rebase
+
+`git rebase` 作用和 `git merge` 类似，但是使用 `git rebase` 能够让不同分支的代码合并到主分支的 commit 时间线更加清晰明了。
+
+## git 相对引用
+
+使用相对引用，可以更容易的将 HEAD 移动到指定的 commit, 而通过 hash 值的话不容易阅读也不容易记，而且还需要通过 `git log` 查看指定的 commit 的 hash 值。
+
+相对引用有两种用法：
+
+- 使用 ^ 向上移动 1 个提交记录
+- 使用 ~<num> 向上移动多个提交记录，如 ~3
+
+::tip
+假如当前的 branch 是 main 分支 且 HEAD 默认指向的是 main 分支的最近一次提交记录，所以 main^ 相当于“main 的父节点”。main^^ 是 main 的第二个父节点
+:::
+
+`git checkout HEAD^`
+
+`git checkout HEAD^^`
+
+这种输入的方式，比使用 commit 的哈希值要快捷多了！
+
+如果你想在提交树中向上移动很多步的话，敲那么多 ^ 貌似也挺烦人的，Git 当然也考虑到了这一点，于是又引入了操作符 ~。
+
+例如， `git checkout HEAD~4`, 表示向上移动4步，这样比使用 HEAD 更加快捷。
+
+那么，移动分支有什么用呢？
+
+假如，我们想让 main 分支指向 HEAD 的第三级提交，可以这样做：
+
+`git branch -f main HEAD~3`, 其中, `-f` 表示让分支指向另一个提交。
+
+## git 撤销变更
+
+如果要撤销对 commit 后的文件的更改，git 提供了两个命令可以做到变更撤销
+
+- git reset
+- git revert
+
+`git reset` 通过把分支记录回退几个提交记录来实现撤销改动。你可以将这想象成“改写历史”, git reset 向上移动分支，原来指向的提交记录就跟从来没有提交过一样。
+
+`git reset HEAD^` 回退 HEAD 指向的上一个 commit。
+
+`git reset HEAD` 回退 HEAD 指向当前的 commit。
+
+`git revert` 我的理解也是撤销更改，但是 `git reset` 仅仅是撤销本地的 commit 的更改, 而 `git revert` 是撤销已经同步到了远程仓库的更改。
+
+回退并不是真正意义上的往回走，而是达到类似于删除旧的 commit 的历史记录的效果。
+
+## git cherry-pick
+
+如果希望将 某个分支下的 commit，例如我们这里称之为 `commit-b`。希望将 `patch` 分支下的编号为 `commit-b` 的 commit pick到 master 分支。
+
+那么 `cherry-pick` 非常有用。
+
+```shell
+git cherry-pick <提交号>...
+```
+
+```git
+git checkout master
+
+git cherry-pick commit-b
+```
+
+## 交互式 rebase
+
+交互式 rebase 指的是使用带参数 --interactive 的 rebase 命令, 简写为 -i。交互式 `git rebase -i` 会打开一个 GUI 界面。我们可以通过这个 GUI 界面对 要 merge 的 commit 进行排序后，生成一份新的 commit 副本。
