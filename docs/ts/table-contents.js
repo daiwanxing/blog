@@ -26,6 +26,10 @@ export default [
             text: "typescript-changelog",
             link: "/ts/typescript-changelog.md",
          },
+         {
+            text: "implement utility type",
+            link: "/ts/implement-utility-type.md"
+         }
       ],
    },
 ];
