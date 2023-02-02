@@ -1,4 +1,46 @@
-# Git 操作
+# Git 命令
+
+
+## git restore --staged <file>
+
+`git restore --staged` 一般用来对放入到暂存区的文件恢复到未提交的状态
+
+```shell
+git add . # 此刻已经将当前 .git 所在目录下的所有变动了的文件暂存到了缓冲区
+
+git restore --staged . # 将缓冲区中的所有的文件全部回滚到工作区
+```
+
+## git log
+
+`git log` 负责打印 git commit 的记录，如果觉得查看不方便， 使用 `git log --pretty=oneline` 美化打印
+
+
+## git reset \[--hard\]？\<commit-id\>
+
+`git reset` 命令类似于时光穿梭，可以让你回退到指定的 commit
+
+```shell
+git reset --hard HEAD^ # 移动到 HEAD 往前的一个commit, 在移动之前，当前 HEAD 所在的那个 commit 将会被丢弃
+```
+
+## git reflog
+
+前面用 `git reset` 命令通过"时光穿梭"回退到了过去的节点，万一我们又想回到现在该怎么办。如果你记得 最新的那个commit id，可以直接
+
+`git reset --hard <commit-id>` 回到最新的版本。实在不记得了也没关系。
+
+`git reflog` 记录了我们每一次 git 操作的历史记录，可以借助这个命令，找到之前提交的那个最新的 commit-id.
+
+## git checkout -- \<file\>
+
+如果想对工作区的文件中的修改全部撤销，可以使用该命令，请记住，这个命令只能用于工作区的文件改动的撤销。添加到了暂存区的改动是无法通过这个命令撤销。
+
+```shell
+git checkout -- main.txt # 必须带上 -- 这个flag
+```
+
+`git checkout -- <file>` 这个命令还可以对误删的文件进行撤回操作
 
 
 ## git rebase
