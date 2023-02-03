@@ -44,7 +44,67 @@ git checkout -- main.txt # 必须带上 -- 这个flag
 
 `git checkout -- <file>` 这个命令还可以对误删的文件进行撤回操作，例如我们在工作区误删了 A 文件，此时这个A 文件还没有被添加到暂存区，则可以使用这个命令撤销删除的操作
 
+## fast-forward
 
+> 通常，合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。
+
+使用 `--no-ff` 方式禁止 fast-forward 模式。 
+
+那么 `--no-ff` 这个命令什么场景下用？什么是 fast-forward 模式？
+
+问题先一个个解决。
+
+如果在 dev 分支 提交了一个 commit，我们需要切换到 master 分支 merge 这些commit。
+
+```git
+git switch master
+
+git merge dev
+```
+
+我们一般都会这样做，`fast-forward` 模式是 enabled，这样当 master 分支 merge 时，git就会在merge时生成一个新的commit。
+
+如果我们不需要这样的信息，可以直接 `git merge --no-ff -m "merge-it" dev`
+
+## git stash
+
+假设一个这样的场景，小帅在自己新建的 dev 分支开发到一半，被产品经理喊去修改一个紧急的bug，小帅脑海里第一想到的是在 master 分支中新建一个 issue 分支。但是切换到 master 分支之前，得先处理 dev 分支中的代码。虽然可以本地提交一个 dev 的commit，但是小帅现在还不想提交。
+
+有没有一个办法可以暂存 dev 中的代码且不提交呢？
+
+接下来，就该 `git stash` 出场了。`git stash` 命令可以暂存本地的代码。小帅也同时想到了这个命令，于是他打开 `cmd` 飞快的敲入以下几个命令：
+
+```git
+git stash
+
+git switch -b issue-01
+```
+
+接下来愉快的去修 bug 去了。等小帅 修复好了 issue 分支的代码并合并到主分支后，接下来又切换到了 dev 分支继续愉快的开发了~
+
+```git
+git switch dev
+
+git stash pop # 通过该命令取出暂存了的代码, 执行该命令后，暂存区里的记录将被删除
+```
+
+每执行一次 `git stash pop` 都会从栈顶取出当前 frame 的代码，直到栈为空。 
+
+:::warning 注意
+`git stash` 会同时暂存工作区和暂存区的改动。
+可以用 `git stash list` 查看所有暂存的记录
+:::
+
+## cherry-pick
+
+小帅解决了产品经理提出的问题后，继续在 dev 分支开发，但是转念一想，dev 分支就是从 master 分支签出来的，那么岂不是 dev 分支也有这个 bug，那怎么在 dev 分支也修复这个 bug 呢？
+
+幸好聪明的小帅灵机一动，想到了 `cherry pick`，只要从 master 分支找到解决那个 bug 的 commit-id, cherry-pick 这个 commit 不就解决了吗！于是小帅立即打开 `cmd` 敲出如下面命令：
+
+```git
+git switch dev
+git cherry-pick <commit-id> # 找到 issue 分支提交的那个 commit-id
+```
 ## git rebase
 
 `git rebase` 作用和 `git merge` 类似，但是使用 `git rebase` 能够让不同分支的代码合并到主分支的 commit 时间线更加清晰明了。
