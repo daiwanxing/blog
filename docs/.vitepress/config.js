@@ -2,6 +2,7 @@ import cssTableContents from "../css/table-contents";
 import tsTableContents from "../ts/table-contents";
 import jsTableContents from "../js/table-contents";
 import RegExTableContents from "../regex/table-contents";
+import GitTableContents from "../git/table-content";
 
 const ProjectBase = "/frontend-notes/";
 
@@ -57,12 +58,14 @@ export default {
          "/ts/": tsTableContents,
          "/css/": cssTableContents,
          "/regex/": RegExTableContents,
+         "/git/": GitTableContents,
       },
       nav: [
          { text: "javascript", link: "/js/", activeMatch: "/js/" },
          { text: "typescript", link: "/ts/", activeMatch: "/ts/" },
          { text: "css", link: "/css/", activeMatch: "/css/" },
          { text: "regex", link: "/regex/", activeMatch: "/regex/" },
+         { text: "git", link: "/git/", activeMatch: "/git/" },
          {
             text: "other",
             items: [

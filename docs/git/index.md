@@ -1,19 +1,21 @@
 # Git 命令
 
 
-## git restore --staged <file>
+## git restore --staged \<file\>
 
 `git restore --staged` 一般用来对放入到暂存区的文件恢复到未提交的状态
 
 ```shell
-git add . # 此刻已经将当前 .git 所在目录下的所有变动了的文件暂存到了缓冲区
+git add /. # 此刻已经将当前 .git 所在目录下的所有变动了的文件暂存到了缓冲区
 
 git restore --staged . # 将缓冲区中的所有的文件全部回滚到工作区
 ```
 
 ## git log
 
-`git log` 负责打印 git commit 的记录，如果觉得查看不方便， 使用 `git log --pretty=oneline` 美化打印
+`git log` 负责打印 git commit 的历史记录，如果觉得查看不方便， 可以使用 `git log --pretty=oneline` 美化打印。
+
+如果想看到分支详细图，还可以使用 `git log --graph` 查看。
 
 
 ## git reset \[--hard\]？\<commit-id\>
@@ -34,13 +36,13 @@ git reset --hard HEAD^ # 移动到 HEAD 往前的一个commit, 在移动之前�
 
 ## git checkout -- \<file\>
 
-如果想对工作区的文件中的修改全部撤销，可以使用该命令，请记住，这个命令只能用于工作区的文件改动的撤销。添加到了暂存区的改动是无法通过这个命令撤销。
+如果想对**工作区**的文件中的修改全部撤销，可以使用该命令，请记住，**这个命令只能用于工作区的文件改动的撤销**。添加到了暂存区的改动是无法通过这个命令撤销。
 
 ```shell
 git checkout -- main.txt # 必须带上 -- 这个flag
 ```
 
-`git checkout -- <file>` 这个命令还可以对误删的文件进行撤回操作
+`git checkout -- <file>` 这个命令还可以对误删的文件进行撤回操作，例如我们在工作区误删了 A 文件，此时这个A 文件还没有被添加到暂存区，则可以使用这个命令撤销删除的操作
 
 
 ## git rebase
@@ -54,9 +56,9 @@ git checkout -- main.txt # 必须带上 -- 这个flag
 相对引用有两种用法：
 
 - 使用 ^ 向上移动 1 个提交记录
-- 使用 ~<num> 向上移动多个提交记录，如 ~3
+- 使用 ~\<num\> 向上移动多个提交记录，如 ~3
 
-::tip
+:::tip
 假如当前的 branch 是 main 分支 且 HEAD 默认指向的是 main 分支的最近一次提交记录，所以 main^ 相当于“main 的父节点”。main^^ 是 main 的第二个父节点
 :::
 
