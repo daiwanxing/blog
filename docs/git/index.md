@@ -105,6 +105,35 @@ git stash pop # 通过该命令取出暂存了的代码, 执行该命令后，�
 git switch dev
 git cherry-pick <commit-id> # 找到 issue 分支提交的那个 commit-id
 ```
+
+## git branch
+
+如果想要检测工作区有哪些分支，可以使用 `git branch` 查看。 如果要删除某个未受保护的分支，可以使用 `git branch -d <branch-name>`。
+
+`git branc -D` 是强行删除某个分支。
+
+## 打标签
+
+标签是为某个 commit 打上一个易懂的名称。我们一般用打标签控制系统某个 commit 代表的版本。
+
+> Git可以使用2种标签：轻标签和注解标签。打上的标签是固定的，不能像分支那样可以移动位置。
+
+我们可以使用 `git tag <tagName>` 为某个 commit 打上标签。要查看所有的 tag， 可以输入 `git tag` 查看。
+
+前面我们提到过 git 有两种标签，直接通过 `git tag <tagName>` 称之为**轻标签**，那么如何创建**注解标签**呢？
+
+其实加一个 `-a` 的参数就可以了。例如，`git tag -a 1.0.1 -m <release_your_note>`， 。
+
+如果要删除标签，和删除分支一样的操作， `git tab -d <tagName>` 即可。
+
+最后，我们需要将新建的 tag 提交到远程仓库，需要输入：`git push origin <branch_name>  --tags`
+
+## git merge --squash
+
+`--squash` 会汇合要 merge 的分支所有的提交到当前的 branch 中，然后在当前 branch 继续 commit 汇合了所有提交的代码。
+
+`--squash` 参数并不会 merge 要合并的分支，它只是将要 merge 的分支所有的提交全部放到当前的分支中。
+
 ## git rebase
 
 `git rebase` 作用和 `git merge` 类似，但是使用 `git rebase` 能够让不同分支的代码合并到主分支的 commit 时间线更加清晰明了。
@@ -148,6 +177,9 @@ git cherry-pick <commit-id> # 找到 issue 分支提交的那个 commit-id
 `git reset` 通过把分支记录回退几个提交记录来实现撤销改动。你可以将这想象成“改写历史”, git reset 向上移动分支，原来指向的提交记录就跟从来没有提交过一样。
 
 `git reset HEAD^` 回退 HEAD 指向的上一个 commit。
+
+> 在reset之前的提交可以参照ORIG_HEAD。Reset错误的时候，在ORIG_HEAD上reset 就可以还原到reset前的状态。
+
 
 `git reset HEAD` 回退 HEAD 指向当前的 commit。
 
