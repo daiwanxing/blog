@@ -19,5 +19,5 @@ hero:
           link: /js/requestAnimationFrame
         - theme: alt
           text: View on Github
-          link: https://github.com/vuejs/vitepress
+          link: https://github.com/daiwanxing/blog
 ---
