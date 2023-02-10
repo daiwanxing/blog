@@ -221,6 +221,94 @@ function getUser() {
 
 <p align="center">user、secondUser 和 getUser 这三个变量都将挂载到 window 对象。</p>
 
-这仅适用于在全局范围内定义的变量和函数。如果您想了解更多相关信息，请查看这篇解释 [JavaScript 作用域的文章](https://www.w3schools.com/js/js_scope.asp)。
+这仅适用于在全局范围内定义的变量和函数。如果您想了解更多相关信息，请查看这篇 [JavaScript 作用域的文章](https://www.w3schools.com/js/js_scope.asp)。
 
 我们可以开启严格模式，避免此类问题。
+
+除了不小心将变量挂载到根对象外，大多数情况下你可能是故意这样做的。您当然可以使用全局变量，但请确保在不再需要数据时释放空间。
+
+```js
+window.user = null;
+```
+
+## 被遗忘的定时器和回调函数
+
+### 遗忘的定时器
+
+忘记清理定时器和回调函数会导致你的应用程序内存使用量不断增加。尤其在 SPA 应用中，动态添加事件侦听器和回调时必须小心。
+
+```js
+const object = {};
+const intervalId = setInterval(function() {
+  // everything used in here can't be collected
+  // until the interval is cleared
+  doSomething(object);
+}, 2000);
+```
+
+上面的代码会每隔 2 秒 执行一次回调函数，如果你在项目中有出现过这样类似的代码，你可能不需要一直运行它。
+
+如果不取消该定时器，那么定时器执行的回调函数里的对象将永远不回被执行垃圾回收。所以请确保在不需要的时候清除定时器。
+
+```js
+clearInterval(intervalId);
+```
+
+在单页面应用程序中，这点非常重要。即便导航到其他页面，这个定时器仍然会在后台不断调用。
+
+### 被遗忘的回调函数
+
+假设你为 button 按钮添加了一个 `onclick` 方法，后来这个按钮被删除了。
+
+这种情况下，旧浏览器无法收集 button 的 `listener` 从而导致内存泄露，但现在，这不再是问题了。
+
+在现代浏览器中，当 dom 元素从 DOM 树上被移除时，GC 能够收集到注册的监听器。不过，一旦您不再需要事件侦听器，最好删除它们最为稳妥。
+
+```js
+const element = document.getElementById('button');
+const onClick = () => alert('hi');
+
+element.addEventListener('click', onClick);
+
+element.removeEventListener('click', onClick);
+element.parentNode.removeChild(element);
+```
+
+### 丢失的 DOM 引用
+
+这种内存泄露的情况和上一个相似，这发生在当在 JS 中存储 DOM 元素时。
+
+```js
+const elements = [];
+const element = document.getElementById('button');
+elements.push(element);
+
+function removeAllElements() {
+  elements.forEach((item) => {
+    document.body.removeChild(document.getElementById(item.id))
+  });
+}
+```
+
+在上面的代码中，我们调用 `removeAllElements()` 方法从 `body` 节点移除指定的 button 元素。虽然这些 DOM 元素的确从文档中移除了。但是这些 DOM 节点仍然被 `elements` 这个数组所引用。所以 GC 无法对其执行收集操作。
+
+以下是改进后的代码
+
+```js{8}
+const elements = [];
+const element = document.getElementById('button');
+elements.push(element);
+
+function removeAllElements() {
+  elements.forEach((item, index) => {
+    document.body.removeChild(document.getElementById(item.id));
+    elements.splice(index, 1);
+  });
+}
+```
+
+## 总结
+
+在本文中，我总结了 JavaScript 中内存管理的核心概念。 
+
+写这篇文章帮助我理清了一些我不完全理解的概念，我希望这篇文章能很好地概述内存管理在 JavaScript 中的工作原理。

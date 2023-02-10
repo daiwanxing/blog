@@ -11,7 +11,7 @@ export default [
             link: "/js/time-slice"
          },
          {
-            text: "JS引擎内存管理探秘",
+            text: "JavaScript 内存管理探秘",
             link: '/js/memory-discover'
          },
          {
