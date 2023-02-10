@@ -3,15 +3,22 @@ import tsTableContents from "../ts/table-contents";
 import jsTableContents from "../js/table-contents";
 import RegExTableContents from "../regex/table-contents";
 import GitTableContents from "../git/table-content";
+import { defineConfig } from "vitepress";
 
 const ProjectBase = "/blog/";
 
-export default {
+export default defineConfig({
    title: "Wonder Dai的博客",
+   description: "一个关于所有我接触到的前端知识记录的网站",
    lang: "zh-CN",
    lastUpdated: true,
    ignoreDeadLinks: true,
    base: ProjectBase,
+   // markdown: {
+   //    externalLinks: {
+   //       target: '_blank', rel: 'nofollow noopener noreferrer'
+   //    }
+   // },
    head: [
       [
          "link",
@@ -87,4 +94,4 @@ export default {
          { icon: "twitter", link: "https://twitter.com/OcovqgH046VC8u2" },
       ],
    },
-};
+});
