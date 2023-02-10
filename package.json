@@ -13,6 +13,11 @@
       "type": "git",
       "url": "git+https://github.com/daiwanxing/blog.git"
    },
+   "engines": {
+      "npm": "please-use-pnpm-install-packages",
+      "yarn": "please-use-pnpm-install-packages",
+      "node": "^14.0.0 || ^16.0.0"
+   },
    "keywords": [],
    "author": "wonder_dai",
    "license": "ISC",
@@ -32,5 +37,8 @@
             "@algolia/client-search"
          ]
       }
+   },
+   "dependencies": {
+      "vitepress": "1.0.0-alpha.45"
    }
 }
