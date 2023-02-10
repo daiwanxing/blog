@@ -1,0 +1,1 @@
+import{_ as s,c as a,o as n,a as l}from"./app.6e530a92.js";const A=JSON.parse('{"title":"declare keyword","description":"","frontmatter":{},"headers":[],"relativePath":"ts/declare.md","lastUpdated":1676014440000}'),p={name:"ts/declare.md"},o=l("",15),e=[o];function t(c,r,F,y,D,i){return n(),a("div",null,e)}const d=s(p,[["render",t]]);export{A as __pageData,d as default};
