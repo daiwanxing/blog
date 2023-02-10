@@ -3,23 +3,21 @@ layout: home
 
 features:
     - icon: 🧠
-      title: Learn
-    - icon: 🖖
-      title: Think
-    - icon: 🛠️
-      title: improve
+      title: Keep learn
+    - icon: 📜
+      title: More Summarize
+    - icon: 📈
+      title: Get Improve
 
 hero:
-    name: Wonder Dai的开发日志
-    text: 让记录成为一种良好的习惯.
-    tagline: 一个developer将这几年开发生涯中走过的弯路、学到的技术以及总结的经验写下来给自己看的一本碎碎念的日志
-    image:
-        src: /logo.png
+    name: Dai的技术博客
+    text: More code you write, More you learn.
+    tagline: 记录自己成长的过程
     actions:
         - theme: brand
-          text: 立即阅读
+          text: Read Now
           link: /js/requestAnimationFrame
         - theme: alt
-          text: 在github上查看
+          text: View on Github
           link: https://github.com/vuejs/vitepress
 ---

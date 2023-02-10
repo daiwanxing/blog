@@ -7,13 +7,11 @@ import GitTableContents from "../git/table-content";
 const ProjectBase = "/frontend-notes/";
 
 export default {
-   title: "Wonder Dai的日志",
+   title: "Wonder Dai的博客",
    lang: "zh-CN",
    lastUpdated: true,
    ignoreDeadLinks: true,
    base: ProjectBase,
-   description:
-      "一个developer将这几年开发生涯中走过的弯路、学到的技术以及总结的经验写下来给自己看的一本碎碎念的日志",
    head: [
       [
          "link",
