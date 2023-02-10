@@ -8,7 +8,7 @@
 
 ![https://felixgerschau.com/static/3b4b854ed9762de030a94a9368be7d40/c1b63/javascript-memory-management-cover.png](https://felixgerschau.com/static/3b4b854ed9762de030a94a9368be7d40/c1b63/javascript-memory-management-cover.png)
 
-作为一名 JS 开发者，大多数情况下，可能你从没有思考过如何进行内存管理。毕竟，JS 引擎会自动帮我们去做这些事情。不过，有时你总会遇到例如内存泄露的问题，只有你了解内存分配是如何工作的才能知道如何去解决这个问题。
+作为一名 JS 开发者，大多数情况下，可能你从没有思考过如何进行内存管理。毕竟，JS 引擎会自动帮我们去做这些事情。不过，有时你总会遇到例如内存泄露的问题，只有当你了解内存分配是如何工作的才能知道如何去解决这个问题。
 
 在这篇文章中，我将向你介绍 **内存分配** 和 **垃圾回收** 是如何工作的，并且教你如何避免一些常见的内存泄露。
 
@@ -82,7 +82,7 @@ const pesrson = {
 }
 ```
 
-<p align="center">JS 会为这个 <code>person</code> 对象在堆中分配内存，但是 `person` 这个变量实际上还是存储在栈中，栈中的变量的值指向的是存储在堆中的引用</p>
+<p align="center">JS 会为这个 <code>person</code> 对象在堆中分配内存，但是 <code>person</code> 这个变量实际上还是存储在栈中，栈中的变量的值指向的是存储在堆中的引用</p>
 
 
 ```js
