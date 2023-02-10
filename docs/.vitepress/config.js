@@ -4,7 +4,7 @@ import jsTableContents from "../js/table-contents";
 import RegExTableContents from "../regex/table-contents";
 import GitTableContents from "../git/table-content";
 
-const ProjectBase = "/frontend-notes/";
+const ProjectBase = "/blog/";
 
 export default {
    title: "Wonder Dai的博客",

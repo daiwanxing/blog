@@ -1,5 +1,5 @@
 {
-   "name": "frontend-notes",
+   "name": "blog",
    "version": "1.0.0",
    "description": "一个基于VuePress的前端笔记小册",
    "main": "index.js",
@@ -11,15 +11,15 @@
    },
    "repository": {
       "type": "git",
-      "url": "git+https://github.com/daiwanxing/frontend-notes.git"
+      "url": "git+https://github.com/daiwanxing/blog.git"
    },
    "keywords": [],
    "author": "wonder_dai",
    "license": "ISC",
    "bugs": {
-      "url": "https://github.com/daiwanxing/frontend-notes/issues"
+      "url": "https://github.com/daiwanxing/blog/issues"
    },
-   "homepage": "https://github.com/daiwanxing/frontend-notes#readme",
+   "homepage": "https://github.com/daiwanxing/blog#readme",
    "devDependencies": {
       "@commitlint/cli": "^16.2.3",
       "@commitlint/config-conventional": "^16.2.1",
