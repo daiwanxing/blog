@@ -14,11 +14,12 @@ export default defineConfig({
    lastUpdated: true,
    ignoreDeadLinks: true,
    base: ProjectBase,
-   // markdown: {
-   //    externalLinks: {
-   //       target: '_blank', rel: 'nofollow noopener noreferrer'
-   //    }
-   // },
+   markdown: {
+      externalLinks: {
+         target: "_blank",
+         rel: "nofollow noopener noreferrer",
+      },
+   },
    head: [
       [
          "link",
@@ -55,6 +56,7 @@ export default defineConfig({
             size: "32x32",
          },
       ],
+      ["meta", { name: "keywords", content: "技术博客,Dai的技术博客,前端博客,JavaScript博客,CSS博客,TypeScript博客" }],
    ],
    themeConfig: {
       lastUpdatedText: "最近一次更新于",
@@ -78,7 +80,7 @@ export default defineConfig({
                   items: [
                      {
                         text: "🚀deploy github-pages",
-                        link: "/other/deploy-page/"
+                        link: "/other/deploy-page/",
                      },
                      {
                         text: "👋2022",
