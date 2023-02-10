@@ -66,13 +66,13 @@ export default defineConfig({
          "/git/": GitTableContents,
       },
       nav: [
-         { text: "javascript", link: "/js/", activeMatch: "/js/" },
-         { text: "typescript", link: "/ts/", activeMatch: "/ts/" },
-         { text: "css", link: "/css/", activeMatch: "/css/" },
-         { text: "regex", link: "/regex/", activeMatch: "/regex/" },
-         { text: "git", link: "/git/", activeMatch: "/git/" },
+         { text: "JavaScript", link: "/js/", activeMatch: "/js/" },
+         { text: "TypeScript", link: "/ts/", activeMatch: "/ts/" },
+         { text: "CSS", link: "/css/", activeMatch: "/css/" },
+         { text: "Regex", link: "/regex/", activeMatch: "/regex/" },
+         { text: "Git", link: "/git/", activeMatch: "/git/" },
          {
-            text: "other",
+            text: "Other",
             items: [
                {
                   items: [
