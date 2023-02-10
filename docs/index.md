@@ -11,7 +11,7 @@ features:
 
 hero:
     name: Dai的技术博客
-    text: More code you write, More you learn.
+    text: More code you write, More knowledge you gain.
     tagline: 记录自己成长的过程
     actions:
         - theme: brand
