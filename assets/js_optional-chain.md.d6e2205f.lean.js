@@ -1,1 +1,0 @@
-import{_ as s,c as n,o as a,a as l}from"./app.eb8c24d8.js";const A=JSON.parse('{"title":"可选链和??的语法使用","description":"","frontmatter":{},"headers":[],"relativePath":"js/optional-chain.md","lastUpdated":1676187990000}'),e={name:"js/optional-chain.md"},o=l("",4),p=[o];function t(c,r,i,C,D,d){return a(),n("div",null,p)}const _=s(e,[["render",t]]);export{A as __pageData,_ as default};
