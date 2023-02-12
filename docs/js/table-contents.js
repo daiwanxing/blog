@@ -25,6 +25,10 @@ export default [
          {
             text: "ES module 和 Commonjs",
             link: "/js/module-system"
+         },
+         {
+            text: "Intl.DatTimeFormat揭秘",
+            link: "/js/Intl.DateTimeFormat" 
          }
       ],
    },
