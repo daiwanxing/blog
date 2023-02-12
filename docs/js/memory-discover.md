@@ -1,12 +1,17 @@
+---
+title: JavaScript 内存管理探秘
+description: JavaScript 垃圾回收（GC）,JavaScript 引用计数,内存生命周期,内存堆和栈,JavaScript 内存泄漏
+---
+
 # JavaScript 内存管理探秘
 
-> 注1：这篇文章由作者本人在国外某位大佬的博客网站自行翻译过来的，如翻译有误还请指正 
+> 注1：这篇文章由作者本人在国外某博客网站自行翻译过来的，如翻译有误还请指正 
 
 > 注2：原文链接 https://felixgerschau.com/javascript-memory-management/
 
 > 注3：如果您想转载此篇译文，请注明转载出处 
 
-![https://felixgerschau.com/static/3b4b854ed9762de030a94a9368be7d40/c1b63/javascript-memory-management-cover.png](https://felixgerschau.com/static/3b4b854ed9762de030a94a9368be7d40/c1b63/javascript-memory-management-cover.png)
+![javscript内存管理](https://felixgerschau.com/static/3b4b854ed9762de030a94a9368be7d40/c1b63/javascript-memory-management-cover.png)
 
 作为一名 JS 开发者，大多数情况下，可能你从没有思考过如何进行内存管理。毕竟，JS 引擎会自动帮我们去做这些事情。不过，有时你总会遇到例如内存泄露的问题，只有当你了解内存分配是如何工作的才能知道如何去解决这个问题。
 
@@ -20,7 +25,7 @@
 
 每次我们给变量赋值或者创建一个函数，内存分配都将经历以下几个阶段：
 
-![https://felixgerschau.com/static/87cb911a5bdda814cdc38a1679e327e5/c1b63/memory-life-cycle.png](https://felixgerschau.com/static/87cb911a5bdda814cdc38a1679e327e5/c1b63/memory-life-cycle.png)
+![分配内存的生命周期](https://felixgerschau.com/static/87cb911a5bdda814cdc38a1679e327e5/c1b63/memory-life-cycle.png)
 
 
 - **分配**内存
@@ -45,7 +50,7 @@ JS 引擎有两个可以存储数据的地方：**堆**和**栈**，栈和堆是
 
 ## 栈：静态内存分配
 
-![https://felixgerschau.com/static/b94165593eb6e02d73039d8b2cfccfdd/c1b63/stack-memory-explained.png](https://felixgerschau.com/static/b94165593eb6e02d73039d8b2cfccfdd/c1b63/stack-memory-explained.png)
+![变量是如何存储在栈中](https://felixgerschau.com/static/b94165593eb6e02d73039d8b2cfccfdd/c1b63/stack-memory-explained.png)
 
 <p align="center">所有的值都会被存储在栈中，因为它们都是原始值</p>
 
@@ -111,7 +116,7 @@ JS 中所有的变量都首先指向栈，如果变量的值是一个非原始�
 记住，JS 为**对象和函数**分配的内存都会放在堆中，而**原始值和引用**存储在栈内。（译者注：引用相当于一个指针，指向的是堆中的对象或者函数的地址。）
 :::
 
-![https://felixgerschau.com/static/b452488bd7eeac0405c48f164da6280d/c1b63/stack-heap-pointers.png](https://felixgerschau.com/static/b452488bd7eeac0405c48f164da6280d/c1b63/stack-heap-pointers.png)
+![javascript 堆中的引用](https://felixgerschau.com/static/b452488bd7eeac0405c48f164da6280d/c1b63/stack-heap-pointers.png)
 
 <p align="center">在这张图中，我们可以看到不同的值是如何被存储的。注意, <code>person</code> 和 <code>new Person</code>实际上指向的是同一个对象。</p>
 
