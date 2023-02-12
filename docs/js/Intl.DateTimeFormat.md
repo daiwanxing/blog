@@ -103,7 +103,7 @@ new Intl.DateTimeFormat("en-US", { timeStyle: "short" }).format();
 ```
 
 :::warning 提醒
-`dateStyle` 可以与 `timeStyle` 一起使用，但不能与其他选项（例如工作日、小时、月份等）一起使用(`timeStyle同样如此`)。
+dateStyle` 可以与 `timeStyle` 一起使用，但不能与其他配置项（例如`week`、`hour`、`month`等）一起使用(`timeStyle同样如此`)。
 :::
 
 ## calendar
@@ -149,6 +149,48 @@ new Intl.DateTimeFormat("zh", { timeStyle: "medium", hour12: true }).format();
 // 6:57:19 PM
 new Intl.DateTimeFormat("en-US", { timeStyle: "medium", hour12: true }).format();
 ```
+
+## weekday,year,month,day
+
+前面说过 `timeStyle` 和 `dateStyle` 是不能与 `weekday`,`year`等属性一起使用的，那么这些属性的用途是什么呢？
+
+回顾上文中的各种示例，我们都是围绕日期与时间进行格式化操作，其中日期最小的格式化是缩小到了`年`、`月`和`日`。
+
+假如我们只需要格式化 `月` 或者 `年`，`周`这种最细粒度的日期单位的话，这些属性就能派上用场了。
+
+我在下面的表格中列出来了在格式化输出中使用的日期和时间格式以及允许值
+
+| Property        |                Values           |
+| ------------ | :--------------------------------: |
+| weekday       | `narrow`, `short`, `long` |
+| year      |       `2-digit`, `numeric`   |
+| month     |   `2-digit`, `numeric`, `narrow`, `short`, `long`    |
+| day     |   `2-digit`, `numeric`    |
+| hour     |   `2-digit`, `numeric`     |
+| minute     |   `2-digit`, `numeric`     |
+| second     |   `2-digit`, `numeric`     |
+
+- `2-digit` 表示两位数表示法
+  - ```js
+    // 输出 02月
+    new Intl.DateTimeFormat("zh", { month: "2-digit"}).format();
+    ```
+- `numeric` 一位数表示法
+  - ```js
+    // 输出 2月
+    new Intl.DateTimeFormat("zh", { month: "2-digit"}).format();
+    ```
+- `short` 
+  - 日期的简写，在英语语言中，例如 weekday 中 `Friday` 会格式成 `Fri`
+  - 在中文语言中，星期日 会被格式成 `周日`
+- `long`
+  - 日期的完整书写，在英语语言中，例如 weekday 中 `Friday` 会被完整格式成 `Friday`
+  - 在中文语言中，例如星期日会被完整格式成 `星期日`
+- `narrow`
+  - 日期的最短简写，在英语语言中，例如 weekday 中 `Friday` 会取单词第一个字母格式成 `F`
+  - 在中文语言中，例如星期日会被完整格式成 `日`
+
+更多的属性以及允许值我们可以从 tc39 中 [proposal-intl-datetime-style](https://tc39.es/proposal-intl-datetime-style/) 一章节查阅
 
 ## Intl.DateTimeFormat对象实例
 
