@@ -59,6 +59,7 @@ export default defineConfig({
       ["meta", { name: "keywords", content: "技术博客,Dai的技术博客,前端博客,JavaScript博客,CSS博客,TypeScript博客" }],
    ],
    themeConfig: {
+      logo: "/blog.png",
       lastUpdatedText: "最近一次更新于",
       sidebar: {
          "/js/": jsTableContents,
