@@ -1,4 +1,4 @@
-# 你弄懂 requestAnimationFrame 这个 API 了吗
+# requestAnimationFrame - 编写优雅动画的秘籍
 
 requestAnimationFrame 是一个出来很久的 API 了，该 API 接受一个回调函数，浏览器会在***恰当***的时候回调执行该函数。注意，我把恰当二字着重强调了一下。根据文档相关的资料再结合自己在业务中用到该函数的理解，这里的恰当是指的是浏览器会在 render 页面完后，总是会将回调函数放在下一次渲染页面之前执行。我看到很多写相关的博客都在反复强调这个 api 是根据屏幕的刷新率执行回调，这是不完全对的。
 
@@ -31,7 +31,6 @@ window.requestAnimationFrame(foo);
      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
      sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
-
 
 前面叙述了很多关于`requestAnimationFrame()`是什么时机被调用的，接下来侧重说说这个API为什么能为业务代码带来优化。
 
