@@ -7,15 +7,15 @@ description: JS内置的日期格式化对象Intl.DateTimeFormat
 
 ## 前言
 
-在日常的业务开发中， 你也许会遇到对日期的格式化处理的需求，比如将 `new Date.now()` 格式化成 `YYYY年 MM月 DD日 HH时MM分SS秒`，又或者将其格式化成 `2023癸卯年闰二月12星期日`。
+在日常的业务开发中， 你也许会遇到对日期的格式化处理的需求，比如将 `new Date.now()` 格式化成 `YYYY年 MM月 DD日 HH时MM分SS秒`，又或者将其格式化成 `2023癸卯年正月十二星期日`。
 
-这看起来似乎也不算很难，相信你脑海里第一时间想到的是借助 `moment.js` 或者 `dayjs` 这类的日期操作库去解决这类问题，毕竟内置的 `Date` 对象缺少太多灵活格式化的 API 了。
+这看起来似乎也不算很难，我们可以借助 `moment.js` 或者 `dayjs` 等相关的日期格式化的库解决这类问题，毕竟 JS 内置的 `Date` 对象在日期格式化方面的能力太弱了。
 
-但引入库也是有格外的 bundle 开销的，像 `momentjs` 这类体积过于庞大且无法 `tree-shake` 的库，渐渐淡出了开发者的视线。幸好我们等来了 `dayjs` 这类轻巧（不安装格外的插件下打包最小 2kb）且支持 `immutable` 的插件，看起来已经很完美了。
+但引入库也是有格外的 bundle 开销的，像 `momentjs` 这类体积过于庞大且无法 `tree-shake` 的库，已经淡出了开发者的视线。幸好我们迎来了 `dayjs` 这类轻巧的（不安装格外的插件下打包最小 2kb）且支持 `immutable` 以及 `tree-shake` 的插件，看起来已经很完美了。
 
 其实，有个可能鲜为人知的内置日期对象早在 2012 年提供对日期的灵活转换了，那就是 `Intl.DateTimeFormat`。由于刚出来的时候兼容性不佳且有很多 API 还未完善，很少有人提起过。
 
-但是在今天，如果你不考虑兼容 `chrome76` 以下的版本的话，可以放心去使用 `Intl.DateTimeFormat` 全部 API 了。
+但是在2023年的今天，如果你不考虑兼容太过老旧的浏览器的话，已经可以放心去使用 `Intl.DateTimeFormat` 全部 API 了。
 
 ![](https://awesomescreenshot.s3.amazonaws.com/image/3951069/37019360-0d97c8d0400f7c023150f18b16361947.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJSCJQ2NM3XLFPVKA%2F20230212%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230212T084953Z&X-Amz-Expires=28800&X-Amz-SignedHeaders=host&X-Amz-Signature=2ad61e9f2cb8f5eec3d8b9589d86ae9bbc04107e142cefb7e4e4750264c8203a)
 
@@ -41,6 +41,8 @@ Intl.DateTimeFormat("zh");
 ```
 
 第二个参数 `options` 给定一个具有多个属性的对象，用于指定如何格式给定的日期内容。
+
+接下来一起看看有哪些可用的属性。
 
 ## dateStyle
 
@@ -103,3 +105,67 @@ new Intl.DateTimeFormat("en-US", { timeStyle: "short" }).format();
 :::warning 提醒
 `dateStyle` 可以与 `timeStyle` 一起使用，但不能与其他选项（例如工作日、小时、月份等）一起使用(`timeStyle同样如此`)。
 :::
+
+## calendar
+
+`calendar`属性指定调用 `format()` 时使用的本地国家传统日历格式样式，例如中国有[农历甲子年](https://baike.baidu.com/item/%E4%B8%80%E7%94%B2%E5%AD%90/10167980?fromModule=lemma_inlink)。
+
+可取的值如下：
+
+> "buddhist", "chinese", "coptic", "dangi", "ethioaa", "ethiopic", "gregory", "hebrew", "indian", "islamic", "islamic-umalqura", "islamic-tbla", "islamic-civil", "islamic-rgsa", "iso8601", "japanese", "persian", "roc", "islamicc".
+
+
+```js
+// 2023癸卯年正月廿二星期日
+new Intl.DateTimeFormat("zh", { dateStyle: "short", calendar: "chinese" }).format();
+```
+
+## dayPeriod
+
+`dayPeriod`属性指定调用 `format()` 时使用的时间段。例如 `上午`、`下午`。
+
+`dayPeriod` 可枚举的值有：`narrow`, `short`, `short`，不过在中文和英语中，这三个值毫无区别。
+
+
+```js
+// 下午
+new Intl.DateTimeFormat("zh", { dayPeriod: "long" }).format();
+
+// in the evening
+new Intl.DateTimeFormat("en-US", { dayPeriod: "long" }).format();
+```
+
+:::warning 注意
+`dayPeriod` 无法和 `dateStyle` 或 `timeStyle` 一同使用。
+:::
+
+## hour12
+
+`hour12`属性指定调用 `format()` 时是否使用的 12 小时制来表示时间。可枚举的值有: `true`、`false`。
+
+```js
+// 下午06:55:26
+new Intl.DateTimeFormat("zh", { timeStyle: "medium", hour12: true }).format();
+// 6:57:19 PM
+new Intl.DateTimeFormat("en-US", { timeStyle: "medium", hour12: true }).format();
+```
+
+## Intl.DateTimeFormat对象实例
+
+上文说了很多关于 options 对象的部分属性作用，其实还有很多的并不常用的属性本文并未进行讨论，读者若感兴趣可以在 mdn 上找到更多详细的内容。
+
+现在将视野回到 `Intl.DateTimeFormat` 生成的实例上，`DateTimeFormat` 实例的 `format` 方法会根据 `options` 配置项以及 `locales` 格式化日期内容，当调用 `format()` 方法默认根据当前的日期格式化，我们也可以传递一个指定的 `Date` 或者 `日期时间戳` 对其格式化。
+
+```js
+// 2022年3月31日
+new Intl.DateTimeFormat("zh", { dateStyle: "medium" }).format(new Date("2022-03-31 00:00:01"));
+
+// 2022年3月31日
+new Intl.DateTimeFormat("zh", { dateStyle: "medium" }).format(1648656001000);
+```
+
+## 总结
+
+通过以上的例子，我们了解到了 `Intl.DateTimeFormat` 的使用方式，`Intl.DateTimeFormat` 是一个日期格式化对象。可以指定不同国家的语言字符串，以及配置相关属性实现强大的日期格式化操作。
+
+如果在业务中，我们只需要对日期进行格式操作，可以完全不用依赖 `dayjs`等相关库，借助内置的 API，既能减少一个 package 的安装，而且还可以实现我们的业务需求。
