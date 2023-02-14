@@ -29,6 +29,10 @@ export default [
          {
             text: "Intl.DatTimeFormat揭秘",
             link: "/js/Intl.DateTimeFormat" 
+         },
+         {
+            text: "元属性编程 - Symbol",
+            link:  "/js/metaPropertyAboutSymbol"
          }
       ],
    },

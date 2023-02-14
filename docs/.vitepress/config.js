@@ -56,7 +56,14 @@ export default defineConfig({
             size: "32x32",
          },
       ],
-      ["meta", { name: "keywords", content: "技术博客,Dai的技术博客,前端博客,JavaScript博客,CSS博客,TypeScript博客" }],
+      [
+         "meta",
+         {
+            name: "keywords",
+            content:
+               "技术博客,Dai的技术博客,前端博客,JavaScript博客,CSS博客,TypeScript博客",
+         },
+      ],
    ],
    themeConfig: {
       logo: "/blog.png",
@@ -96,5 +103,10 @@ export default defineConfig({
          { icon: "github", link: "https://github.com/daiwanxing" },
          { icon: "twitter", link: "https://twitter.com/OcovqgH046VC8u2" },
       ],
+      algolia: {
+         apiKey: "ae81d80179c619f04fa6af80a06fbb47",
+         appId: "RTKFWXT5ZN",
+         indexName: "daiwanxingio",
+      },
    },
 });
