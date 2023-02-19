@@ -59,6 +59,19 @@ if (script || scriptSetup) {
 
 ```
 
+### 示例
+
+```vue
+// App.vue
+<script lang="ts" setup>
+// write your code
+</script>
+```
+
+这个 script 块就会被 parse， 取出 script 的 所有 attrs 进行序列化: `lang=ts&setup=true`。
+
+最后和给定的字符串进行拼接可以得到这样一个导入导出的字符串： `import script from './App.vue?vue&type=script&lang=ts&setup=true\n' export * from './App.vue?vue&type=script&lang=ts&setup=true`。
+
 ## 对 template 块的处理
 
 ```js
