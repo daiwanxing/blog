@@ -33,6 +33,10 @@ export default [
          {
             text: "元属性编程 - Symbol",
             link:  "/js/metaPropertyAboutSymbol"
+         },
+         {
+            text: "简单了解Vue-loader",
+            link: "/js/KnowAboutVueLoader"
          }
       ],
    },
