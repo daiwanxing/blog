@@ -58,6 +58,8 @@ function renderTable() {
 
 ![时间切片](./../public/time-slice-1.png)
 
+## setTimeout 实现时间切片
+
 为了解决这类问题，我们可以将一个耗时长的任务切分成多个小的任务精确调度执行。
 
 例如，创建 500 个 table 这个大的任务我们可以切分成 30 个小任务，每个小任务创建 16 个节点。要想实现任务切分，我们可以借助 `setInterval`、`setTimeout` 这类的 API 实现。
@@ -111,6 +113,8 @@ timeSlice(() => {
 我们知道 `setTimeout` 这类的定时器 API 并不会准确的根据用户传入的时间执行，如果有其他的任务一直在长时间的执行，那么 `setTimeout` 的回调会一直在任务队列里等待。而且 `setTimeout` 这类的 API 也会有丢帧的现象。因为 `setTimeout` 无法做到用户的回调会在每一帧最开始执行。
 
 说到这，你可能已经想到了最终的解决方案 - **rAF**。
+
+## rAF 实现时间切片
 
 是的，我们可以借助浏览器提供的 `requestAnimationFrame` API 弥补上面提到的缺陷。 `requestAnimationFrame` 能够让用户精确的控制在每一帧绘制之前执行相关的回调，这也是唯一的一个拥有此能力的 API。
 
