@@ -13,11 +13,11 @@
 ## 实现一个发布订阅
 
 ```ts
-class Dispatcher {
+class Dispatcher<T extends string = string> {
     // 维护订阅者的集合
-    subscribers = new Map<string, Set<(payload: unknown) => unknown>>();
+    subscribers = new Map<T, Set<(payload: unknown) => unknown>>();
     // 订阅事件
-    subscribe(name: string, handler: (payload?: unknown) => unknown) {
+    subscribe(name: T, handler: (payload?: unknown) => unknown) {
         let events = this.subscribers.get(name);
         if (!events) {
             this.subscribers.set(name, (events = new Set()));
@@ -25,24 +25,24 @@ class Dispatcher {
         if (!events.has(handler)) events.add(handler);
     }
     // 当被订阅一次后，立即移除
-    subscribeOnce(name: string, handler: (payload?: unknown) => unknown) {
+    subscribeOnce(name: T, handler: (payload?: unknown) => unknown) {
         this.subscribe(name, (payload: unknown) => {
             handler(payload);
             this.unsubscribe(name);
         });
     }
     // 取消事件的订阅
-    unsubscribe(event: string, handler?: (payload?: unknown) => void) {
-        const eventHandlers = this.subscribers.get(event);
+    unsubscribe(name: T, handler?: (payload?: unknown) => void) {
+        const eventHandlers = this.subscribers.get(name);
         if (typeof handler === "function") {
             eventHandlers?.delete(handler);
         } else {
             eventHandlers?.clear();
-            this.subscribers.delete(event);
+            this.subscribers.delete(name);
         }
     }
     // 发布事件
-    publish<T>(event: string, payload: T): boolean {
+    publish(event: T, payload?: unknown): boolean {
         const eventHandlers = this.subscribers.get(event);
         eventHandlers?.forEach((handle) => handle(payload));
         return !!eventHandlers;
