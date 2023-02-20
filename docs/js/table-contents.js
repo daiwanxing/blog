@@ -37,6 +37,10 @@ export default [
          {
             text: "简单了解Vue-loader",
             link: "/js/KnowAboutVueLoader"
+         },
+         {
+            text: "实现一个发布订阅模型",
+            link: "/js/pub-sub.model"
          }
       ],
    },
