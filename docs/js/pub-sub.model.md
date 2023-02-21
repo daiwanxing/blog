@@ -14,39 +14,48 @@
 
 ```ts
 class Dispatcher<T extends string = string> {
-    // 维护订阅者的集合
-    subscribers = new Map<T, Set<(payload: unknown) => unknown>>();
-    // 订阅事件
-    subscribe(name: T, handler: (payload?: unknown) => unknown) {
-        let events = this.subscribers.get(name);
-        if (!events) {
-            this.subscribers.set(name, (events = new Set()));
-        }
-        if (!events.has(handler)) events.add(handler);
-    }
-    // 当被订阅一次后，立即移除
-    subscribeOnce(name: T, handler: (payload?: unknown) => unknown) {
-        this.subscribe(name, (payload: unknown) => {
-            handler(payload);
-            this.unsubscribe(name);
-        });
-    }
-    // 取消事件的订阅
-    unsubscribe(name: T, handler?: (payload?: unknown) => void) {
-        const eventHandlers = this.subscribers.get(name);
-        if (typeof handler === "function") {
+   DISPOSE_ANY = "*";
+   // 维护订阅者的集合
+   subscribers = new Map<T, Set<(payload: unknown) => unknown>>();
+   // 订阅事件
+   subscribe(name: T, handler: (payload?: unknown) => unknown) {
+      let events = this.subscribers.get(name);
+      if (!events) {
+         this.subscribers.set(name, (events = new Set()));
+      }
+      if (!events.has(handler)) events.add(handler);
+   }
+   // 当被订阅一次后，立即移除
+   subscribeOnce(name: T, handler: (payload?: unknown) => unknown) {
+      this.subscribe(name, (payload: unknown) => {
+         handler(payload);
+         this.unsubscribe(name);
+      });
+   }
+   // 取消事件的订阅
+   unsubscribe(name: T, handler?: (payload?: unknown) => void) {
+      if (name === DISPOSE_ANY) {
+         if (handler)
+            console.warn(
+               "If you want dispose all subscribers, you should avoid pass handler params"
+            );
+         this.subscribers.clear();
+      } else {
+         const eventHandlers = this.subscribers.get(name);
+         if (typeof handler === "function") {
             eventHandlers?.delete(handler);
-        } else {
+         } else {
             eventHandlers?.clear();
             this.subscribers.delete(name);
-        }
-    }
-    // 发布事件
-    publish(event: T, payload?: unknown): boolean {
-        const eventHandlers = this.subscribers.get(event);
-        eventHandlers?.forEach((handle) => handle(payload));
-        return !!eventHandlers;
-    }
+         }
+      }
+   }
+   // 发布事件
+   publish(event: T, payload?: unknown): boolean {
+      const eventHandlers = this.subscribers.get(event);
+      eventHandlers?.forEach((handle) => handle(payload));
+      return !!eventHandlers;
+   }
 }
 ```
 
@@ -65,13 +74,13 @@ dispatcher.subscribe("redlight", function (payload) {
    const type = payload.lightType;
    switch (type) {
       case "red":
-         console.log("红灯亮")
+         console.log("红灯亮");
          break;
       case "green":
-         console.log("绿灯亮")
+         console.log("绿灯亮");
          break;
-      case "yello":
-         console.log("黄灯亮")
+      case "yellow":
+         console.log("黄灯亮");
          break;
       default:
          break;
@@ -95,6 +104,12 @@ dispatcher.unsubscribe("signalLight");
 
 ```ts
 dispatcher.unsubscribe("getTick", handler);
+```
+
+我们还可以通过传入一个特殊的字符，取消全部订阅
+
+```ts
+dispatcher.unsubscribe("*");
 ```
 
 ## 总结
