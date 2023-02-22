@@ -64,6 +64,26 @@ export default defineConfig({
                "技术博客,Dai的技术博客,前端博客,JavaScript博客,CSS博客,TypeScript博客",
          },
       ],
+      [
+         "meta",
+         {
+            name: "google-site-verification",
+            content: "kRWzKjC0N0Yp71d-ty7YSgTff9lcENF9_t20iF_Lq5o",
+         },
+      ],
+      [
+         "script",
+         {
+            src: "https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID",
+            async: true,
+         },
+      ],
+      [
+         "script",
+         {
+            src: `${ProjectBase}gtag.js`,
+         },
+      ],
    ],
    themeConfig: {
       logo: "/blog.png",
