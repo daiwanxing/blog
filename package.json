@@ -29,6 +29,7 @@
       "@commitlint/cli": "^16.2.3",
       "@commitlint/config-conventional": "^16.2.1",
       "husky": "^7.0.0",
+      "sass": "^1.58.3",
       "vue": "^3.2.37"
    },
    "pnpm": {
