@@ -1,1 +1,0 @@
-import{_ as s,c as a,o as n,a as l}from"./app.b77d871d.js";const A=JSON.parse('{"title":"async - await","description":"","frontmatter":{},"headers":[],"relativePath":"js/async-await.md","lastUpdated":1677329421000}'),p={name:"js/async-await.md"},o=l("",3),e=[o];function t(c,r,y,F,D,i){return n(),a("div",null,e)}const d=s(p,[["render",t]]);export{A as __pageData,d as default};
