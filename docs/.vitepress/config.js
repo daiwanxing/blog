@@ -3,6 +3,7 @@ import tsTableContents from "../ts/table-contents";
 import jsTableContents from "../js/table-contents";
 import RegExTableContents from "../regex/table-contents";
 import GitTableContents from "../git/table-content";
+import VueTableContents from "../Vue/table-content";
 import { defineConfig } from "vitepress";
 
 const ProjectBase = "/blog/";
@@ -91,6 +92,7 @@ export default defineConfig({
       sidebar: {
          "/js/": jsTableContents,
          "/ts/": tsTableContents,
+         "/vue/": VueTableContents,
          "/css/": cssTableContents,
          "/regex/": RegExTableContents,
          "/git/": GitTableContents,
@@ -98,6 +100,7 @@ export default defineConfig({
       nav: [
          { text: "JavaScript", link: "/js/", activeMatch: "/js/" },
          { text: "TypeScript", link: "/ts/", activeMatch: "/ts/" },
+         { text: "Vue", link: "/vue/", activeMatch: "/vue/" },
          { text: "CSS", link: "/css/", activeMatch: "/css/" },
          { text: "Regex", link: "/regex/", activeMatch: "/regex/" },
          { text: "Git", link: "/git/", activeMatch: "/git/" },

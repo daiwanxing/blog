@@ -1,6 +1,6 @@
 export default [
    {
-      text: "regex",
+      text: "Introduction",
       items: [
          {
             text: "介绍",

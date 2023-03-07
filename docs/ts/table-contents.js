@@ -1,6 +1,6 @@
 export default [
    {
-      text: "typescript",
+      text: "Introduction",
       items: [
          {
             text: "typescript练习题",

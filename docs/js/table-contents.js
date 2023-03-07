@@ -1,6 +1,6 @@
 export default [
    {
-      text: "javascript",
+      text: "Introduction",
       items: [
          {
             text: "聊聊requestAnimationFrame",

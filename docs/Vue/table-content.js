@@ -3,8 +3,8 @@ export default [
        text: "Introduction",
        items: [
           {
-             text: "git 操作",
-             link: "/git/",
+             text: "花样玩转 Transition",
+             link: "/vue/transition",
           },
        ],
     },

@@ -13,5 +13,6 @@
     },
     "[shellscript]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
-    }
+    },
+    "volar.inlayHints.eventArgumentInInlineHandlers": false
 }
