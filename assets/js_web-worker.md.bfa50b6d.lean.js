@@ -1,0 +1,1 @@
+import{_ as s,o as a,c as n,a as l}from"./app.e1b5a037.js";const C=JSON.parse('{"title":"Web Worker","description":"","frontmatter":{},"headers":[],"relativePath":"js/web-worker.md","lastUpdated":1678198823000}'),o={name:"js/web-worker.md"},p=l("",7),e=[p];function t(r,c,y,D,F,i){return a(),n("div",null,e)}const w=s(o,[["render",t]]);export{C as __pageData,w as default};
