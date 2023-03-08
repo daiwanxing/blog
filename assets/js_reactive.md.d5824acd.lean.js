@@ -1,1 +1,0 @@
-import{_ as s,o as a,c as n,a as l}from"./app.e1b5a037.js";const p="/blog/rn.png",f=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"js/reactive.md","lastUpdated":1678238701000}'),o={name:"js/reactive.md"},e=l("",7),t=[e];function c(r,y,F,D,A,C){return a(),n("div",null,t)}const d=s(o,[["render",c]]);export{f as __pageData,d as default};

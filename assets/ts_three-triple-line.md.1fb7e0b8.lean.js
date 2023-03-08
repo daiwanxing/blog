@@ -1,1 +1,0 @@
-import{_ as e,o as t,c as s,a}from"./app.e1b5a037.js";const h=JSON.parse('{"title":"三斜线指令是什么?","description":"","frontmatter":{},"headers":[],"relativePath":"ts/three-triple-line.md","lastUpdated":1678238701000}'),l={name:"ts/three-triple-line.md"},n=a("",6),o=[n];function p(c,i,r,d,_,y){return t(),s("div",null,o)}const m=e(l,[["render",p]]);export{h as __pageData,m as default};

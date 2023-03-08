@@ -1,0 +1,1 @@
+import{_ as s,o,c as n,a}from"./app.51ed6dc1.js";const F=JSON.parse('{"title":"说说 css 中的字体","description":"","frontmatter":{},"headers":[],"relativePath":"css/font-family.md","lastUpdated":1678290112000}'),l={name:"css/font-family.md"},e=a("",13),p=[e];function t(c,r,i,D,y,C){return o(),n("div",null,p)}const A=s(l,[["render",t]]);export{F as __pageData,A as default};
