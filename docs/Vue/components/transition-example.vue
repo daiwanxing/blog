@@ -2,7 +2,7 @@
    <CodeBox>
       <div class="block">
          <div>
-            <Transition>
+            <Transition name="scale">
                <div class="circle" v-if="visible"></div>
             </Transition>
          </div>
@@ -24,6 +24,7 @@ const toggle = function () {
 
 <style lang="scss" scoped>
 .block {
+   min-height: 100px;
    display: flex;
    align-items: center;
    justify-content: space-between;
@@ -35,7 +36,19 @@ const toggle = function () {
    border-radius: 50%;
 }
 
+.scale-enter-from,
+.scale-leave-to {
+   transform: scale(2);
+   opacity: 0;
+}
+
+.scale-enter-active,
+.scale-leave-active {
+   transition: 0.5s linear;
+}
+
 .button {
+   color: var(--vp-c-brand);
    background-color: #f1f1f1;
    padding: 5px 12px;
    font-size: 1em;
