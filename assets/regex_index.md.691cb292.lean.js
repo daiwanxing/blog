@@ -1,1 +1,0 @@
-import{_ as e,o as t,c as a,a as p}from"./app.e1b5a037.js";const u=JSON.parse('{"title":"正则表达式 📐","description":"","frontmatter":{},"headers":[],"relativePath":"regex/index.md","lastUpdated":1678198823000}'),r={name:"regex/index.md"},o=p("",7),n=[o];function _(s,c,d,i,l,h){return t(),a("div",null,n)}const P=e(r,[["render",_]]);export{u as __pageData,P as default};
