@@ -4,43 +4,43 @@ export default [
       items: [
          {
             text: "聊聊requestAnimationFrame",
-            link: "/js/requestAnimationFrame",
+            link: "/content/js/requestAnimationFrame",
          },
          {
             text: "时间切片",
-            link: "/js/time-slice"
+            link: "/content/js/time-slice"
          },
          {
             text: "JavaScript 内存管理探秘",
-            link: '/js/memory-discover'
+            link: '/content/js/memory-discover'
          },
          {
             text: "WeakMap&WeakSet",
-            link: "/js/WeakMap&WeakSet",
+            link: "/content/js/WeakMap&WeakSet",
          },
          {
             text: "事件循环",
-            link: "/js/event-loopV2",
+            link: "/content/js/event-loopV2",
          },
          {
             text: "ES module 和 Commonjs",
-            link: "/js/module-system"
+            link: "/content/js/module-system"
          },
          {
             text: "Intl.DatTimeFormat揭秘",
-            link: "/js/Intl.DateTimeFormat" 
+            link: "/content/js/Intl.DateTimeFormat" 
          },
          {
             text: "元属性编程 - Symbol",
-            link:  "/js/metaPropertyAboutSymbol"
+            link:  "content//js/metaPropertyAboutSymbol"
          },
          {
             text: "简单了解Vue-loader",
-            link: "/js/KnowAboutVueLoader"
+            link: "/content/js/KnowAboutVueLoader"
          },
          {
             text: "实现一个发布订阅模型",
-            link: "/js/pub-sub.model"
+            link: "/content/js/pub-sub.model"
          }
       ],
    },

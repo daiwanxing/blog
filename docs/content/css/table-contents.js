@@ -4,19 +4,19 @@ export default [
       items: [
          {
             text: "css字体的那些事儿",
-            link: "/css/font-family",
+            link: "/content//css/font-family",
          },
          {
             text: "aspect-radio",
-            link: "/css/aspect-ratio"
+            link: "/content/css/aspect-ratio"
          },
          {
             text: "现代CSS布局",
-            link: "/css/grid-layout"
+            link: "/content/css/grid-layout"
          },
          {
             text: "尺寸关键字",
-            link: "/css/size-keywords"
+            link: "/content/css/size-keywords"
          }
       ],
    },

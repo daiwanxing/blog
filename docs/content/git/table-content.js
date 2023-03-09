@@ -4,7 +4,7 @@ export default [
        items: [
           {
              text: "git 操作",
-             link: "/git/",
+             link: "/content/git/",
           },
        ],
     },

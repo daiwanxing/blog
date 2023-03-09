@@ -4,15 +4,15 @@ export default [
       items: [
          {
             text: "介绍",
-            link: "/regex/",
+            link: "/content/regex/",
          },
          {
             text: "基础概念",
-            link: "/regex/base-knowledge",
+            link: "/content/regex/base-knowledge",
          },
          {
             text: "利用正则解析字符串",
-            link: "/regex/tryUseRegxp"
+            link: "/content/regex/tryUseRegxp"
          }
       ],
    },

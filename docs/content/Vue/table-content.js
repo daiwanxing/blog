@@ -4,7 +4,7 @@ export default [
        items: [
           {
              text: "花样玩转 Transition",
-             link: "/vue/transition",
+             link: "/content/vue/transition",
           },
        ],
     },

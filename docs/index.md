@@ -19,7 +19,7 @@ hero:
     actions:
         - theme: brand
           text: Read Now
-          link: /js/requestAnimationFrame
+          link: /content/js/requestAnimationFrame
         - theme: alt
           text: View on Github
           link: https://github.com/daiwanxing/blog

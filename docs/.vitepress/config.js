@@ -1,9 +1,9 @@
-import cssTableContents from "../css/table-contents";
-import tsTableContents from "../ts/table-contents";
-import jsTableContents from "../js/table-contents";
-import RegExTableContents from "../regex/table-contents";
-import GitTableContents from "../git/table-content";
-import VueTableContents from "../Vue/table-content";
+import cssTableContents from "../content/css/table-contents";
+import tsTableContents from "../content/ts/table-contents";
+import jsTableContents from "../content/js/table-contents";
+import RegExTableContents from "../content/regex/table-contents";
+import GitTableContents from "../content/git/table-content";
+import VueTableContents from "../content/Vue/table-content";
 import { defineConfig } from "vitepress";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
@@ -94,20 +94,20 @@ export default defineConfig({
       logo: "/blog.png",
       lastUpdatedText: "最近一次更新于",
       sidebar: {
-         "/js/": jsTableContents,
-         "/ts/": tsTableContents,
-         "/vue/": VueTableContents,
-         "/css/": cssTableContents,
-         "/regex/": RegExTableContents,
-         "/git/": GitTableContents,
+         "/content/js/": jsTableContents,
+         "/content/ts/": tsTableContents,
+         "/content/vue/": VueTableContents,
+         "/content/css/": cssTableContents,
+         "/content/regex/": RegExTableContents,
+         "/content/git/": GitTableContents,
       },
       nav: [
-         { text: "JavaScript", link: "/js/", activeMatch: "/js/" },
-         { text: "TypeScript", link: "/ts/", activeMatch: "/ts/" },
-         { text: "Vue", link: "/vue/", activeMatch: "/vue/" },
-         { text: "CSS", link: "/css/", activeMatch: "/css/" },
-         { text: "Regex", link: "/regex/", activeMatch: "/regex/" },
-         { text: "Git", link: "/git/", activeMatch: "/git/" },
+         { text: "JavaScript", link: "/content/js/",  },
+         { text: "TypeScript", link: "/content/ts/" },
+         { text: "Vue", link: "/content/vue/" },
+         { text: "CSS", link: "/content/css/" },
+         { text: "Regex", link: "/content/regex/" },
+         { text: "Git", link: "/content/git/" },
          {
             text: "Other",
             items: [
@@ -115,11 +115,11 @@ export default defineConfig({
                   items: [
                      {
                         text: "🚀deploy github-pages",
-                        link: "/other/deploy-page/",
+                        link: "/content/other/deploy-page/",
                      },
                      {
                         text: "👋2022",
-                        link: "/other/about-me/goodbye-2022.md",
+                        link: "/content/other/about-me/goodbye-2022.md",
                      },
                   ],
                },
