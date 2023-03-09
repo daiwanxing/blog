@@ -56,7 +56,7 @@ git checkout -- main.txt # 必须带上 -- 这个flag
 
 如果在 dev 分支 提交了一个 commit，我们需要切换到 master 分支 merge 这些commit。
 
-```git
+```
 git switch master
 
 git merge dev
@@ -74,7 +74,7 @@ git merge dev
 
 接下来，就该 `git stash` 出场了。`git stash` 命令可以暂存本地的代码。小帅也同时想到了这个命令，于是他打开 `cmd` 飞快的敲入以下几个命令：
 
-```git
+```
 git stash
 
 git switch -b issue-01
@@ -82,7 +82,7 @@ git switch -b issue-01
 
 接下来愉快的去修 bug 去了。等小帅 修复好了 issue 分支的代码并合并到主分支后，接下来又切换到了 dev 分支继续愉快的开发了~
 
-```git
+```
 git switch dev
 
 git stash pop # 通过该命令取出暂存了的代码, 执行该命令后，暂存区里的记录将被删除
@@ -101,7 +101,7 @@ git stash pop # 通过该命令取出暂存了的代码, 执行该命令后，�
 
 幸好聪明的小帅灵机一动，想到了 `cherry pick`，只要从 master 分支找到解决那个 bug 的 commit-id, cherry-pick 这个 commit 不就解决了吗！于是小帅立即打开 `cmd` 敲出如下面命令：
 
-```git
+```
 git switch dev
 git cherry-pick <commit-id> # 找到 issue 分支提交的那个 commit-id
 ```
@@ -197,7 +197,7 @@ git cherry-pick <commit-id> # 找到 issue 分支提交的那个 commit-id
 git cherry-pick <提交号>...
 ```
 
-```git
+```
 git checkout master
 
 git cherry-pick commit-b
