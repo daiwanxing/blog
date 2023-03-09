@@ -5,8 +5,12 @@ import RegExTableContents from "../regex/table-contents";
 import GitTableContents from "../git/table-content";
 import VueTableContents from "../Vue/table-content";
 import { defineConfig } from "vitepress";
+import AutoImport from "unplugin-auto-import/vite";
+import Components from "unplugin-vue-components/vite";
+import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
+import { sitebase } from "../config";
+import path from "node:path";
 
-const ProjectBase = "/blog/";
 
 export default defineConfig({
    title: "Wonder Dai的博客",
@@ -14,7 +18,7 @@ export default defineConfig({
    lang: "zh-CN",
    lastUpdated: true,
    ignoreDeadLinks: true,
-   base: ProjectBase,
+   base: sitebase,
    markdown: {
       externalLinks: {
          target: "_blank",
@@ -26,7 +30,7 @@ export default defineConfig({
          "link",
          {
             rel: "icon",
-            href: `${ProjectBase}logo-32x32.ico`,
+            href: `${sitebase}logo-32x32.ico`,
             type: "image/x-icon",
             size: "32x32",
          },
@@ -35,7 +39,7 @@ export default defineConfig({
          "link",
          {
             rel: "icon",
-            href: `${ProjectBase}logo-64x64.ico`,
+            href: `${sitebase}logo-64x64.ico`,
             type: "image/x-icon",
             size: "64x64",
          },
@@ -44,7 +48,7 @@ export default defineConfig({
          "link",
          {
             rel: "icon",
-            href: `${ProjectBase}logo-128x128.ico`,
+            href: `${sitebase}logo-128x128.ico`,
             type: "image/x-icon",
             size: "128x128",
          },
@@ -53,7 +57,7 @@ export default defineConfig({
          "link",
          {
             rel: "apple-touch-icon",
-            href: `${ProjectBase}logo-32x32.ico`,
+            href: `${sitebase}logo-32x32.ico`,
             size: "32x32",
          },
       ],
@@ -82,7 +86,7 @@ export default defineConfig({
       [
          "script",
          {
-            src: `${ProjectBase}gtag.js`,
+            src: `${sitebase}gtag.js`,
          },
       ],
    ],
@@ -130,6 +134,21 @@ export default defineConfig({
          apiKey: "ae81d80179c619f04fa6af80a06fbb47",
          appId: "RTKFWXT5ZN",
          indexName: "daiwanxingio",
+      },
+   },
+   vite: {
+      plugins: [
+         AutoImport({
+            resolvers: [ElementPlusResolver()],
+         }),
+         Components({
+            resolvers: [ElementPlusResolver()],
+         }),
+      ],
+      resolve: {
+         alias: {
+            "@": path.join(__dirname, "docs"),
+         },
       },
    },
 });

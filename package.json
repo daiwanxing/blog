@@ -30,6 +30,8 @@
       "@commitlint/config-conventional": "^16.2.1",
       "husky": "^7.0.0",
       "sass": "^1.58.3",
+      "unplugin-auto-import": "^0.15.1",
+      "unplugin-vue-components": "^0.24.1",
       "vue": "^3.2.37"
    },
    "pnpm": {
@@ -40,6 +42,8 @@
       }
    },
    "dependencies": {
+      "@vueuse/core": "^9.13.0",
+      "element-plus": "^2.2.36",
       "vitepress": "1.0.0-alpha.50"
    }
 }

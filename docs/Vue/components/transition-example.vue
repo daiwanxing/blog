@@ -1,28 +1,26 @@
 <template>
-   <CodeBox>
+   <el-card>
       <div class="block">
          <div>
             <Transition name="scale">
-               <div class="circle" v-if="visible"></div>
+               <div class="circle" v-if="state"></div>
             </Transition>
          </div>
-         <button class="button" @click="toggle">toggle</button>
+         <el-switch
+            v-model="state"
+            size="large"
+         />
       </div>
-   </CodeBox>
+   </el-card>
 </template>
 
 <script setup>
-import CodeBox from "../../components/code-example.vue";
-import { ref } from "vue";
+import { useToggle } from "@vueuse/core";
 
-const visible = ref(false);
-
-const toggle = function () {
-   visible.value = !visible.value;
-};
+const [state] = useToggle();
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .block {
    min-height: 100px;
    display: flex;
@@ -45,18 +43,5 @@ const toggle = function () {
 .scale-enter-active,
 .scale-leave-active {
    transition: 0.5s linear;
-}
-
-.button {
-   color: var(--vp-c-brand);
-   background-color: #f1f1f1;
-   padding: 5px 12px;
-   font-size: 1em;
-   font-weight: 600;
-   border: 1px solid rgba(60, 60, 60, 0.29);
-
-   &:hover {
-      filter: brightness(0.9);
-   }
 }
 </style>
