@@ -3,7 +3,7 @@ import tsTableContents from "../content/ts/table-contents";
 import jsTableContents from "../content/js/table-contents";
 import RegExTableContents from "../content/regex/table-contents";
 import GitTableContents from "../content/git/table-content";
-import VueTableContents from "../content/Vue/table-content";
+import VueTableContents from "../content/vue/table-content";
 import { defineConfig } from "vitepress";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";

@@ -1,7 +1,7 @@
 {
    "name": "blog",
    "version": "1.0.0",
-   "description": "一个基于VuePress的前端笔记小册",
+   "description": "✏️记录自己的开发之路",
    "main": "index.js",
    "scripts": {
       "docs:dev": "vitepress dev docs",
