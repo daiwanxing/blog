@@ -2,7 +2,7 @@
 
 script 标签有一个 defer 和 async 属性，其兼容性在 2021 年已经非常不错了(IE 不支持)。
 
-![defer兼容性](./../public/defer.png)
+![defer兼容性](/defer.png)
 
 defer 和 async 的出现的目的是为了防止 js 脚本阻塞 DOM 的解析，我们都知道渲染进程解析 html 文档生成 DOM 树时，如果遇到 script 标签，那么会停止解析。转而去加载 js 脚本并且等脚本加载完毕并且执行脚本完毕之后再去解析 DOM，这样会徒增 FP 的渲染时间。一般通用的做法是将 js 脚本放到 body 最后面，这对于老旧浏览器是最优解，但是 defer 和 async 能够让我们有更多的优化。
 

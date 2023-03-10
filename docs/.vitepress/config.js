@@ -145,6 +145,9 @@ export default defineConfig({
             resolvers: [ElementPlusResolver()],
          }),
       ],
+      ssr: {
+         noExternal: ['element-plus']
+      },
       resolve: {
          alias: {
             "@": path.join(__dirname, "docs"),

@@ -56,7 +56,7 @@ function renderTable() {
 
 通过 chrome devtools 的 performance 面板我们可以看到渲染 500 个 table 耗时长 达 103 ms，这 103 ms 由 计算样式 + 计算布局 + 绘制 DOM 组成。并且 Chrome Devtools 将其标注为 **Long task**, Long task 意味着该任务对耗时较长且交互体验糟糕。
 
-![时间切片](./../public/time-slice-1.png)
+![时间切片](/time-slice-1.png)
 
 ## setTimeout 实现时间切片
 
@@ -102,7 +102,7 @@ timeSlice(() => {
 
 我们打开 devtools 点击 performance 面板的 reload 按钮记录得到下面的一次快照：
 
-![时间切片](./../public/time-slice-2.png)
+![时间切片](/time-slice-2.png)
 
 根据上图可以看到由于我们对一个大的任务进行了切分，变成了若干个密密麻麻的小任务。现在渲染后已经不存在 long task 的标记了，页面的流畅性也提升了很多
 
@@ -144,7 +144,7 @@ function timeSlice(fn, count) {
 
 再一次通过 performance 记录本次渲染的快照，可以看到相比 `setTimeout` ，我们的界面上每一帧的绘制时间都是每隔 16ms 毫秒，这样不仅解决了上面的丢帧现象，而且能够确保回调函数会在每一次渲染之前被调用。
 
-![时间切片](./../public/time-slice-3.png)
+![时间切片](/time-slice-3.png)
 
 ## 总结
 
