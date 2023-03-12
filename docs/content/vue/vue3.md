@@ -16,8 +16,7 @@
 
 ## defineAsyncComponent 和 import异步引入组件
 
-vue3 新增了`defineAsyncComponent`这个API，表示当需要使用组件的时候异步加载一个组件，返回的是组件实例本身，接收一个返回promise的函数。但是我们不能在vue-router4中去使用这个API异步导入组件到路由，[https://github.com/vuejs/vue-router-next/pull/682](issue)这里提到，如果在router中使用`defineAsyncComponent`引入一个异步组件会报警告，因为函数返回的并不是一个promise，或者返回的对象并没有render函数。而`defineAsyncComponent`仅仅只是返回了这个组件实例对象。
-
+vue3 新增了`defineAsyncComponent`这个API，表示当需要使用组件的时候异步加载一个组件，返回的是组件实例本身，接收一个返回promise的函数。但是我们不能在vue-router4中去使用这个API异步导入组件到路由，[issue](https://github.com/vuejs/vue-router-next/pull/682) 这里提到，如果在router中使用`defineAsyncComponent`引入一个异步组件会报警告，因为函数返回的并不是一个promise，或者返回的对象并没有render函数。而`defineAsyncComponent`仅仅只是返回了这个组件实例对象。
 
 ## setup 函数 使用emit options
 
@@ -31,7 +30,7 @@ const emits =  defineEmit(['sendMessage']);
 
 还有一个`defineEmits`的API，这个API是在编译的时候会自动导入(`defineProps`也是编译宏，不需要手动导入, 可能是尤大觉得移除defineEmit会对3.1.*之前的项目会有break change，但是API命名需要和`defineProps`保持一致（s带复数的形式），所以设计了两个API，其函数签名都是一致的。
 
-详见RFC[https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md](script-setup)
+详见RFC[script-setup](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md)
 
 ```js
 const emits = defineEmits(['sendMessage']); // 不需要手动导入
