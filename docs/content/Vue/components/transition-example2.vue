@@ -17,7 +17,7 @@
 <script setup>
 import { useToggle } from "@vueuse/core";
 
-const [state, toggle] = useToggle();
+const [state] = useToggle();
 </script>
 
 <style lang="scss" scoped>

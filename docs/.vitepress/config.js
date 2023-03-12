@@ -11,13 +11,11 @@ import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import { sitebase } from "../config";
 import path from "node:path";
 
-
 export default defineConfig({
    title: "Wonder Dai的博客",
    description: "一个关于所有我接触到的前端知识记录的网站",
    lang: "zh-CN",
    lastUpdated: true,
-   ignoreDeadLinks: true,
    base: sitebase,
    markdown: {
       externalLinks: {
@@ -102,7 +100,7 @@ export default defineConfig({
          "/content/git/": GitTableContents,
       },
       nav: [
-         { text: "JavaScript", link: "/content/js/",  },
+         { text: "JavaScript", link: "/content/js/" },
          { text: "TypeScript", link: "/content/ts/" },
          { text: "Vue", link: "/content/vue/" },
          { text: "CSS", link: "/content/css/" },
@@ -146,7 +144,7 @@ export default defineConfig({
          }),
       ],
       ssr: {
-         noExternal: ['element-plus']
+         noExternal: ["element-plus"],
       },
       resolve: {
          alias: {

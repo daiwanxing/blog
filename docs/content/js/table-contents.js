@@ -41,6 +41,10 @@ export default [
          {
             text: "实现一个发布订阅模型",
             link: "/content/js/pub-sub.model"
+         },
+         {
+            text: "妙用 worker 线程",
+            link: "/content/js/web-worker"
          }
       ],
    },
