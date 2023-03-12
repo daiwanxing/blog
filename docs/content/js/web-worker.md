@@ -136,5 +136,9 @@ export default [
 
 但这种方法造成代码增加了，因为模块代码也被复制到 worker 中。所以也不算一种最佳的办法。
 
+## 结束 worker
+
+一旦 worker 不再被需要时，需要关闭该 worker 以防内存中驻留，可以通过 `worker.terminate()` 关闭 worker。
+
 
 ## 总结
