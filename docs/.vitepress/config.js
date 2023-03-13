@@ -1,9 +1,4 @@
-import cssTableContents from "../content/css/table-contents";
-import tsTableContents from "../content/ts/table-contents";
-import jsTableContents from "../content/js/table-contents";
-import RegExTableContents from "../content/regex/table-contents";
-import GitTableContents from "../content/git/table-content";
-// import VueTableContents from "../content/vue/table-content";
+import catalog from "../genCatalog";
 import { defineConfig } from "vitepress";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
@@ -91,14 +86,7 @@ export default defineConfig({
    themeConfig: {
       logo: "/blog.png",
       lastUpdatedText: "最近一次更新于",
-      sidebar: {
-         "/content/js/": jsTableContents,
-         "/content/ts/": tsTableContents,
-         // "/content/vue/": VueTableContents,
-         "/content/css/": cssTableContents,
-         "/content/regex/": RegExTableContents,
-         "/content/git/": GitTableContents,
-      },
+      sidebar: catalog,
       nav: [
          { text: "JavaScript", link: "/content/js/" },
          { text: "TypeScript", link: "/content/ts/" },
