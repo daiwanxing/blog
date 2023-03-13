@@ -54,7 +54,8 @@ function readMarkdownFiles (dirPath) {
         const res = fs.readFileSync(path.join(dirPath, markdownFile), { encoding: "utf-8" })
         const matchResult = res.match(/^#(.+$)/m);
         if (matchResult) {
-            const relativePath = markdownFilePath.match(/\\(?=content).*/)[0]
+            console.log(markdownFilePath);
+            const relativePath = markdownFilePath.match(/\\(?=content).*/)[0];
             folderFiles.push({
                 text: matchResult[0].replace(/^#/, ''),
                 link: relativePath
