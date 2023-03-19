@@ -88,11 +88,11 @@
 
       img {
          width: 360px;
-         animation: vibrate-2 2s infinite both;
+         animation: vibrate-2 4s infinite both;
       }
       @keyframes vibrate-2 {
          0% {
-            transform: translate(0);
+            transform: translate(0) rotate(0deg);
          }
          20% {
             transform: translate(4px, -4px);
@@ -107,7 +107,7 @@
             transform: translate(-4px, -4px);
          }
          100% {
-            transform: translate(0);
+            transform: translate(0) rotate(1turn);
          }
       }
    }
