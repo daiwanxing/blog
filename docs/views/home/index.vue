@@ -118,6 +118,7 @@
       width: 19em;
       white-space: nowrap;
       overflow: hidden;
+      color: var(--vp-c-text-1);
       animation: typing 3s steps(20, end) infinite alternate forwards;
 
       &::after {
@@ -130,7 +131,8 @@
          border-radius: 2px;
          height: 60%;
          margin: auto 0;
-         background-color: #000;
+         color-scheme: dark;
+         background-color: currentColor;
          animation: blink-1 1s both infinite;
       }
    }

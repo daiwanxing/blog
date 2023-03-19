@@ -4,6 +4,7 @@ import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import { sitebase } from "../config";
+import { articleRef } from "./helper";
 import path from "node:path";
 
 export default defineConfig({
@@ -68,38 +69,60 @@ export default defineConfig({
          "link",
          {
             rel: "stylesheet",
-            href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
-         }
-      ]
+            href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0",
+         },
+      ],
    ],
    themeConfig: {
       logo: "/logo.svg",
       lastUpdatedText: "最近一次更新于",
       sidebar: catalog,
       nav: [
-         { text: "JavaScript", link: "/content/js" },
-         { text: "TypeScript", link: "/content/ts/" },
-         { text: "Vue", link: "/content/vue/" },
-         { text: "CSS", link: "/content/css/" },
-         { text: "Regex", link: "/content/regex/" },
-         { text: "Git", link: "/content/git/" },
          {
-            text: "Other",
+            text: "🎯技术文章",
             items: [
                {
-                  items: [
-                     {
-                        text: "🚀deploy github-pages",
-                        link: "/content/other/deploy-page/",
-                     },
-                     {
-                        text: "👋2022",
-                        link: "/content/other/about-me/goodbye-2022.md",
-                     },
-                  ],
+                  text: "JavaScript",
+                  link: articleRef("javascript"),
+               },
+               {
+                  text: "CSS",
+                  link: articleRef("css"),
+               },
+               {
+                  text: "前端算法",
+                  link: articleRef("algorithm"),
+               },
+               {
+                  text: "git常见操作",
+                  link: articleRef("git"),
+               },
+               {
+                  text: "小程序踩过的坑",
+                  link: articleRef("mini-program"),
                },
             ],
          },
+         { text: "✏️生活", link: "/life/" },
+         { text: "我的 follow", link: "/follow/" },
+         { text: "关于我", link: "/about/" },
+         // {
+         //    text: "Other",
+         //    items: [
+         //       {
+         //          items: [
+         //             {
+         //                text: "🚀deploy github-pages",
+         //                link: "/content/other/deploy-page/",
+         //             },
+         //             {
+         //                text: "👋2022",
+         //                link: "/content/other/about-me/goodbye-2022.md",
+         //             },
+         //          ],
+         //       },
+         //    ],
+         // },
       ],
       socialLinks: [
          { icon: "github", link: "https://github.com/daiwanxing" },
