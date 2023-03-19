@@ -1,27 +1,33 @@
 <template>
    <div data-page="home">
-      <div class="greet-container">
-         <h1 class="greet-title">你好 <span class="wave">🖐️</span>，</h1>
-         <h1 class="greet-title">
-            这里是 <i class="name">Wonder Dai</i> 的个人博客
-         </h1>
-         <h2 class="greet-subtitle typing">
-            <span>我喜欢在这里分享朴素、实用的前端技术。</span>
-         </h2>
-         <div class="discover-btn">
-            <a href="/blog/content/js/requestAnimationFrame">
-               <el-button
-                  type="primary"
-                  size="large"
-                  color="#4f46e5"
-                  class="float-btn"
-               >
-                  <span class="material-symbols-outlined material-icon">
-                     visibility
-                  </span>
-                  <span>&nbsp;立即探索</span>
-               </el-button>
-            </a>
+      <div class="home-page">
+         <div class="greet-container">
+            <h1 class="greet-title">你好 <span class="wave">🖐️</span>，</h1>
+            <h1 class="greet-title">
+               这里是 <i class="name">Wonder Dai</i> 的个人博客
+            </h1>
+            <h2 class="greet-subtitle typing">
+               <span>我喜欢在这里分享朴素、实用的前端技术。</span>
+            </h2>
+            <div class="discover-btn">
+               <a href="/blog/content/js/requestAnimationFrame">
+                  <el-button plain size="large" color="#4f46e5" round>
+                     <span class="material-symbols-outlined material-icon">
+                        door_open
+                     </span>
+                     <span>&nbsp;立即探索</span>
+                  </el-button>
+               </a>
+               <a href="https://github.com/daiwanxing/blog">
+                  <el-button plain size="large" color="#4f46e5" round>
+                     <span>View On GitHub</span>
+                  </el-button>
+               </a>
+            </div>
+         </div>
+         <div class="landing-page">
+            <div class="blog-log"></div>
+            <img src="/blog/logo.svg" />
          </div>
       </div>
    </div>
@@ -49,17 +55,64 @@
 
 [data-page="home"] {
    min-height: calc(100vh - 64px);
-   background-position-y: -38vh;
-   background-size: 100%;
-   background-repeat: no-repeat;
-   background-image: url("https://www.yushi.dev/static/media/background.57250e55467d6b9da119.png");
+
+   .home-page {
+      display: flex;
+      justify-content: space-between;
+      max-width: calc(var(--vp-layout-max-width) - 64px);
+      margin: 0 auto;
+   }
+
+   .landing-page {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+
+      .blog-log {
+         position: absolute;
+         inset: 0;
+         margin: auto;
+         width: 360px;
+         height: 360px;
+         border-radius: 50%;
+         background-image: linear-gradient(
+            45deg,
+            rgba(250, 184, 43, 0.5) 30%,
+            rgba(1, 51, 255, 0.65) 30%
+         );
+         filter: blur(72px);
+         z-index: -1;
+      }
+
+      img {
+         width: 360px;
+         animation: vibrate-2 2s infinite both;
+      }
+      @keyframes vibrate-2 {
+         0% {
+            transform: translate(0);
+         }
+         20% {
+            transform: translate(4px, -4px);
+         }
+         40% {
+            transform: translate(4px, 4px);
+         }
+         60% {
+            transform: translate(-4px, 4px);
+         }
+         80% {
+            transform: translate(-4px, -4px);
+         }
+         100% {
+            transform: translate(0);
+         }
+      }
+   }
 
    @media (max-width: 640px) {
-      & {
-         background-image: url("https://www.yushi.dev/static/media/background2.e118b43af5b1a42dd49b.png");
-         background-position: center right -2.5rem;
-         background-size: cover;
-      }
       .greet-container {
          text-align: center;
       }
@@ -85,14 +138,11 @@
          padding: calc(
                var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 80px
             )
-            64px 64px;
+            0 64px;
       }
    }
 
    .greet-container {
-      max-width: calc(var(--vp-layout-max-width) - 64px);
-      margin: 0 auto;
-
       .greet-title {
          font-weight: 700;
          line-height: 2;
@@ -110,6 +160,8 @@
 
       .discover-btn {
          margin: 3vh 0;
+         display: flex;
+         gap: 20px;
       }
    }
 
