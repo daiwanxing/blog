@@ -87,9 +87,53 @@ export default defineConfig({
       sidebar: {
          "/articles/git/": [
             {
-               text: "Git 命令",
-               link: "/articles/git/",
+               text: "Git Category",
+               items: [
+                  {
+                     text: "Git 操作命令",
+                     link: "/articles/git/"
+                  }
+               ]
             },
+         ],
+         "/articles/javascript": [
+            {
+               text: "JavaScript Category",
+               items: [
+                  {
+                     text: "对时间切片的理解",
+                     link: "/articles/javascript/time-slice"
+                  },
+                  {
+                     text: "发布订阅模型",
+                     link: "/articles/javascript/pub-sub.model"
+                  },
+                  {
+                     text: "反复被提及的事件循环",
+                     link: "/articles/javascript/event-loopV2"
+                  },
+                  {
+                     text: "Intl.DateTimeFormat 揭秘",
+                     link: "/articles/javascript/Intl.DateTimeFormat"
+                  },
+                  {
+                     text: "JavaScript 内存管理探秘（译）",
+                     link: "/articles/javascript/memory-discover"
+                  },
+                  {
+                     text: "CMD 和 ESM",
+                     link: "/articles/javascript/module-system"
+                  },
+                  {
+                     text: "性能利器 - Web-Worker",
+                     link: "/articles/javascript/web-worker"
+                  },
+                  {
+                     text: "Symbol 元属性",
+                     link: "/articles/javascript/metaPropertyAboutSymbol"
+                  }
+               ]
+            }
          ],
          '/life/': [
             {
@@ -108,7 +152,7 @@ export default defineConfig({
             items: [
                {
                   text: "JavaScript",
-                  link: articleRef("javascript"),
+                  link: articleRef("javascript/time-slice"),
                },
                {
                   text: "CSS",
@@ -131,23 +175,6 @@ export default defineConfig({
          { text: "✏️生活", link: "/life/", activeMatch: /life/ },
          { text: "我的 follow", link: "/follow/" },
          { text: "关于我", link: "/about/" },
-         // {
-         //    text: "Other",
-         //    items: [
-         //       {
-         //          items: [
-         //             {
-         //                text: "🚀deploy github-pages",
-         //                link: "/content/other/deploy-page/",
-         //             },
-         //             {
-         //                text: "👋2022",
-         //                link: "/content/other/about-me/goodbye-2022.md",
-         //             },
-         //          ],
-         //       },
-         //    ],
-         // },
       ],
       socialLinks: [
          { icon: "github", link: "https://github.com/daiwanxing" },
