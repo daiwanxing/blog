@@ -23,7 +23,7 @@ export default defineConfig({
          "link",
          {
             rel: "icon",
-            href: `${sitebase}logo-32x32.ico`,
+            href: `${sitebase}startup.ico`,
             type: "image/x-icon",
             size: "32x32",
          },
@@ -31,26 +31,8 @@ export default defineConfig({
       [
          "link",
          {
-            rel: "icon",
-            href: `${sitebase}logo-64x64.ico`,
-            type: "image/x-icon",
-            size: "64x64",
-         },
-      ],
-      [
-         "link",
-         {
-            rel: "icon",
-            href: `${sitebase}logo-128x128.ico`,
-            type: "image/x-icon",
-            size: "128x128",
-         },
-      ],
-      [
-         "link",
-         {
             rel: "apple-touch-icon",
-            href: `${sitebase}logo-32x32.ico`,
+            href: `${sitebase}startup.ico`,
             size: "32x32",
          },
       ],
@@ -82,9 +64,16 @@ export default defineConfig({
             src: `${sitebase}gtag.js`,
          },
       ],
+      [
+         "link",
+         {
+            rel: "stylesheet",
+            href: "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+         }
+      ]
    ],
    themeConfig: {
-      logo: "/blog.png",
+      logo: "/logo.svg",
       lastUpdatedText: "最近一次更新于",
       sidebar: catalog,
       nav: [
