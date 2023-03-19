@@ -91,9 +91,9 @@ export default defineConfig({
                items: [
                   {
                      text: "Git 操作命令",
-                     link: "/articles/git/"
-                  }
-               ]
+                     link: "/articles/git/",
+                  },
+               ],
             },
          ],
          "/articles/javascript": [
@@ -102,48 +102,48 @@ export default defineConfig({
                items: [
                   {
                      text: "对时间切片的理解",
-                     link: "/articles/javascript/time-slice"
+                     link: "/articles/javascript/time-slice",
                   },
                   {
                      text: "发布订阅模型",
-                     link: "/articles/javascript/pub-sub.model"
+                     link: "/articles/javascript/pub-sub.model",
                   },
                   {
                      text: "反复被提及的事件循环",
-                     link: "/articles/javascript/event-loopV2"
+                     link: "/articles/javascript/event-loopV2",
                   },
                   {
                      text: "Intl.DateTimeFormat 揭秘",
-                     link: "/articles/javascript/Intl.DateTimeFormat"
+                     link: "/articles/javascript/Intl.DateTimeFormat",
                   },
                   {
                      text: "JavaScript 内存管理探秘（译）",
-                     link: "/articles/javascript/memory-discover"
+                     link: "/articles/javascript/memory-discover",
                   },
                   {
                      text: "CMD 和 ESM",
-                     link: "/articles/javascript/module-system"
+                     link: "/articles/javascript/module-system",
                   },
                   {
                      text: "性能利器 - Web-Worker",
-                     link: "/articles/javascript/web-worker"
+                     link: "/articles/javascript/web-worker",
                   },
                   {
                      text: "Symbol 元属性",
-                     link: "/articles/javascript/metaPropertyAboutSymbol"
-                  }
-               ]
-            }
+                     link: "/articles/javascript/metaPropertyAboutSymbol",
+                  },
+               ],
+            },
          ],
-         '/life/': [
+         "/life/": [
             {
                text: "My Life",
                link: "/life/",
             },
             {
                text: "2022-12-31",
-               link: "/life/2022-12-31"
-            }
+               link: "/life/2022-12-31",
+            },
          ],
       },
       nav: [
@@ -172,8 +172,8 @@ export default defineConfig({
                },
             ],
          },
-         { text: "✏️生活", link: "/life/", activeMatch: /life/ },
-         { text: "我的 follow", link: "/follow/" },
+         { text: "生活", link: "/life/" },
+         { text: "follow", link: "/follow/" },
          { text: "关于我", link: "/about/" },
       ],
       socialLinks: [

@@ -12,9 +12,6 @@
             <div class="discover-btn">
                <a href="/blog/content/js/requestAnimationFrame">
                   <el-button plain size="large" color="#4f46e5" round>
-                     <span class="material-symbols-outlined material-icon">
-                        door_open
-                     </span>
                      <span>&nbsp;立即探索</span>
                   </el-button>
                </a>
@@ -171,7 +168,7 @@
       white-space: nowrap;
       overflow: hidden;
       color: var(--vp-c-text-1);
-      animation: typing 3s steps(20, end) infinite alternate forwards;
+      animation: typing 3.5s steps(20, end) infinite alternate forwards;
 
       &::after {
          content: "";
