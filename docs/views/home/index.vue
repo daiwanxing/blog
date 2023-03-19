@@ -27,7 +27,7 @@
          </div>
          <div class="landing-page">
             <div class="blog-log"></div>
-            <img src="/blog/logo.svg" />
+            <img src="/logo.svg" />
          </div>
       </div>
    </div>
