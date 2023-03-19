@@ -14,7 +14,7 @@ for (let dir of dirs) {
 
     if (stat.isDirectory() && !isDirectoryEmpty(filePath)) {
         const folders = readMarkdownFiles(filePath);
-        catealog[`/content/${dir}`] = [
+        catealog[`/content/${dir}/`] = [
             {
                 text: "Introduction",
                 items: folders,
@@ -54,7 +54,6 @@ function readMarkdownFiles (dirPath) {
         const res = fs.readFileSync(path.join(dirPath, markdownFile), { encoding: "utf-8" })
         const matchResult = res.match(/^#(.+$)/m);
         if (matchResult) {
-            console.log(markdownFilePath);
             const relativePath = markdownFilePath.match(/[\\//](?=content).*/)[0];
             folderFiles.push({
                 text: matchResult[0].replace(/^#/, ''),

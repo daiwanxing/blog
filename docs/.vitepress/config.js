@@ -88,7 +88,7 @@ export default defineConfig({
       lastUpdatedText: "最近一次更新于",
       sidebar: catalog,
       nav: [
-         { text: "JavaScript", link: "/content/js/" },
+         { text: "JavaScript", link: "/content/js" },
          { text: "TypeScript", link: "/content/ts/" },
          { text: "Vue", link: "/content/vue/" },
          { text: "CSS", link: "/content/css/" },
