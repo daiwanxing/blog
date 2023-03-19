@@ -84,7 +84,24 @@ export default defineConfig({
    themeConfig: {
       logo: "/logo.svg",
       lastUpdatedText: "最近一次更新于",
-      sidebar: catalog,
+      sidebar: {
+         "/articles/git/": [
+            {
+               text: "Git 命令",
+               link: "/articles/git/",
+            },
+         ],
+         '/life/': [
+            {
+               text: "My Life",
+               link: "/life/",
+            },
+            {
+               text: "2022-12-31",
+               link: "/life/2022-12-31"
+            }
+         ],
+      },
       nav: [
          {
             text: "🎯技术文章",
@@ -103,7 +120,7 @@ export default defineConfig({
                },
                {
                   text: "git常见操作",
-                  link: articleRef("git"),
+                  link: articleRef("git/"),
                },
                {
                   text: "小程序踩过的坑",
@@ -111,7 +128,7 @@ export default defineConfig({
                },
             ],
          },
-         { text: "✏️生活", link: "/life/" },
+         { text: "✏️生活", link: "/life/", activeMatch: /life/ },
          { text: "我的 follow", link: "/follow/" },
          { text: "关于我", link: "/about/" },
          // {
