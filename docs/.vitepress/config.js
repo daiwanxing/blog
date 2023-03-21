@@ -135,6 +135,25 @@ export default defineConfig({
                ],
             },
          ],
+         "/articles/css": [
+            {
+               text: "CSS Category",
+               items: [
+                  {
+                     text: "巧用 aspect-ratio 设置宽高比",
+                     link: "/articles/css/aspect-ratio"
+                  },
+                  {
+                     text: "font-family 容易忽略的细节",
+                     link: "/articles/css/font-family"
+                  },
+                  {
+                     text: "CSS3 的新单位",
+                     link: "/articles/css/unit-keywords"
+                  }
+               ]
+            }
+         ],
          "/life/": [
             {
                text: "My Life",
@@ -156,7 +175,7 @@ export default defineConfig({
                },
                {
                   text: "CSS",
-                  link: articleRef("css"),
+                  link: articleRef("css/aspect-ratio"),
                },
                {
                   text: "前端算法",

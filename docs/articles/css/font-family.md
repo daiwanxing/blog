@@ -1,4 +1,4 @@
-# 说说 css 中的字体
+# font-family 容易忽略的细节
 
 大多数前端开发者平日对 css 中的`font-family`属性了解甚少。如果你习惯通过脚手架快速搭建一个项目，那么你可以从`/src/App.vue`（也可能是`style.css`）中的 style 标签内的找到预设字体的 css 样式.
 
