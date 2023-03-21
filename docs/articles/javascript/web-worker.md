@@ -1,7 +1,5 @@
-# 妙用 web-worker
+# 性能利器之 web-worker
 
-
-## 介绍
 
 web-worker 是一种不算太新的技术，可以让开发者将自己编写的 JS 代码运行在一个单独的子线程中。
 
@@ -39,7 +37,7 @@ worker.onmessage = (e) => {
 }
 ```
 
-## 落地
+## 业务落地
 
 在日常的业务开发者，如果你遇到需要处理 I/O 密集型计算的任务所造成的页面卡顿，那你真的应该毫不疑问的切换到 `web-worker` 中去实现。
 
@@ -51,8 +49,9 @@ worker.onmessage = (e) => {
 
 在了解到了 web-worker 后我毫不疑问的切过去了，现在处理数据的速度虽然没有变化，但是由于计算任务全都放在了一个附加线程中，可以让主线程有更多的空间做其他的事情， That's so amazing!
 
-## 注意
+## 注意事项
 
+::: warning
 `web-worker` 很好用，但是也做了诸多的限制，比如不能访问 `DOM` 和 `BOM`。
 
 在 web-worker 中运行的 js 代码可以看作一个沙箱，仅提供了一个纯 javascript 的运行环境。
@@ -64,6 +63,7 @@ worker.onmessage = (e) => {
 - 安全性：允许 web-worker 直接访问 `DOM` 或 `BOM` 可能会带来安全风险，因为 web-worker 在与主线程不同的上下文中运行，并且可能会访问或修改敏感数据。
 
 这种设计可确保工作线程安全、高效和可靠，并且它们可以在后台运行而不会干扰主线程。
+:::
 
 
 ## 在 worker 中引入其他脚本
@@ -142,3 +142,5 @@ export default [
 
 
 ## 总结
+
+本文介绍了 Web Workers 在JavaScript中的基础概念，包括如何创建和使用 Dedicated Workers 和 Shared Workers，如何使用 postMessage()方法进行线程之间的通信，以及如何使用 Transferable Objects来提高性能。文章还提供了一些实际的例子来演示如何使用Web Workers来处理复杂的计算和避免主线程阻塞。最后，文章还讨论了一些关于Web Workers的限制和注意事项，例如同源策略和浏览器兼容性问题。
