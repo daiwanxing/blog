@@ -1,4 +1,4 @@
-# 正确的配置 tsconfig.json
+# 如何配置 tsconfig.json
 
 -  `tsconfig.json`是专为 ts 项目进行相关的 typescript 配置的，它包含了 tsc 编译器使用的输入和输出路径、源文件扩展名、编译目标版本以及其他编译选项。
 

@@ -1,4 +1,4 @@
-# 重新认识 typescript
+# 重新认识 TypeScript
 
 ## ts 中的结构化类型系统
 

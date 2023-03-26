@@ -1,4 +1,4 @@
-# Typescript Change-log
+# Typescript 更新日志
 
 ## 4.1
 

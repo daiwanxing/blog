@@ -135,6 +135,37 @@ export default defineConfig({
                ],
             },
          ],
+         "/articles/typescript": [
+            {
+               text: "TypeScript Category",
+               items: [
+                  {
+                     text: "declare 关键字",
+                     link: "/articles/typescript/declare",
+                  },
+                  {
+                     text: "TS 内置的功能类型",
+                     link: "/articles/typescript/implement-utility-type",
+                  },
+                  {
+                     text: "使用三斜线指令",
+                     link: "/articles/typescript/three-triple-line",
+                  },
+                  {
+                     text: "如何配置 tsconfig.json",
+                     link: "/articles/typescript/tsconfig",
+                  },
+                  {
+                     text: "Typescript 更新日志",
+                     link: "/articles/typescript/typescript-changelog",
+                  },
+                  {
+                     text: "重新认识 TypeScript",
+                     link: "/articles/typescript/type-narrow",
+                  },
+               ],
+            },
+         ],
          "/articles/css": [
             {
                text: "CSS Category",
@@ -172,6 +203,10 @@ export default defineConfig({
                {
                   text: "JavaScript",
                   link: articleRef("javascript/time-slice"),
+               },
+               {
+                  text: "TypeScript",
+                  link: articleRef("typescript/"),
                },
                {
                   text: "CSS",

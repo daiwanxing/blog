@@ -1,35 +1,29 @@
 {
-  "hash": "1bbff496",
-  "browserHash": "58e68911",
+  "hash": "2ce24143",
+  "browserHash": "83dfd7da",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/.pnpm/registry.npmmirror.com+vue@3.2.47/node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "19bce88a",
+      "fileHash": "9bb6981a",
       "needsInterop": false
     },
     "element-plus/es": {
       "src": "../../../../node_modules/.pnpm/registry.npmmirror.com+element-plus@2.2.36_vue@3.2.47/node_modules/element-plus/es/index.mjs",
       "file": "element-plus_es.js",
-      "fileHash": "8dd06a1a",
+      "fileHash": "72488459",
       "needsInterop": false
     },
     "element-plus/es/components/base/style/css": {
       "src": "../../../../node_modules/.pnpm/registry.npmmirror.com+element-plus@2.2.36_vue@3.2.47/node_modules/element-plus/es/components/base/style/css.mjs",
       "file": "element-plus_es_components_base_style_css.js",
-      "fileHash": "37c85f55",
+      "fileHash": "cbf9d3f5",
       "needsInterop": false
     },
     "element-plus/es/components/button/style/css": {
       "src": "../../../../node_modules/.pnpm/registry.npmmirror.com+element-plus@2.2.36_vue@3.2.47/node_modules/element-plus/es/components/button/style/css.mjs",
       "file": "element-plus_es_components_button_style_css.js",
-      "fileHash": "1739596f",
-      "needsInterop": false
-    },
-    "element-plus/es/components/icon/style/css": {
-      "src": "../../../../node_modules/.pnpm/registry.npmmirror.com+element-plus@2.2.36_vue@3.2.47/node_modules/element-plus/es/components/icon/style/css.mjs",
-      "file": "element-plus_es_components_icon_style_css.js",
-      "fileHash": "b30725d5",
+      "fileHash": "6f133549",
       "needsInterop": false
     }
   },
