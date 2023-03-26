@@ -213,6 +213,10 @@ export default defineConfig({
                   link: articleRef("css/aspect-ratio"),
                },
                {
+                  text: "Vue",
+                  link: articleRef("vue/transition"),
+               },
+               {
                   text: "前端算法",
                   link: articleRef("algorithm"),
                },
