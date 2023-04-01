@@ -181,6 +181,10 @@ export default defineConfig({
                   {
                      text: "CSS3 的新单位",
                      link: "/articles/css/unit-keywords"
+                  },
+                  {
+                     text: "CSS3 新伪类选择器",
+                     link: "/articles/css/new_pseudo_selector"
                   }
                ]
             }

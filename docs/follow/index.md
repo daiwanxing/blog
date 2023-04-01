@@ -18,8 +18,8 @@ import FollowCard from './follow-card.vue';
 
 ## follow 的博客
 
-[张鑫旭的博客](https://www.zhangxinxu.com/)
-[蛋烘糕](http://eggcake.cn/)
+- [张鑫旭的博客](https://www.zhangxinxu.com/)
+- [蛋烘糕](http://eggcake.cn/)
 
 ## follow 的文章
 
