@@ -179,7 +179,7 @@ export default defineConfig({
                      link: "/articles/css/font-family"
                   },
                   {
-                     text: "CSS3 新尺寸单位",
+                     text: "CSS3 新尺寸关键字",
                      link: "/articles/css/unit-keywords"
                   },
                   {
