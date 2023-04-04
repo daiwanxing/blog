@@ -185,7 +185,37 @@ export default defineConfig({
                   {
                      text: "CSS3 新伪类选择器",
                      link: "/articles/css/new_pseudo_selector"
+                  },
+                  {
+                     text: "CSS3 渐变",
+                     link: "/articles/css/gradient"
                   }
+               ]
+            }
+         ],
+         "/articles/vue": [
+            {
+               text: "Vue Category",
+               items: [
+                  {
+                     text: "深入了解 Transition",
+                     link: "/articles/vue/transition"
+                  },
+                  {
+                     text: "ref vs shallowRef",
+                     link: "/articles/vue/refVsShallowRef"
+                  }
+               ]
+            }
+         ],
+         "/articles/math": [
+            {
+               text: "Math Category",
+               items: [
+                  {
+                     text: "数学公式",
+                     link: "/articles/math/formula"
+                  },
                ]
             }
          ],
@@ -232,6 +262,10 @@ export default defineConfig({
                   text: "小程序踩过的坑",
                   link: articleRef("mini-program"),
                },
+               {
+                  text: "数学",
+                  link: articleRef("math/"),
+               }
             ],
          },
          { text: "生活", link: "/life/" },
