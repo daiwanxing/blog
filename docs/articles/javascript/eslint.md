@@ -24,6 +24,7 @@ eslint 在前端工程化方面，有很大的作用，负责保证项目产出�
 目前 eslint 还不支持 esm，所以无法使用 `export default`
 
 > Note that ESLint does not support ESM configuration at this time.
+
 :::
 
 ## env
@@ -63,11 +64,11 @@ env 中所有合法的属性值，可以点击 [language-options](https://eslint
 
 ```js
 module.exports = {
-    global: {
-        // global 的属性值可以是 `readonly` 或 `writable`
-        BMap: "readonly",
-    }
-}
+   global: {
+      // global 的属性值可以是 `readonly` 或 `writable`
+      BMap: "readonly",
+   },
+};
 ```
 
 :::info
@@ -77,3 +78,57 @@ module.exports = {
 
 ## parserOptions
 
+ESLint 的底层实现涉及将 JavaScript 代码解析为抽象语法树（AST），然后在 AST 中进行分析和检查以查找可能的问题和错误。具体来说，ESLint 会使用一个名为 Esprima 的默认解析器来解析代码，将其转换为 AST，然后将 AST 提供给规则来进行检查。
+
+我们可以给解析器传入一些配置项。例如 eslint 默认解析 es5 的语法代码，如果尝试使用 es6+ 的代码，则会解析失败。
+
+我们可以为 `parserOptions` 传入 `ecmaVersion` 指定 eslint 支持解析的 js 语法代码版本。
+
+```js
+module.exports = {
+   // ---------
+   parserOptions: {
+      ecmaVersion: "2015",
+   },
+};
+```
+
+此外，如果要让 eslint 识别解析 jsx 的语法格式，我们还需要设置 `ecmaFeatures: { jsx: true }` 以开启 jsx 语法。
+
+```js
+module.exports = {
+   // ---------
+   parserOptions: {
+      ecmaVersion: "2015",
+      ecmaFeatures: {
+         jsx: true,
+      },
+   },
+};
+```
+
+`ecmaFeatures` 除了可以开启 `jsx` 让 eslint 识别 jsx 语法外，还可以设置 `impliedStrict`、`globalReturn` 等。
+
+具体的属性含义本文不会细说，可以查看官网文档有详细说明。
+
+## rules
+
+eslint 的配置核心是规则，eslint 预设了很多的规则来保证代码的可靠性。
+
+规则的值可以是
+
+-  off（0） 关闭规则
+-  warn（1）开启规则，当代码未能通过该规则时，代码的下划线展示黄色的波浪线
+-  error（2）开启规则，当代码未能通过该规则时，代码的下划线部分展示红色的波浪线
+
+```js
+module.exports = {
+   // ---------
+   rules: {
+      // 对于代码中出现的单引号的，展示错误提示
+      quotes: "error",
+   },
+};
+```
+
+此外，部分规则还接收参数传递，例如
