@@ -28,3 +28,5 @@ import FollowCard from './follow-card.vue';
 - [Vue Components as Custom Elements](https://maximomussini.com/posts/vue-custom-elements)
 - [TS 中何时使用“never”与“unknown”类型(20190724)](https://www.zhangxinghai.cn/2019/07/24/when-to-use-never-and-unknown-in-typescript.html)
 - [Vue 3 Composition API - watch and watchEffect](https://www.thisdot.co/blog/vue-3-composition-api-watch-and-watcheffect)
+- [A Deep CSS Dive Into Radial And Conic Gradients
+](https://www.smashingmagazine.com/2022/01/css-radial-conic-gradient/#use-cases-for-conic-gradients)

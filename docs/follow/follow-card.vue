@@ -45,12 +45,22 @@
       </div>
       <div class="vip-card">
          <figure>
-            <img
-               src="https://avatars.githubusercontent.com/u/159840?v=4"
-            />
+            <img src="https://avatars.githubusercontent.com/u/159840?v=4" />
          </figure>
          <h4 class="big-bro">贺师俊</h4>
-         <p class="bro-resume">hex 是 TC39（ECMAScript技术委员会）的成员之一，在知乎读过关于他回答的很多JS相关的答案，受益匪浅</p>
+         <p class="bro-resume">
+            hex 是
+            TC39（ECMAScript技术委员会）的成员之一，在知乎读过关于他回答的很多JS相关的答案，受益匪浅
+         </p>
+      </div>
+      <div class="vip-card">
+         <figure>
+            <img src="https://avatars.githubusercontent.com/u/19424274?v=4" />
+         </figure>
+         <h4 class="big-bro">严文彬</h4>
+         <p class="bro-resume">
+           阅文集团前端大佬，主营公众号 - 前端侦探，有多篇优质的 CSS 内容产出
+         </p>
       </div>
    </div>
 </template>
