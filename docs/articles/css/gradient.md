@@ -1,5 +1,6 @@
 <script setup>
 import linearExample from './components/linear-example.vue';
+import radialExample from './components/radial-example.vue';
 </script>
 
 # CSS3 渐变
@@ -12,7 +13,7 @@ import linearExample from './components/linear-example.vue';
 
 `CSS3` 渐变被划分在了 [`CSS Images Module Level 3`](https://www.w3.org/TR/css-images-3/#linear-gradients) 中，它属于 CSS3 中的图像模块规范，我们可以点击查看每个属性的最新规范定义。
 
-### 线性渐变
+## 线性渐变
 
 线性渐变通过使用 `linear-gradient()` 函数创建，可以设置渐变的角度从指定方向开始渐变。
 
@@ -39,6 +40,90 @@ div {
 
 ```css
 .box-2 {
-   background: linear-gradient(3.3deg, blue 30% 50%, yellow 50% 70%, red 80%);
+   /* blue 颜色起始位置是0，渐变到 50%， 
+      灰色渐变的起始位置是 50% + 1px，结束位置是 100%  */
+   background: linear-gradient(3.3deg, blue 50%, gray calc(50% + 1px));
 }
 ```
+
+除了百分比单位之外，还可以使用像素单位
+
+```css
+.box-3 {
+   background: linear-gradient(45deg, blue 69px, gray 69px);
+}
+```
+
+具体渲染效果如下所示:
+
+<linearExample show3 />
+
+这是一个对半分的渐变色，你可能会好奇为什么渐变位置的像素单位是 69px。
+
+这里面必须要有个概念知识要被提及。那就是: **gradient-line**
+
+**gradient-line** 由渐变的方向来决定，如果渐变的方向是 `to right`，那么 **gradient-line** 就是从左往右。
+
+如果渐变的方向是 `45deg`，那么 **gradient-line** 的位置如下图所示：
+
+![https://www.w3.org/TR/css-images-3/images/gradient-diagram.png](https://www.w3.org/TR/css-images-3/images/gradient-diagram.png)
+
+阅读 w3c 中的 [`CSS Images Module Level 3`](https://www.w3.org/TR/css-images-3/#linear-gradients) 规范得知，**gradient-line** 的长度计算公式为：
+
+> **A** the angle (in any quadrant) defining the gradient line’s direction such that 0 degrees points upwards and positive angles represent clockwise rotation,
+>
+> **W** the width of the gradient box,
+>
+> **H** the height of the gradient box,
+> The length of the gradient line (between the starting point and ending point) is:
+>
+> abs(W _ sin(A)) + abs(H _ cos(A))
+
+所以，上面这个示例中，**gradient-line** 的长度为 `Math.abs(100 * Math.sin(45)) + Math.abs(100 * Math.cos(45))`
+
+最终的计算结果约等于 `138`，如果想实现对半分的渐变，则第一个颜色结束位置应该是 `138 / 2 = 69px`。故 `69px` 就是这么得来的。
+
+## 径向渐变
+
+径向渐变为开发者提供绘制圆形、椭圆形的渐变能力。如果说线性渐变可以填充整个容器的背景，那径向渐变则可以在填充背景色的情况下改变背景的形状。
+
+在径向渐变中，颜色不像线性渐变那样从渐变框的一侧平滑地淡化到另一侧，而是从一个点出现并以圆形或椭圆形平滑地向外扩散。
+
+创建一个简单的径向渐变。
+
+```css
+div {
+   height: 200px;
+   background: radial-gradient(#9c27b0, #ff9800);
+}
+```
+
+<radialExample />
+
+径向渐变的 `ending-shape` 缺省值是 `ellipse`, 径向渐变的 `start-point` 默认是容器的中心位置，`end-point` 表示容器的大小。
+
+如果要创建一个 `circle` 形状的渐变，也很简单。
+
+```css
+div {
+   background: radial-gradient(circle, #000 0%, #ff9800 100%);
+}
+```
+
+创建一个 `100px` 的 圆形渐变。
+
+```css
+div {
+   background: radial-gradient(100px circle, #000 0%, #ff9800 100%);
+}
+```
+
+我们还可以为径向渐变设置 `position`，需要注意的是渐变的的定位默认是从**中心位置**开始。
+
+如果设置 `circle at top left`, 则实际的中心位置如下图所示。
+
+![https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/359e5216-94e1-4c08-9ed3-298647be077d/5-deep-dive-into-css-radial-gradient-conic-gradient.jpeg](https://res.cloudinary.com/indysigner/image/fetch/f_auto,q_80/w_2000/https://archive.smashing.media/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/359e5216-94e1-4c08-9ed3-298647be077d/5-deep-dive-into-css-radial-gradient-conic-gradient.jpeg)
+
+
+### 锥形渐变
+
