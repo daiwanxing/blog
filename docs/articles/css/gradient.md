@@ -28,7 +28,7 @@ div {
 
 <linearExample show1 />
 
-角度可以使用一系列的关键字值，也可以使用具体的数值和单位。缺省角度值为 180deg (也就是 to bottom)；
+角度可以使用一系列的关键字值，也可以使用具体的数值和单位。缺省角度值为 `180deg` (也就是 `to bottom`)；
 
 > For the purpose of this argument, 0deg points upward, and positive angles represent clockwise rotation, so 90deg point toward the right.
 

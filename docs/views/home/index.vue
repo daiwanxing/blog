@@ -10,7 +10,7 @@
                <span>我喜欢在这里分享朴素、实用的前端技术。</span>
             </h2>
             <div class="discover-btn">
-               <a href="/blog/content/js/requestAnimationFrame">
+               <a href="/blog/articles/javascript/time-slice">
                   <el-button plain size="large" color="#4f46e5" round>
                      <span>&nbsp;立即探索</span>
                   </el-button>
