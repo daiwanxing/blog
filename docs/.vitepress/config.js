@@ -132,6 +132,10 @@ export default defineConfig({
                      text: "Symbol 元属性",
                      link: "/articles/javascript/metaPropertyAboutSymbol",
                   },
+                  {
+                     text: "eslint 配置指南",
+                     link: "/articles/javascript/eslint",
+                  }
                ],
             },
          ],
