@@ -144,7 +144,7 @@ export default defineConfig({
                text: "TypeScript Category",
                items: [
                   {
-                     type: "搭建 typescript 开发环境",
+                     text: "搭建 typescript 开发环境",
                      link: "/articles/typescript/typescript-env"
                   },
                   {
