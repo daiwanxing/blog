@@ -2,7 +2,7 @@
 
 如果要在项目中用到 typescript，那么搭建一个 typescript 的开发环境是必要的。
 
-由于 typescript  代码无法直接在浏览器环境或者 Nodejs 中直接被执行，所以需要借助 tsc 编辑器将其编译成 js 代码。
+由于 typescript  代码无法直接在浏览器环境或者 Nodejs 中直接被执行，所以需要借助 tsc 编译器将其编译成 js 代码。
 
 如果你的项目是基于 webpack 构建的，那么你需要下载两个 package
 
