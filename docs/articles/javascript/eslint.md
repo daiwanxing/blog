@@ -14,7 +14,19 @@ eslint 在前端工程化方面，有很大的作用，负责保证项目产出�
 -  `.eslintrc.json `
 -  `.eslintrc.yml`
 
-同时，我们还需要在 vscode 中的扩展市场搜索并安装 eslint 插件，这个插件的作用是为了识别项目中的 eslint 配置文件，根据配置文件内的参数，识别编辑 1 机器中具有潜在错误风险的代码，对代码进行高亮标注，并支持鼠标移到具有问题的代码上，显示具体的错误的原因。
+同时，我们还需要在 vscode 中的扩展市场搜索并安装 [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)，这个插件的作用是为了识别项目中的 eslint 配置文件，读取配置文件内的配置项以进行代码检测。
+
+安装完毕后，跟着插件的 README，我们还需要在 **`.vscode`** 目录下新建 **`settings.json`** 文件，vscode 会读取这个文件，这个文件可以配置插件的环境。编辑器的设置等等。
+
+我们在 **`settings.json`** 文件中，进行如下设置：
+
+```json
+"editor.codeActionsOnSave": {
+   // 当每次保存代码的时候，修复所有可被自动修复的 eslint 错误
+   "source.fixAll.eslint": true,
+}
+```
+
 
 ## 配置 eslint
 
@@ -284,3 +296,22 @@ eslint 配置起来并不难，关键是理解每个配置项的作用，多看�
 如果你不确定自己的配置文件是否编写有误，最好的办法是 `ctrl + j` 打开 vscode 的 terminal，点击 `OUTPUT` 在右侧的下拉框找到 `Eslint` 可以看到具体的输出信息。
 
 ![eslint-code](/eslint-03.png)
+
+
+## 更新
+
+### 解决 eslinter 配置的规则 在 `.vue` 文件中不生效的问题
+
+昨天自己搭建了一个 vite 的项目，在项目根目录配置了 `.eslintrc.json`，并安装使用了 `eslint-plugin-vue`。但是发现 vue 文件中的代码无法被 linter 检查出毛病。
+
+例如，我在 `main.ts` 中有如下代码
+
+![https://i.stack.imgur.com/vZvVC.png](https://i.stack.imgur.com/vZvVC.png)
+
+linter 检测到了用 `var` 声明变量，并提示建议改为 `let` 或者 `const`，okay 没任何问题。
+
+但是在 `.vue` 文件中我写了一段同样的代码，linter 并未检测出来
+
+![https://i.stack.imgur.com/tiwlv.png](https://i.stack.imgur.com/tiwlv.png)
+
+我已经在 `.eslintrc.json` 中使用到了 `prefer-const` 规则，但是该规则似乎不会让 linter 报告 用 var 定义的变量，再加一条规则 `no-var` 即可解决在 Vue 文件中无法检测的问题。
