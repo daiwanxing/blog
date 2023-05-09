@@ -44,6 +44,6 @@
    "dependencies": {
       "@vueuse/core": "^9.13.0",
       "element-plus": "^2.2.36",
-      "vitepress": "1.0.0-alpha.62"
+      "vitepress": "1.0.0-alpha.73"
    }
 }

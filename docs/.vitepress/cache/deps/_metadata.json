@@ -1,71 +1,38 @@
 {
-  "hash": "2ce24143",
-  "browserHash": "e27cae8d",
+  "hash": "4981dded",
+  "browserHash": "ee837b0b",
   "optimized": {
     "vue": {
       "src": "../../../../node_modules/.pnpm/registry.npmmirror.com+vue@3.2.47/node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "621ffcb3",
+      "fileHash": "daef9f77",
       "needsInterop": false
     },
     "element-plus/es": {
       "src": "../../../../node_modules/.pnpm/registry.npmmirror.com+element-plus@2.2.36_vue@3.2.47/node_modules/element-plus/es/index.mjs",
       "file": "element-plus_es.js",
-      "fileHash": "feab3bd4",
+      "fileHash": "b4d6a2aa",
       "needsInterop": false
     },
     "element-plus/es/components/base/style/css": {
       "src": "../../../../node_modules/.pnpm/registry.npmmirror.com+element-plus@2.2.36_vue@3.2.47/node_modules/element-plus/es/components/base/style/css.mjs",
       "file": "element-plus_es_components_base_style_css.js",
-      "fileHash": "34353ae8",
+      "fileHash": "823e5eaf",
       "needsInterop": false
     },
     "element-plus/es/components/button/style/css": {
       "src": "../../../../node_modules/.pnpm/registry.npmmirror.com+element-plus@2.2.36_vue@3.2.47/node_modules/element-plus/es/components/button/style/css.mjs",
       "file": "element-plus_es_components_button_style_css.js",
-      "fileHash": "81663215",
-      "needsInterop": false
-    },
-    "element-plus/es/components/card/style/css": {
-      "src": "../../../../node_modules/.pnpm/registry.npmmirror.com+element-plus@2.2.36_vue@3.2.47/node_modules/element-plus/es/components/card/style/css.mjs",
-      "file": "element-plus_es_components_card_style_css.js",
-      "fileHash": "157cf04a",
-      "needsInterop": false
-    },
-    "element-plus/es/components/switch/style/css": {
-      "src": "../../../../node_modules/.pnpm/registry.npmmirror.com+element-plus@2.2.36_vue@3.2.47/node_modules/element-plus/es/components/switch/style/css.mjs",
-      "file": "element-plus_es_components_switch_style_css.js",
-      "fileHash": "17f3492c",
-      "needsInterop": false
-    },
-    "@vueuse/core": {
-      "src": "../../../../node_modules/.pnpm/registry.npmmirror.com+@vueuse+core@9.13.0_vue@3.2.47/node_modules/@vueuse/core/index.mjs",
-      "file": "@vueuse_core.js",
-      "fileHash": "7bfe0738",
-      "needsInterop": false
-    },
-    "element-plus/es/components/row/style/css": {
-      "src": "../../../../node_modules/.pnpm/registry.npmmirror.com+element-plus@2.2.36_vue@3.2.47/node_modules/element-plus/es/components/row/style/css.mjs",
-      "file": "element-plus_es_components_row_style_css.js",
-      "fileHash": "ad8d80fc",
-      "needsInterop": false
-    },
-    "element-plus/es/components/col/style/css": {
-      "src": "../../../../node_modules/.pnpm/registry.npmmirror.com+element-plus@2.2.36_vue@3.2.47/node_modules/element-plus/es/components/col/style/css.mjs",
-      "file": "element-plus_es_components_col_style_css.js",
-      "fileHash": "004a12b3",
+      "fileHash": "9b2c17ad",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-BW3VCOH3": {
-      "file": "chunk-BW3VCOH3.js"
+    "chunk-XXJBAIOK": {
+      "file": "chunk-XXJBAIOK.js"
     },
     "chunk-DZFCZL64": {
       "file": "chunk-DZFCZL64.js"
-    },
-    "chunk-XXJBAIOK": {
-      "file": "chunk-XXJBAIOK.js"
     }
   }
 }
