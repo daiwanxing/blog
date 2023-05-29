@@ -95,6 +95,10 @@ git stash pop # 通过该命令取出暂存了的代码, 执行该命令后，�
 可以用 `git stash list` 查看所有暂存的记录
 :::
 
+:::tip
+如果需要删除暂存得所有记录，可以使用 `git stash clear` 清空栈
+:::
+
 ## cherry-pick
 
 小帅解决了产品经理提出的问题后，继续在 dev 分支开发，但是转念一想，dev 分支就是从 master 分支签出来的，那么岂不是 dev 分支也有这个 bug，那怎么在 dev 分支也修复这个 bug 呢？
