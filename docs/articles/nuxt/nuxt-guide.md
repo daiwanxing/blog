@@ -38,8 +38,25 @@ if (process.server) {
 如果是初次打开的页面就是 B 页面，则这些请求会在服务端进行。换言之，`useFetch` 的具体请求场合根据是否用户初次打开页面而决定。`useFetch` 的执行只会发生在 CSR 或者 SSR 中的其中一个。
 
 ```js
-const { data, pending } = await $fetch("/artcile/detail");
+const { data, pending } = await useFetch("/artcile/detail");
 ```
 
-> `useFetch` 会 block 掉导航（仅在 CSR 期间），这句话的意思是只有当请求接口的数据返回成功或者失败后，才会导航页面。如果不希望请求的数据会
-> 阻塞导航，可以使用 `useLazyFetch`，这个 API 不会阻塞导航，而是优先导航页面，当数据返回过来后再填充数据到页面中。
+> `useFetch` 会 block 掉导航（仅在 CSR 期间），这句话的意思是只有当请求接口的数据返回成功或者失败后，才会导航页面。
+> 如果不希望请求的数据阻塞导航，可以使用 `useLazyFetch`，这个 API 不会阻塞导航，而是优先导航页面，当数据返回过来后再填充数据到页面中。
+
+## useLazyFetch
+
+`useLazyFetch` 是 `useFetch("/artcile/detail", { lazy: true })` 的另一种简写，正如上面我说的那样，这个异步请求 API 不会*阻塞*导航。这意味，如果我们从 A 页面导航 B 页面，不必等待 B 页面的所有请求执行完成，可以立即导航。但是我们需要对页面进行一些 loading 操作以便用户能知道需要等待时间才能将数据呈现到页面中。
+
+```js
+const { data, pending, refresh, error  } = useLazyFetch("https://api.github.com/users/daiwanxing");
+```
+
+此外，由于使用了 `useLazyFetch`，我们不能立即在 B 页面使用接口响应的数据，而是应该 `watch` 数据的变化以进行下一步业务操作。
+
+:::tip
+`useLazyFetch` 具有和 `useFetch` 相同的签名
+:::
+
+## useAsyncData
+
