@@ -96,7 +96,7 @@ git stash pop # 通过该命令取出暂存了的代码, 执行该命令后，�
 :::
 
 :::tip
-如果需要删除暂存得所有记录，可以使用 `git stash clear` 清空栈
+如果需要删除暂存的所有记录，可以使用 `git stash clear` 清空栈
 :::
 
 ## cherry-pick
@@ -210,3 +210,17 @@ git cherry-pick commit-b
 ## 交互式 rebase
 
 交互式 rebase 指的是使用带参数 --interactive 的 rebase 命令, 简写为 -i。交互式 `git rebase -i` 会打开一个 GUI 界面。我们可以通过这个 GUI 界面对 要 merge 的 commit 进行排序后，生成一份新的 commit 副本。
+
+## git 删除所有分支
+
+如果想删除所有的分支，（但至少要保留一个分支），那就有个很方便的命令：`git branch | grep -v "master" | xargs git branch -D`，这个 git 命令表示删除本地所有的分支，除了 `master` 分支保留。
+
+:::tip
+如果在 windows 电脑上，需要打开 git bash，才能执行此命令，无法直接在 `cmd` 或者 `powershell` 上执行。
+:::
+
+如果希望既保留 `master` 又保留 `develop`，直接再重复输入一次参数就行。
+
+```shell
+git branch | grep -v "master" | grep -v "develop" | xargs git branch -D
+```
