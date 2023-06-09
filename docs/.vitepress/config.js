@@ -1,4 +1,3 @@
-import catalog from "../genCatalog";
 import { defineConfig } from "vitepress";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
@@ -135,6 +134,10 @@ export default defineConfig({
                   {
                      text: "eslint 配置指南",
                      link: "/articles/javascript/eslint",
+                  },
+                  {
+                     text: "UnoCSS 初探",
+                     link: "/articles/javascript/unocss"
                   }
                ],
             },
