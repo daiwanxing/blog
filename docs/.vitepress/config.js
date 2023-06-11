@@ -230,6 +230,17 @@ export default defineConfig({
                ]
             }
          ],
+         "/articles/algorithm": [
+            {
+               text: "Overview",
+               items: [
+                  {
+                     text: "冒泡排序",
+                     link: "/articles/algorithm/bubble-sort"
+                  },
+               ]
+            }
+         ],
          "/life/": [
             {
                text: "My Life",
@@ -263,7 +274,7 @@ export default defineConfig({
                },
                {
                   text: "前端算法",
-                  link: articleRef("algorithm"),
+                  link: articleRef("algorithm/"),
                },
                {
                   text: "git常见操作",
