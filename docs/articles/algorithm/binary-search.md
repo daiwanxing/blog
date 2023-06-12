@@ -28,28 +28,63 @@
 
 ## 代码实现
 
-
 ### 递归实现
 
 ```js
 function binarySearch(data, target, start = 0, end = data.length) {
-  if (!target) throw Error("need target params");
+   if (!target) throw Error("need target params");
 
-  const len = data.length;
+   const len = data.length;
 
-  if (start > end) return -1;
+   if (start > end) return -1;
 
-  const middleIndex = Math.floor(start + (end - start) / 2);
-  const middleItem = data[middleIndex];
+   const middleIndex = Math.floor(start + (end - start) / 2);
+   const middleItem = data[middleIndex];
 
-  if (target === middleItem) return middleIndex;
+   if (target === middleItem) return middleIndex;
 
-  if (target < middleItem) {
-    return binarySearch(data, target, start, middleIndex - 1);
-  } else {
-    return binarySearch(data, target, middleIndex + 1, end);
-  }
+   if (target < middleItem) {
+      return binarySearch(data, target, start, middleIndex - 1);
+   } else {
+      return binarySearch(data, target, middleIndex + 1, end);
+   }
 }
 
-console.log(binarySearch([1, 3, 4, 6, 7, 9, 10, 13, 14], 1));
+console.log(binarySearch([1, 3, 4, 6, 7, 9, 10, 13, 14], 1)); // 0
 ```
+
+### while 循环实现
+
+```js
+function binarySearch(data, target) {
+  let value = -1;
+
+  let start = 0;
+  let end = data.length;
+
+  while (start < end) {
+    const middleIndex = Math.floor(start + (end - start) / 2);
+    const middleItem = data[middleIndex];
+
+    if (target == middleItem) {
+      value = middleIndex;
+      break;
+    }
+
+    if (target < middleItem) {
+      end = middleIndex - 1;
+    } else {
+      start = middleIndex + 1;
+    }
+
+    if (end === start) value = middleIndex;
+  }
+
+  return
+```
+
+## 算法复杂度
+
+**时间复杂度**: _O(log n)_ (n 在此处是数组的元素数量，O 是大 O 记号，_log_ 是对数)
+
+**空间复杂度**: _O(1)_
