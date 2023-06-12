@@ -57,30 +57,31 @@ console.log(binarySearch([1, 3, 4, 6, 7, 9, 10, 13, 14], 1)); // 0
 
 ```js
 function binarySearch(data, target) {
-  let value = -1;
+   let value = -1;
 
-  let start = 0;
-  let end = data.length;
+   let start = 0;
+   let end = data.length;
 
-  while (start < end) {
-    const middleIndex = Math.floor(start + (end - start) / 2);
-    const middleItem = data[middleIndex];
+   while (start <= end) {
+      const middleIndex = Math.floor(start + (end - start) / 2);
+      const middleItem = data[middleIndex];
 
-    if (target == middleItem) {
-      value = middleIndex;
-      break;
-    }
+      if (target == middleItem) {
+         value = middleIndex;
+         break;
+      }
 
-    if (target < middleItem) {
-      end = middleIndex - 1;
-    } else {
-      start = middleIndex + 1;
-    }
+      if (target < middleItem) {
+         end = middleIndex - 1;
+      } else {
+         start = middleIndex + 1;
+      }
+   }
 
-    if (end === start) value = middleIndex;
-  }
+   return value;
+}
 
-  return
+console.log(binarySearch([1, 3, 4, 6, 7, 9, 10, 13, 14], 9));
 ```
 
 ## 算法复杂度
