@@ -238,6 +238,10 @@ export default defineConfig({
                      text: "冒泡排序",
                      link: "/articles/algorithm/bubble-sort"
                   },
+                  {
+                     text: "二分查找",
+                     link: "/articles/algorithm/binary-search"
+                  }
                ]
             }
          ],
