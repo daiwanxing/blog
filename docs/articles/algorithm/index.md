@@ -3,6 +3,7 @@
 ### 排序算法
 
 - [冒泡排序（Bubble Sort)](/articles/algorithm/bubble-sort)
+- [选择排序（Selection sort）](/articles/algorithm/selected-sort)
 
 
 ### 查找算法
