@@ -99,7 +99,7 @@ function fetchData() {
 </script>
 ```
 
-当 js 引擎加载这个 script 脚本的时候，首先会立刻执行`const foo = 'foo'`这行同步代码。接着执行`printFoo`函数调用，调用 `printFoo` 函数，会将函数 push 到`call-stack`中。在`printFoo()`函数体内，js 又执行了`setTimeout`这个 api，并将其回调函数`fooFn()`推入到`task`中，这个`fooFn`会在三秒后被执行（不一定是三秒，如果有任务长期在线程中执行大量计算导致线程无法执行其他任务，那么这个时间会持续很久）。
+当 js 引擎加载这个 script 脚本的时候，首先会立刻执行 `const foo = 'foo'` 这行同步代码。接着执行`printFoo`函数调用，调用 `printFoo` 函数，会将函数 push 到`call-stack`中。在`printFoo()`函数体内，js 又执行了`setTimeout`这个 api，并将其回调函数`fooFn()`推入到`task`中，这个`fooFn`会在三秒后被执行（不一定是三秒，如果有任务长期在线程中执行大量计算导致线程无法执行其他任务，那么这个时间会持续很久）。
 
 将其回调函数`fooFn()`推入到`task`后，接着立即执行`fetchData()`函数，会将`fetchData()`推入到`call-stack`中。在`fetchData`函数体内，立即将`new promise`内的匿名函数推入到`call-stack`中，并将 promise 实例复制给常量`p`.
 
