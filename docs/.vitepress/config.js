@@ -241,6 +241,10 @@ export default defineConfig({
                   {
                      text: "二分查找",
                      link: "/articles/algorithm/binary-search"
+                  },
+                  {
+                     text: "选择排序",
+                     link: "/articles/algorithm/selected-sort"
                   }
                ]
             }
