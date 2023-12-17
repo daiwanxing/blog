@@ -137,8 +137,8 @@ export default defineConfig({
                   },
                   {
                      text: "UnoCSS 初探",
-                     link: "/articles/javascript/unocss"
-                  }
+                     link: "/articles/javascript/unocss",
+                  },
                ],
             },
          ],
@@ -148,7 +148,7 @@ export default defineConfig({
                items: [
                   {
                      text: "搭建 typescript 开发环境",
-                     link: "/articles/typescript/typescript-env"
+                     link: "/articles/typescript/typescript-env",
                   },
                   {
                      text: "declare 关键字",
@@ -183,26 +183,26 @@ export default defineConfig({
                items: [
                   {
                      text: "巧用 aspect-ratio 设置宽高比",
-                     link: "/articles/css/aspect-ratio"
+                     link: "/articles/css/aspect-ratio",
                   },
                   {
                      text: "font-family 容易忽略的细节",
-                     link: "/articles/css/font-family"
+                     link: "/articles/css/font-family",
                   },
                   {
                      text: "CSS3 新尺寸关键字",
-                     link: "/articles/css/unit-keywords"
+                     link: "/articles/css/unit-keywords",
                   },
                   {
                      text: "CSS3 新伪类选择器",
-                     link: "/articles/css/new_pseudo_selector"
+                     link: "/articles/css/new_pseudo_selector",
                   },
                   {
                      text: "CSS3 渐变",
-                     link: "/articles/css/gradient"
-                  }
-               ]
-            }
+                     link: "/articles/css/gradient",
+                  },
+               ],
+            },
          ],
          "/articles/vue": [
             {
@@ -210,14 +210,14 @@ export default defineConfig({
                items: [
                   {
                      text: "深入了解 Transition",
-                     link: "/articles/vue/transition"
+                     link: "/articles/vue/transition",
                   },
                   {
                      text: "ref vs shallowRef",
-                     link: "/articles/vue/refVsShallowRef"
-                  }
-               ]
-            }
+                     link: "/articles/vue/refVsShallowRef",
+                  },
+               ],
+            },
          ],
          "/articles/math": [
             {
@@ -225,10 +225,10 @@ export default defineConfig({
                items: [
                   {
                      text: "数学公式",
-                     link: "/articles/math/formula"
+                     link: "/articles/math/formula",
                   },
-               ]
-            }
+               ],
+            },
          ],
          "/articles/algorithm": [
             {
@@ -236,18 +236,18 @@ export default defineConfig({
                items: [
                   {
                      text: "冒泡排序",
-                     link: "/articles/algorithm/bubble-sort"
+                     link: "/articles/algorithm/bubble-sort",
                   },
                   {
                      text: "二分查找",
-                     link: "/articles/algorithm/binary-search"
+                     link: "/articles/algorithm/binary-search",
                   },
                   {
                      text: "选择排序",
-                     link: "/articles/algorithm/selected-sort"
-                  }
-               ]
-            }
+                     link: "/articles/algorithm/selected-sort",
+                  },
+               ],
+            },
          ],
          "/life/": [
             {
@@ -257,6 +257,10 @@ export default defineConfig({
             {
                text: "2022-12-31",
                link: "/life/2022-12-31",
+            },
+            {
+               text: "2023-12-17",
+               link: "/life/2023-12-17",
             },
          ],
       },
@@ -295,7 +299,7 @@ export default defineConfig({
                {
                   text: "数学",
                   link: articleRef("math/"),
-               }
+               },
             ],
          },
          { text: "生活", link: "/life/" },
