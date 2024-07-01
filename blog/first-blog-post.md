@@ -11,7 +11,7 @@ tags: [Vite, Docusaurus, React]
 
 今天决定将一年前用 [Vitepres](https://vitepress.dev/) 搭建的一个技术日志网站迁移至 [Docusaurus](https://tutorial.docusaurus.io/)。迁移的原因可能是自己爱折腾，这两个 SSG 框架我觉得都挺优秀的。无论是文档上手还是 UI 设计都深得我心。
 
-也有一部分原因是最近一直在恶补 React 知识（[Docusaurus](https://tutorial.docusaurus.io/) 也恰好是基于 React 开发的），从事前端行业近 5 年来写了太多的 Vue.js 项目了，相关的生态我也都用得如鱼得水。
+当然还有一部分原因是最近一直在恶补 React 知识（[Docusaurus](https://tutorial.docusaurus.io/) 也恰好是基于 React 开发的），从事前端行业近 5 年来写了太多的 Vue.js 项目了，相关的生态我也都用得如鱼得水。
 
 唯独 React 一直没有接触过，倒不是我多么排斥 React，纯粹是自己的工作上很少用到。
 

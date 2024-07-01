@@ -49,9 +49,9 @@ $ npm install -g vue-cli
 
 那么很显然 `vue` 是一个外部命令，它被安装在全局的 `node_modules` 目录。`npm` 在安装了包后，会查找该包的 `package.json` 是否配置了 `bin` 属性。
 
-`bin` 是一个什么字段，[文档](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#bin)解释如下：
+`bin` 是一个什么字段，在 [npm 的官方文档](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#bin)我们找到了答案：
 
-译文:
+*以下的引用都是译文，为了确保理解的准确性，均用 GPT-4o 翻译的*
 
 > 很多包都有一个或多个可执行文件，它们希望将其安装到 PATH 中。npm 使这变得相当容易（实际上，它使用此功能来安装“npm”可执行文件）。
 
@@ -134,3 +134,9 @@ program.parse(process.argv);
 然后当我们在终端输入 `vue create foo` 时，接下来的一切都是由脚本内部来解析并处理命令的。
 
 至此整个 npm 包是如何在终端被执行的这个问题的探讨就结束了。
+
+最后来个简单的总结。
+
+1. 全局安装的 Npm Package 默认会放在 `%AppData%\npm\node_modules`（MacOS: `/usr/local/lib/node_modules`）
+2. 如果一个 npm 包以全局的形式安装，并且 npm 包的 `package.json` 配置了 `bin`，那么 npm 会将 `bin` 配置项的所有命令名称创建对应的 `bin` 文件并（如果是 Windows，则是 `cmd` 文件）链接到 `npm` 根目录。
+3. 当在终端输入命令名称时，由于在安装 npm 时系统已经配置好了 npm 的环境变量，所以系统能找到 npm 目录下的命令文件（如果有）并执行命令文件。
