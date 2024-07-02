@@ -53,7 +53,7 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
-
+  
   themeConfig: {
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
@@ -73,8 +73,8 @@ const config: Config = {
         { to: "/blog", label: "Blog", position: "left" },
         {
           href: "https://github.com/daiwanxing/blog/tree/docusaurus",
-          label: "GitHub",
           position: "right",
+          className: "header-github-link",
         },
       ],
     },
@@ -100,6 +100,14 @@ const config: Config = {
         },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Klein's Diary, Inc. Built with Docusaurus.`,
+    },
+    algolia: {
+      // 这里的 appId、apiKey 和 indexName 是你在申请 DocSearch 时得到的
+      appId: "T0DLH6IHEJ",
+      apiKey: "1cf7cceb17269ae1e231cf91505357e1",
+      indexName: "1",
+      contextualSearch: true, // 可选：启用上下文搜索
+      searchParameters: {}, // 可选：传递额外的搜索参数
     },
     prism: {
       theme: prismThemes.github,
