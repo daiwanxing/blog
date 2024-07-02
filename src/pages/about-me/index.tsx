@@ -26,9 +26,9 @@ const Hello = () => {
           </div>
         </div>
         <div className={style["content-skill"]}>
-          <h3>专业技能</h3>
+          <h3>🛠️ 专业技能</h3>
           <hr />
-          <p>🛠️ 我主要掌握的专业技能有</p>
+          <p>我主要掌握的专业技能有</p>
           <ul>
             <li>JavaScript</li>
             <li>Vue.js</li>
@@ -46,7 +46,7 @@ const Hello = () => {
           </ul>
         </div>
         <div className={style["content-experience"]}>
-          <h3>💼工作经历</h3>
+          <h3>💼 工作经历</h3>
           <hr />
           <div>
             <div className={style["workExp-item"]}>

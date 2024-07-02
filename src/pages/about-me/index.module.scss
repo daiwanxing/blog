@@ -1,3 +1,11 @@
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .page {
   --content-width: minmax(auto, 708px);
   --margin-width: minmax(96px, 1fr);
@@ -7,10 +15,15 @@
   grid-template-rows: auto 1fr;
   flex: 1;
   margin: 0 auto;
-  padding-bottom: 50px;
+  padding-bottom: 20px;
 
   container-name: bio-page;
   container-type: inline-size;
+
+  animation-name: fade-in;
+  animation-timing-function: ease-out;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
 
   .greeting {
     white-space: pre-wrap;
