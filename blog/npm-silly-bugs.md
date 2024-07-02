@@ -1,11 +1,7 @@
 ---
 slug: npm-silly-bugs
 title: 使用 pnpm 有助于避免犯下愚蠢的错误
-authors:
-  name: Klein
-  title: freelancer
-  url: https://github.com/daiwanxing
-  image_url: https://avatars.githubusercontent.com/u/37327614?v=4
+authors: klein
 ---
 
 这篇文章的标题是我引用了 pnpm 作者 [Zoltan Kochan](https://www.kochan.io/) 早期写的一篇关于 npm 古早版本的愚蠢 bug 分析。

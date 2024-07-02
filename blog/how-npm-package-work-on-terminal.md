@@ -1,12 +1,7 @@
 ---
 slug: npm-work-on-terminal
 title: Npm 包是如何在终端被执行的
-authors:
-  name: Klein
-  title: freelancer
-  url: https://github.com/daiwanxing
-  image_url: https://avatars.githubusercontent.com/u/37327614?v=4
-tags: [npm]
+authors: klein
 ---
 
 你是否思考过一个问题，当用户在操作系统终端输入一些 npm 包提供的命令，例如:
@@ -84,6 +79,9 @@ $ npm install -g vue-cli
 前面说了：
 
 > 对于非操作系统内部的命令, 会读取 `PATH` 目录下的列表，查找是否有与之同名的可执行文件并尝试执行。
+
+
+[![pkgaz90.md.jpg](https://s21.ax1x.com/2024/07/02/pkgaz90.md.jpg)](https://imgse.com/i/pkgaz90)
 
 ok，继续往下走。
 

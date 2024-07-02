@@ -1,6 +1,9 @@
 import { themes as prismThemes } from "prism-react-renderer";
+import Dotenv from "dotenv";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
+
+Dotenv.config({ path: ".env.local" });
 
 const config: Config = {
   title: "Klein's Diary",
@@ -43,7 +46,9 @@ const config: Config = {
       } satisfies Preset.Options,
     ],
   ],
-  
+
+  customFields: {},
+
   themeConfig: {
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
@@ -54,13 +59,14 @@ const config: Config = {
         src: "img/logo.svg",
       },
       items: [
-        {
-          type: "docSidebar",
-          sidebarId: "tutorialSidebar",
-          position: "left",
-          label: "Tutorial",
-        },
+        // {
+        //   type: "docSidebar",
+        //   sidebarId: "tutorialSidebar",
+        //   position: "left",
+        //   label: "Tutorial",
+        // },
         { to: "/blog", label: "Blog", position: "left" },
+        { to: "/about", label: "about me", position: "left" },
         {
           href: "https://github.com/daiwanxing/blog/tree/docusaurus",
           position: "right",
@@ -72,7 +78,7 @@ const config: Config = {
       style: "dark",
       links: [
         {
-          title: "Social Media",
+          title: "Find Me",
           items: [
             {
               label: "掘金",
@@ -86,6 +92,10 @@ const config: Config = {
               label: "X",
               href: "https://x.com/daiwxing/with_replies",
             },
+            {
+              label: "StackOverflow",
+              href: "https://stackoverflow.com/users/24589110/wanxing-dai",
+            },
           ],
         },
       ],
@@ -93,8 +103,8 @@ const config: Config = {
     },
     algolia: {
       // 这里的 appId、apiKey 和 indexName 是你在申请 DocSearch 时得到的
-      appId: "T0DLH6IHEJ",
-      apiKey: "1cf7cceb17269ae1e231cf91505357e1",
+      appId: process.env.ALGOLIA_ID,
+      apiKey: process.env.ALGOLIA_APIKEY,
       indexName: "1",
       contextualSearch: true, // 可选：启用上下文搜索
       searchParameters: {}, // 可选：传递额外的搜索参数
