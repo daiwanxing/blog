@@ -6,11 +6,7 @@ const config: Config = {
   title: "Klein's Diary",
   tagline: "Klein 的技术日志",
   favicon: "img/favicon.ico",
-
-  // Set the production url of your site here
-  url: "https://your-docusaurus-site.example.com",
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
+  url: "https://blog-klein.vercel.app/",
   baseUrl: "/",
 
   // GitHub pages deployment config.
