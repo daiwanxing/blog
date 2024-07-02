@@ -49,6 +49,8 @@ const config: Config = {
 
   customFields: {},
 
+  plugins: ['docusaurus-plugin-sass'],
+  
   themeConfig: {
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
@@ -66,7 +68,7 @@ const config: Config = {
         //   label: "Tutorial",
         // },
         { to: "/blog", label: "Blog", position: "left" },
-        { to: "/about", label: "about me", position: "left" },
+        { to: "/about-me", label: "about me", position: "left" },
         {
           href: "https://github.com/daiwanxing/blog/tree/docusaurus",
           position: "right",

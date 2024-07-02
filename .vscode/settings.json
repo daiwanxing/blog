@@ -1,0 +1,31 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "eslint.validate": ["javascript", "javascriptreact", "vue", "typescript", "typescriptreact"],
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit",
+        "source.fixAll.stylelint": "explicit"
+    },
+    "css.validate": false,
+    "less.validate": false,
+    "scss.validate": false,
+    "stylelint.validate": ["css", "scss", "sass", "postcss", "vue"],
+    "stylelint.packageManager": "yarn",
+    "stylelint.snippet": ["css", "scss", "sass", "postcss", "vue"],
+    "[properties]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "[shellscript]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "[azcli]": {},
+    "[ignore]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "cssrem.vwDesign": 1920,
+    "cssrem.vw": true,
+    "cssrem.fixedDigits": 2
+}
