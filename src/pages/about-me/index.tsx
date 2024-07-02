@@ -1,7 +1,20 @@
 import Layout from "@theme/Layout";
 import style from "./index.module.scss";
+import Career from "@site/src/components/career";
 
 const Hello = () => {
+  const myMajorSkills = [
+    "JavaScript",
+    "Vue.js",
+    "Vite",
+    "TypeScript",
+    "uni-app",
+    "Taro",
+    "qiankun",
+  ];
+
+  const learningSkills = ["React", "Zustand"];
+
   return (
     <Layout>
       <div className={style["page"]}>
@@ -30,63 +43,53 @@ const Hello = () => {
           <hr />
           <p>我主要掌握的专业技能有</p>
           <ul>
-            <li>JavaScript</li>
-            <li>Vue.js</li>
-            <li>Vite</li>
-            <li>TypeScript</li>
-            <li>uniAPP</li>
-            <li>Taro</li>
-            <li>qiankun</li>
-            <li>...</li>
+            {myMajorSkills.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
           </ul>
           <p>🌱 目前正在学习</p>
           <ul>
-            <li>React</li>
-            <li>Zustand</li>
+            {learningSkills.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
           </ul>
         </div>
         <div className={style["content-experience"]}>
           <h3>💼 工作经历</h3>
           <hr />
-          <div>
-            <div className={style["workExp-item"]}>
-              <h5>中高级前端开发工程师</h5>
-              <div className={style["workExp-company"]}>
-                <span>湖南小桔信息科技有限公司，2023-05 - 2024-07</span>
-              </div>
-              <ul>
-                <li>
-                  负责云平台 2.0
-                  前端的项目搭建与代码编写与代码提交规范制定，确保开发体验一致
-                </li>
-                <li>第二点</li>
-                <li>第三点</li>
-              </ul>
-            </div>
-            <div className={style["workExp-item"]}>
-              <h5>中级前端开发工程师</h5>
-              <div className={style["workExp-company"]}>
-                <span>湖南酷陆网络科技有限公司，2021-08 - 2023-05</span>
-              </div>
-              <ul>
-                <li>第一点</li>
-                <li>第二点</li>
-                <li>第三点</li>
-              </ul>
-            </div>
-            <div className={style["workExp-item"]}>
-              <h5>初级前端开发工程师</h5>
-              <div className={style["workExp-company"]}>
-                <span>湖南蚁坊软件股份有限公司，2020-01 - 2021-08</span>
-              </div>
-              <ul>
-                <li>第一点</li>
-                <li>第二点</li>
-                <li>第三点</li>
-              </ul>
-            </div>
-          </div>
-
+          <Career
+            jobName="中高级前端开发工程师"
+            companyName="湖南小桔信息科技有限公司"
+            workBeginTime="2023-05"
+            workEndTime="2024-07"
+            mainTasks={[
+              "负责公司云平台 2.0 技术方案选型和项目搭建以及核心功能开发",
+              "参与项目需求评审，定期召开前端技术例会，分配需求任务",
+              "接手前任的基础设施开发工作，负责前端基建相关开发工作",
+            ]}
+          />
+          <Career
+            jobName="中级前端开发工程师"
+            companyName="湖南酷陆网络科技有限公司"
+            workBeginTime="2021-08"
+            workEndTime="2023-05"
+            mainTasks={[
+              "参与代码审查和技术分享",
+              "负责地图组件的开发工作",
+              "承担项目的跨端开发任务",
+            ]}
+          />
+          <Career
+            jobName="初级前端开发工程师"
+            companyName="湖南蚁坊软件股份有限公司"
+            workBeginTime="2020-01"
+            workEndTime="2021-08"
+            mainTasks={[
+              "负责完成领导分配的前端需求",
+              "每周参与 CodeReview",
+              "协助测试同事参与系统测试",
+            ]}
+          />
           <div>
             如果您对我的职业经历感兴趣，或者想了解我。可以点击左下角的
             <i>Fine Me</i> 相关的社交媒体找到我。

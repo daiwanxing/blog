@@ -17,6 +17,7 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
   --hr-border-color: #d0d7deb3;
+  --text-color-light-1:#787774;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -31,6 +32,7 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 
   --hr-border-color: #444c56b3;
+  --text-color-light-1:#9b9b9b;
 }
 
 

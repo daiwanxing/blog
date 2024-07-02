@@ -50,23 +50,6 @@
     }
   }
 
-  .content-experience {
-    margin: 20px 0;
-
-    ul {
-      margin: 10px 0;
-    }
-
-    .workExp-item {
-      padding: 3px 0;
-      margin: 10px 0;
-      font-size: 14px;
-    }
-
-    .workExp-company {
-    }
-  }
-
   // 适配手机
 
   @container bio-page (width < 450px) {
