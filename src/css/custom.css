@@ -88,3 +88,7 @@ html, body {
 hr {
   background-color: var(--hr-border-color);
 }
+
+video {
+  width: 100%;
+}

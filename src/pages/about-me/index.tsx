@@ -5,12 +5,15 @@ import Career from "@site/src/components/career";
 const Hello = () => {
   const myMajorSkills = [
     "JavaScript",
+    "CSS",
+    "HTML",
     "Vue.js",
     "Vite",
     "TypeScript",
     "uni-app",
     "Taro",
     "qiankun",
+    "...",
   ];
 
   const learningSkills = ["React", "Zustand"];
