@@ -4,6 +4,8 @@ title: 使用 pnpm 有助于避免犯下愚蠢的错误
 authors: klein
 ---
 
+<!-- truncate -->
+
 这篇文章的标题是我引用了 pnpm 作者 [Zoltan Kochan](https://www.kochan.io/) 早期写的一篇关于 npm 古早版本的愚蠢 bug 分析。
 
 下面是原文的链接，感兴趣的朋友可以阅读一下：
@@ -16,13 +18,13 @@ authors: klein
 
 好了，开始正文。
 
-原文作者所提到的 *silly bugs* 具体指的什么呢？
+原文作者所提到的 _silly bugs_ 具体指的什么呢？
 
 首先 [Zoltan Kochan](https://www.kochan.io/) 用一个示例进行阐述。
 
-假如你需要使用 *express* 搭建一个服务端项目，你肯定首先想到的是 `npm install express --save`，安装完毕后，一切很完美。
+假如你需要使用 _express_ 搭建一个服务端项目，你肯定首先想到的是 `npm install express --save`，安装完毕后，一切很完美。
 
-但是当你展开 *node_modules* 目录时，你会发现里面塞满了一连串的依赖。 wtf ? 如果你是一个 noob 你肯定会疑惑为什么我的 *node_modules* 目录出现了这么多我没手动安装过的依赖。
+但是当你展开 _node_modules_ 目录时，你会发现里面塞满了一连串的依赖。 wtf ? 如果你是一个 noob 你肯定会疑惑为什么我的 _node_modules_ 目录出现了这么多我没手动安装过的依赖。
 
 ```
 accepts
@@ -36,27 +38,27 @@ depd
 ...
 ```
 
-上面说的这个不算 bug，正常来讲是的确预期效果，但是用户体验大打折扣。如果用户希望从 *node_modules* 找到自己安装的那个 package 查看源码的话，那么鼠标滚轮都不知道要滚动多长距离。
+上面说的这个不算 bug，正常来讲是的确预期效果，但是用户体验大打折扣。如果用户希望从 _node_modules_ 找到自己安装的那个 package 查看源码的话，那么鼠标滚轮都不知道要滚动多长距离。
 
 真正的 bug 在于**幽灵依赖**。
 
-想象一下，你为一个新项目安装了一个 *express* 依赖，*express* 依赖了其中的一个 *debug* 库。
+想象一下，你为一个新项目安装了一个 _express_ 依赖，_express_ 依赖了其中的一个 _debug_ 库。
 
-而你的项目里恰好也需要用到这个 *debug*，虽然你没有使用 `npm install debug -D` 手动安装，但这也不妨碍你直接在项目内直接 `require`。因为 *express* 依赖的 *debug* 已经被安装到了项目的 `node_modules` 目录。
+而你的项目里恰好也需要用到这个 _debug_，虽然你没有使用 `npm install debug -D` 手动安装，但这也不妨碍你直接在项目内直接 `require`。因为 _express_ 依赖的 _debug_ 已经被安装到了项目的 `node_modules` 目录。
 
 这样似乎很 nice 是吧，不需要用户多敲下几个字符就能直接导入。
 
 于是你直接在项目编写了类似的业务代码：
 
 ```js title="src/index.js"
-const debug = require('debug')('myModule'); 
+const debug = require("debug")("myModule");
 
-debug('This is a debug message'); 
+debug("This is a debug message");
 ```
 
-然后提交代码并发布到线上，你端着☕，吹着热气，望着系统日志，没有任何尖刺，系统运转得如呼吸般自然。
+然后提交代码并发布到线上，你端着 ☕，吹着热气，望着系统日志，没有任何尖刺，系统运转得如呼吸般自然。
 
-过了没多久，*express* 发布了一个 *minior patch*，这个 *minor-patch* 的主要变动就是移除了 *debug* 这个package 。
+过了没多久，_express_ 发布了一个 _minior patch_，这个 _minor-patch_ 的主要变动就是移除了 _debug_ 这个 package 。
 
 :::caution
 不要怀疑这种变动为什么不会放在下一个 major 版本，因为这是库内部的依赖，不会影响到用户使用。
@@ -72,7 +74,7 @@ debug('This is a debug message');
 正常情况来讲，因为找不到 debug 这个 package，所以在 build 的过程就不会成功。这里只是假设性举个例子。
 :::
 
-没多久你就发现了原来是 express 移除了 `debug` 这个 package，*damn it!*
+没多久你就发现了原来是 express 移除了 `debug` 这个 package，_damn it!_
 
 为了汲取教训，你记住了下次一定要手动安装依赖，这个小故事就到这结束了。
 
@@ -109,4 +111,4 @@ const debug = require("debug"); // error
 
 这样就能避免遇到幽灵导入这种愚蠢的错误了。
 
-当然 pnpm 的特性绝不止这一个，还有其他例如 *离线缓存*，*硬链接/符号链接 npm package* 等等后续有时间会补上。
+当然 pnpm 的特性绝不止这一个，还有其他例如 _离线缓存_，_硬链接/符号链接 npm package_ 等等后续有时间会补上。

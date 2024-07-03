@@ -4,6 +4,8 @@ title: 为什么 qiankun 无法直接在 Vite 运行
 authors: klein
 ---
 
+<!-- truncate -->
+
 qiankun 是一个比较优秀的开源的微前端解决方案（虽然目前 v3 已经鸽了 3 年多了还没发布正式版）。
 
 但是 qiankun 的官方文档一直推荐都是用 webpack 构建微前端项目。目前 Vite 的市占份额已经恐怖如斯，我相信很多 qiankun 的用户都希望官方能支持用 Vite 构建。

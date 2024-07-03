@@ -4,6 +4,8 @@ title: Npm 包是如何在终端被执行的
 authors: klein
 ---
 
+<!-- truncate -->
+
 你是否思考过一个问题，当用户在操作系统终端输入一些 npm 包提供的命令，例如:
 
 ```sh
@@ -46,7 +48,7 @@ $ npm install -g vue-cli
 
 `bin` 是一个什么字段，在 [npm 的官方文档](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#bin)我们找到了答案：
 
-*以下的引用都是译文，为了确保理解的准确性，均用 GPT-4o 翻译的*
+_以下的引用都是译文，为了确保理解的准确性，均用 GPT-4o 翻译的_
 
 > 很多包都有一个或多个可执行文件，它们希望将其安装到 PATH 中。npm 使这变得相当容易（实际上，它使用此功能来安装“npm”可执行文件）。
 
@@ -79,7 +81,6 @@ $ npm install -g vue-cli
 前面说了：
 
 > 对于非操作系统内部的命令, 会读取 `PATH` 目录下的列表，查找是否有与之同名的可执行文件并尝试执行。
-
 
 [![pkgaz90.md.jpg](https://s21.ax1x.com/2024/07/02/pkgaz90.md.jpg)](https://imgse.com/i/pkgaz90)
 

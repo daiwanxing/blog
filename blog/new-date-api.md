@@ -4,6 +4,8 @@ title: 日期格式新利器 - Intl.DateTimeFormat
 authors: klein
 ---
 
+<!-- truncate -->
+
 作为一名前端工程师， 我们在工作中经常会遇到对日期的格式化处理的需求，比如将 `new Date.now()` 格式化成 `YYYY年 MM月 DD日 HH时MM分SS秒`，又或者将比如 `2023年1月12日` 格式化成 `癸卯年正月十二星期日`。
 
 这看起来似乎也不算很难，我们可以借助 `moment.js` 或者 `dayjs` 等相关的日期格式化的库解决这类问题，毕竟 JS 内置的 `Date` 对象在日期格式化并没有提供内置的 API，大部分都需要调用库来实现。
@@ -79,7 +81,7 @@ new Intl.DateTimeFormat("zh", { dateStyle: "short" }).format();
 - `medium`，格式的时间内容包含`时`，`分`，`秒`
 - `short`，格式的时间内容包含`时`，`分`
 
-## 示例
+### 示例
 
 ```js
 // 中国标准时间 17:37:16

@@ -4,6 +4,8 @@ title: 【译】JavaScript 内存管理探秘
 authors: klein
 ---
 
+<!-- truncate -->
+
 :::tip
 这是一篇译文，我征得了原作者 [Felix Gerschau](https://github.com/fgerschau) 授权下进行翻译，并用 Gpt-4o 进行了润色。授权记录可点击[此链接](https://github.com/fgerschau/comments/issues/10#issuecomment-1434257403)查看。
 如果你想阅读原文，也可点击 https://felixgerschau.com/javascript-memory-management/ 查看原文。

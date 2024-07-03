@@ -32,13 +32,13 @@ const config: Config = {
           sidebarPath: "./sidebars.ts",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          editUrl: "https://github.com/daiwanxing/blog/tree/docusaurus/",
         },
         blog: {
+          blogSidebarTitle: "All posts",
+          blogSidebarCount: "ALL",
           showReadingTime: true,
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          editUrl: "https://github.com/daiwanxing/blog/tree/docusaurus/",
         },
         theme: {
           customCss: "./src/css/custom.css",
@@ -49,8 +49,8 @@ const config: Config = {
 
   customFields: {},
 
-  plugins: ['docusaurus-plugin-sass'],
-  
+  plugins: ["docusaurus-plugin-sass"],
+
   themeConfig: {
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
