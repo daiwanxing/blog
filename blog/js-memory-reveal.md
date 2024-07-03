@@ -295,9 +295,9 @@ function removeAllElements() {
 
 以下是改进后的代码
 
-```js{8}
+```js {8}
 const elements = [];
-const element = document.getElementById('button');
+const element = document.getElementById("button");
 elements.push(element);
 
 function removeAllElements() {
@@ -310,6 +310,6 @@ function removeAllElements() {
 
 ## 总结
 
-在本文中，我总结了 JavaScript 中内存管理的核心概念。
+在这篇文章中，我总结了 JavaScript 中内存管理的核心概念。
 
-写这篇文章帮助我理清了一些我不完全理解的概念，我希望这篇文章能很好地概述内存管理在 JavaScript 中的工作原理。
+撰写这篇文章帮助我理清了一些我之前不完全理解的概念，我希望这篇文章能够作为对 JavaScript 内存管理工作原理的一个良好概述。
