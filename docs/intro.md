@@ -10,4 +10,4 @@ sidebar_position: 1
 
 仓库链接：https://github.com/type-challenges/type-challenges
 
-Ts-Playground: https://www.typescriptlang.org/play
+TS-Playground: https://www.typescriptlang.org/play

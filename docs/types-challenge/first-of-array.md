@@ -4,8 +4,6 @@ sidebar_position: 1
 
 # First of Array
 
-## 题目
-
 实现一个 `First<T>` 泛型，它接受一个数组 `T` 并返回它的第一个元素的类型。
 
 ```ts
