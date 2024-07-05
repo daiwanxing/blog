@@ -9,3 +9,5 @@ sidebar_position: 1
 还等什么呢？一起来戴着镣铐跳舞吧 ⚰️。
 
 仓库链接：https://github.com/type-challenges/type-challenges
+
+Ts-Playground: https://www.typescriptlang.org/play
