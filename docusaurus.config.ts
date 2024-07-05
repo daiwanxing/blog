@@ -61,12 +61,12 @@ const config: Config = {
         src: "img/logo.svg",
       },
       items: [
-        // {
-        //   type: "docSidebar",
-        //   sidebarId: "tutorialSidebar",
-        //   position: "left",
-        //   label: "Tutorial",
-        // },
+        {
+          type: "docSidebar",
+          sidebarId: "tutorialSidebar",
+          position: "left",
+          label: "types-challenge",
+        },
         { to: "/blog", label: "Blog", position: "left" },
         { to: "/about-me", label: "about me", position: "left" },
         {
