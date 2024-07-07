@@ -8,7 +8,7 @@ Dotenv.config({ path: ".env.local" });
 const config: Config = {
   title: "Klein's Diary",
   tagline: "Klein 的技术日志",
-  favicon: "img/favicon.ico",
+  favicon: "img/logo-v2.png",
   url: "https://blog-klein.vercel.app/",
   baseUrl: "/",
 
@@ -53,22 +53,22 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: "img/docusaurus-social-card.jpg",
+    image: "img/infj.png",
     navbar: {
       title: `Klein's Diary`,
       logo: {
         alt: "My Site Logo",
-        src: "img/logo.svg",
+        src: "img/logo-v2.png",
       },
       items: [
         {
           type: "docSidebar",
           sidebarId: "tutorialSidebar",
           position: "left",
-          label: "types-challenge",
+          label: "Types-challenge",
         },
         { to: "/blog", label: "Blog", position: "left" },
-        { to: "/about-me", label: "about me", position: "left" },
+        { to: "/about-me", label: "Author", position: "left" },
         {
           href: "https://github.com/daiwanxing/blog/tree/docusaurus",
           position: "right",
