@@ -38,5 +38,5 @@ type Todo = DeepReadonly<X>; // should be same as `Expected`
 type DeepReadonly<T> = T extends object ? {
   readonly [k in keyof T]: DeepReadonly<T[k]>
 }: T
-```ds
+```
 </details>
