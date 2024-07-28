@@ -1,0 +1,23 @@
+.my-box {
+  height: 100px;
+  container-name: notify-card;
+  container-type: inline-size;
+
+  .child-element {
+    height: 100%;
+    border-radius: 1em;
+    background: black;
+  }
+
+  @container notify-card (min-width: 300px) and (max-width: 500px) {
+    .child-element {
+      background-color: blue;
+    }
+  }
+
+  @container notify-card (min-width: 500px) {
+    .child-element {
+      background-color: gray;
+    }
+  }
+}
